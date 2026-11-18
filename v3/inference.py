@@ -69,6 +69,11 @@ def infer_batches(model, samples, method, evaluation, batch_size, workers, *, wa
 
 
 def infer_loader(model, loader, *, warmup=True):
+    for ids, probabilities, view_labels, seconds in infer_view_batches(model, loader, warmup=warmup):
+        yield list(zip(ids, summarize_views(probabilities, view_labels, seconds), strict=True))
+
+
+def infer_view_batches(model, loader, *, warmup=True):
     import torch
 
     with torch.inference_mode():
@@ -85,4 +90,4 @@ def infer_loader(model, loader, *, warmup=True):
             probabilities = torch.stack(probs).cpu().numpy()
             view_labels = torch.stack(labels).cpu().numpy()
             seconds = time.perf_counter() - started
-            yield list(zip(ids, summarize_views(probabilities, view_labels, seconds), strict=True))
+            yield ids, probabilities, view_labels, seconds
