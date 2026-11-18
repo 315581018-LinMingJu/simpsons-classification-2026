@@ -15,6 +15,7 @@ from PIL import Image, ImageDraw
 
 from classification_v3 import main, predict_cached, validation_subset
 from v2.data_checks import Sample
+from v3.baseline_probe import read_cache
 from v3.inference import Prediction, Views, summarize_views
 from v3.reports import read_reference, read_test_images, submission, test_report, validation_report
 from v3.storage import Cache, image_signature
@@ -168,11 +169,12 @@ class ClassificationV3Tests(unittest.TestCase):
             data = root / "data"
             test = data / "test_images/test_images"
             test.mkdir(parents=True)
-            ids = ["009", "002"]
+            ids = ["155", "002"]
             for item in ids:
                 Image.new("RGB", (16, 16), "yellow").save(test / f"{item}.jpg")
-            (data / "sample_submission.csv").write_text("id,character\n009,unused\n002,unused\n")
+            (data / "sample_submission.csv").write_text("id,character\n155,unused\n002,unused\n")
             classes = [f"character_{i}" for i in range(50)]
+            classes[:2] = ["timothy_lovejoy", "kent_brockman"]
             v1, v2 = (root / name for name in ("v1", "v2"))
             for run in v1, v2:
                 run.mkdir()
@@ -180,7 +182,7 @@ class ClassificationV3Tests(unittest.TestCase):
                 (run / "split.csv").write_bytes(b"test split")
                 (run / "best.pt").write_bytes(run.name.encode())
             reference = v2 / "submission_v2.csv"
-            reference.write_text("id,character\n009,character_0\n002,character_0\n")
+            reference.write_text("id,character\n155,timothy_lovejoy\n002,timothy_lovejoy\n")
             evaluation = "test transform"
             (v2 / "run_config.json").write_text(json.dumps({
                 "eval_transform": repr(evaluation), "batch_size": 64,
@@ -199,9 +201,9 @@ class ClassificationV3Tests(unittest.TestCase):
 
             fake_infer = Mock(side_effect=infer)
 
-            def run(stage, output):
+            def run(stage, output, *options):
                 argv = ["classification_v3.py", stage, "--data", str(data), "--v1-run", str(v1),
-                        "--v2-run", str(v2), "--output", str(output), "--limit", "1"]
+                        "--v2-run", str(v2), "--output", str(output), "--limit", "1", *options]
                 with patch.object(sys, "argv", argv):
                     main()
 
@@ -238,7 +240,7 @@ class ClassificationV3Tests(unittest.TestCase):
                 self.assertEqual(len(list(output.glob("submission_v3_*.csv"))), 4)
                 run("predict", output)
                 self.assertEqual(fake_infer.call_count, 10)
-                reference.write_text("id,character\n009,character_1\n002,character_0\n")
+                reference.write_text("id,character\n155,kent_brockman\n002,timothy_lovejoy\n")
                 mismatch = root / "mismatch"
                 with self.assertRaisesRegex(RuntimeError, "Baseline differs"):
                     run("predict", mismatch)
@@ -249,7 +251,45 @@ class ClassificationV3Tests(unittest.TestCase):
                 self.assertFalse(list(mismatch.glob("submission_v3_*.csv")))
                 self.assertFalse((mismatch / "test_summary.json").exists())
                 check = json.loads((mismatch / "baseline_check.json").read_text())
-                self.assertEqual(check["mismatch_ids"], ["009"])
+                self.assertEqual(check["mismatch_ids"], ["155"])
+                source_before = {path.name: path.read_bytes() for path in mismatch.iterdir()}
+                settings = check["settings"]
+                reference_hash = settings.pop("v2_reference_sha256")
+                audit = read_cache(mismatch, settings, ids, 64, classes, "155", reference_hash)
+                replay = {
+                    "input_tensor_sha256": "f" * 64, "target_matches_cached_baseline": True,
+                    "batch_reference_mismatch_ids": ["155"], "logits_dtype": "float32",
+                    "top1": classes[0],
+                    "top5": [{"character": name, "logit": 1 - i / 100, "probability": 0.16 - i / 1000}
+                             for i, name in enumerate(classes[:5])],
+                }
+                report = root / "probe.json"
+                report.write_text(json.dumps({
+                    "id": "155", "historical_v2_label": classes[1],
+                    "v2_reference_sha256": reference_hash, "expected_cache_metadata": settings,
+                    "cache": audit,
+                    "replay_settings": {
+                        "batch_size": 64, "actual_batch_size": 2, "batch_ids": ids,
+                        "batch_start_index_zero_based": 0, "position_in_batch_zero_based": 0,
+                        "cudnn_benchmark": True, "cudnn_deterministic": False,
+                    },
+                    "replay_comparison": {
+                        "batch_input_bitwise_equal": True, "batch_logits_bitwise_equal": True,
+                        "batch_logit_max_abs_diff": 0.0, "target_logit_max_abs_diff": 0.0,
+                    },
+                    "replays": {"v2": replay, "v3": replay},
+                }))
+                verified = root / "verified"
+                options = ("--allow-historical-mismatch-id", "155", "--baseline-source", str(mismatch),
+                           "--baseline-probe-report", str(report))
+                run("baseline-check", verified, *options)
+                self.assertEqual(fake_infer.call_count, 11)
+                run("predict", verified, *options)
+                self.assertEqual(fake_infer.call_count, 15)
+                self.assertEqual({path.name: path.read_bytes() for path in mismatch.iterdir()}, source_before)
+                self.assertIn("155,timothy_lovejoy", (verified / "submission_v3_baseline.csv").read_text())
+                self.assertIn("155,kent_brockman", (verified / "submission_v3_full_resize.csv").read_text())
+                self.assertTrue((verified / "baseline_exception_authorization.json").is_file())
 
 
     def test_reports_render_and_measure_without_test_labels(self):

@@ -3,14 +3,13 @@
 import hashlib
 import json
 import sqlite3
-from contextlib import closing
 
 import numpy as np
 
 from classification_v2 import loader as v2_loader
 from v2.data_checks import read_json
 from v3.inference import view_loader
-from v3.storage import inspect_baseline_cache
+from v3.storage import read_baseline_snapshot
 
 
 def locate_batch(ids, item, batch_size):
@@ -45,10 +44,7 @@ def read_cache(output, metadata, ids, batch_size, classes, item, reference_hash)
     if not path.exists():
         return {"status": "missing", "path": str(path)}
     try:
-        with closing(sqlite3.connect(path.resolve().as_uri() + "?mode=ro", uri=True)) as conn:
-            with conn:
-                conn.execute("BEGIN")
-                audit = inspect_baseline_cache(conn, metadata, ids, batch_size, classes, item)
+        audit, _ = read_baseline_snapshot(path, metadata, ids, batch_size, classes, item)
     except (sqlite3.Error, OSError, ValueError, KeyError, TypeError, AttributeError) as exc:
         return {"status": "audit_error", "path": str(path), "error": str(exc)}
     report = output / "baseline_check.json"

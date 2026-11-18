@@ -13,6 +13,7 @@ from PIL import __version__ as pillow_version
 from classification_v2 import create_model, load_checkpoint, transforms_v2
 from compare_v1_v2 import SPLIT_SHA256, load_comparison_split
 from v2.data_checks import CLASS_COUNT, duplicate_diagnostic, read_json
+from v3.baseline_exception import ALLOWED_ID, authorize_exception, baseline_result
 from v3.inference import SCALES, VIEWS, infer_batches
 from v3.reports import read_reference, read_test_images, submission, test_report, validation_report
 from v3.storage import Cache, baseline_cache_issues, file_sha256, image_signature, json_bytes, publish
@@ -34,7 +35,21 @@ def arguments():
     parser.add_argument("--id", dest="probe_id", help="baseline-probe 的 Test ID")
     parser.add_argument("--probe-path", choices=("both", "v2", "v3"), default="both")
     parser.add_argument("--replay-prefix", action="store_true", help="從第一批重播到目標批次")
+    parser.add_argument("--allow-historical-mismatch-id", choices=(ALLOWED_ID,))
+    parser.add_argument("--baseline-probe-report", type=Path)
+    parser.add_argument("--baseline-source", type=Path, help="原 baseline-check 所在目錄，唯讀")
     args = parser.parse_args()
+    exception_args = (args.allow_historical_mismatch_id, args.baseline_probe_report, args.baseline_source)
+    if any(exception_args):
+        if args.stage not in {"baseline-check", "predict"} or not all(exception_args):
+            parser.error("baseline-check or predict requires all three historical exception options")
+        source = args.baseline_source
+        destination_db = args.output / "test.sqlite3"
+        source_db = source / "test.sqlite3"
+        if (args.output.resolve().is_relative_to(source.resolve())
+                or destination_db.resolve().is_relative_to(source.resolve())
+                or (destination_db.exists() and source_db.exists() and destination_db.samefile(source_db))):
+            parser.error("historical exception requires a separate writable --output directory")
     if args.stage == "baseline-probe" and args.probe_id is None:
         parser.error("baseline-probe requires --id")
     if args.stage != "baseline-probe" and (
@@ -95,16 +110,20 @@ def validation_subset(output, rows, signature, train_root):
     return samples, {item: valid[item].label for _, item in samples}, selection["duplicate_counts"]
 
 
-def check_test_baseline(output, samples, predictions, reference, settings):
-    mismatches = [item for _, item in samples if predictions[item].label != reference[item]]
-    publish(output / "baseline_check.json", json_bytes({
-        "settings": settings, "samples": len(samples),
-        "mismatch_count": len(mismatches), "mismatch_ids": mismatches,
-    }))
+def check_test_baseline(output, samples, predictions, reference, settings, authorization=None):
+    result = baseline_result([item for _, item in samples], predictions, reference, settings)
+    publish(output / "baseline_check.json", json_bytes(result))
+    mismatches = result["mismatch_ids"]
     print(f"正式 Baseline 對照 V2 Submission：{len(mismatches)}/{len(samples)} 筆不同", flush=True)
-    if mismatches:
-        raise RuntimeError("Baseline differs from V2 submission; see baseline_check.json. "
-                           "Candidate submissions were not generated.")
+    if not mismatches:
+        return
+    if (authorization is not None and mismatches == [ALLOWED_ID]
+            and authorization["allowed_id"] == ALLOWED_ID):
+        publish(output / "baseline_exception_authorization.json", json_bytes(authorization))
+        print(f"已記錄 ID {ALLOWED_ID} 的歷史差異例外。保留模型預測。", flush=True)
+        return
+    raise RuntimeError("Baseline differs from V2 submission; see baseline_check.json. "
+                       "Candidate submissions were not generated.")
 
 
 def main():
@@ -195,6 +214,17 @@ def main():
               reference_hash, v2_model)
         return
 
+    authorization = None
+    if args.allow_historical_mismatch_id:
+        baseline, authorization = authorize_exception(
+            args.baseline_source, args.baseline_probe_report, args.allow_historical_mismatch_id,
+            [item for _, item in samples], reference, metadata, reference_hash,
+        )
+        check_test_baseline(args.output, samples, baseline, reference,
+                            {**metadata, "v2_reference_sha256": reference_hash}, authorization)
+        if args.stage == "baseline-check":
+            return
+
     cache_path = args.output / ("validation.sqlite3" if validating else "test.sqlite3")
     with closing(sqlite3.connect(cache_path)) as connection:
         cache = Cache(connection, metadata)
@@ -203,28 +233,31 @@ def main():
             keys = {"baseline": "baseline_preview"} if diagnostic else None
             predictions = predict_cached(cache, samples, VIEWS, v2_model, inference, cache_keys=keys)
         else:
-            issues = baseline_cache_issues(cache.read("baseline"), [item for _, item in samples],
-                                           original_batch_size, len(classes))
-            if issues:
-                raise ValueError("; ".join(issues) + ". Run baseline-probe to inspect the cache.")
-            # 維持 V2 的原始樣本順序、批次邊界與 cuDNN 設定。
-            torch.backends.cudnn.benchmark = True
-            torch.backends.cudnn.deterministic = False
-            try:
-                predictions = predict_cached(
-                    cache, samples, ("baseline",), v2_model,
-                    lambda model, missing, method: infer_batches(
-                        model, missing, method, evaluation, original_batch_size, args.workers,
-                        warmup=False,
-                    ),
-                )
-            finally:
-                torch.backends.cudnn.benchmark = False
-                torch.backends.cudnn.deterministic = True
-            check_test_baseline(args.output, samples, predictions["baseline"], reference,
-                                {**metadata, "v2_reference_sha256": reference_hash})
-            if args.stage == "baseline-check":
-                return
+            if authorization is not None:
+                predictions = {"baseline": baseline}
+            else:
+                issues = baseline_cache_issues(cache.read("baseline"), [item for _, item in samples],
+                                               original_batch_size, len(classes))
+                if issues:
+                    raise ValueError("; ".join(issues) + ". Run baseline-probe to inspect the cache.")
+                # 維持 V2 的原始樣本順序、批次邊界與 cuDNN 設定。
+                torch.backends.cudnn.benchmark = True
+                torch.backends.cudnn.deterministic = False
+                try:
+                    predictions = predict_cached(
+                        cache, samples, ("baseline",), v2_model,
+                        lambda model, missing, method: infer_batches(
+                            model, missing, method, evaluation, original_batch_size, args.workers,
+                            warmup=False,
+                        ),
+                    )
+                finally:
+                    torch.backends.cudnn.benchmark = False
+                    torch.backends.cudnn.deterministic = True
+                check_test_baseline(args.output, samples, predictions["baseline"], reference,
+                                    {**metadata, "v2_reference_sha256": reference_hash})
+                if args.stage == "baseline-check":
+                    return
             tta_methods = [method for method in VIEWS if method != "baseline"]
             predictions.update(predict_cached(cache, samples, tta_methods, v2_model, inference))
         if not validating:
@@ -241,6 +274,8 @@ def main():
 
     output = args.output / "diagnostic" if diagnostic else args.output
     report_settings = {**metadata, "scope": args.stage, "v2_reference_sha256": reference_hash}
+    if authorization is not None:
+        report_settings["historical_baseline_exception"] = "baseline_exception_authorization.json"
     if diagnostic:
         report_settings.update({"seed": args.seed, "requested_sample_count": args.limit})
     summary = test_report(output, samples, predictions, classes, reference, report_settings)

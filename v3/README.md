@@ -45,7 +45,7 @@ python classification_v3.py predict
 - **`baseline-check`** 只跑 V2 原始 Baseline，依範本順序、V2 紀錄的 batch size、相同前處理與 cuDNN 設定推論。將全量核對結果寫到 `runs/v3_tta/baseline_check.json`。即使 CUDA 核心或版本不同，是否一致仍以逐 ID 實際結果為準。
 - **`diagnostic`** 將小樣本統計及圖片存到 `runs/v3_tta/diagnostic/`。可用 `--limit` 和 `--seed` 調整抽樣。更改抽樣並保留原報告時，另指定新的 `--output`。
 - **`validation`** 在 `runs/v3_tta/` 寫入 `comparison.csv`、`comparison.json` 和去重清單。四種方法使用同一批排除跨集合 RGB 像素與尺寸完全相同的驗證圖，使用原切分的真實驗證標籤。報表列出準確率、相對 Baseline 的百分點差、改判比例、平均信心及耗時。耗時累加每批主機到 GPU 傳輸、前向運算、Softmax 及 GPU 到主機傳輸，排除讀圖、解碼與預熱。去重未涵蓋近似圖或相鄰影格。
-- **`predict`** 在 `runs/v3_tta/` 產生全量診斷與 `submission_v3_baseline.csv`、`submission_v3_full_resize.csv`、`submission_v3_five_crop.csv`、`submission_v3_multiscale.csv`。每份 CSV 都依範本的字串 ID 順序寫入 10,791 筆、只有 `id,character`，並驗證 ID 和 50 類映射。範本的角色欄不作為答案。會先通過全量 Baseline 比對，再執行其他方法。有差異時，從 `baseline_check.json` 查差異 ID，並核對權重、參考 CSV 和執行環境。抽樣 Baseline 另存快取，以維持正式比對的原始批次邊界。
+- **`predict`** 在 `runs/v3_tta/` 產生全量診斷與 `submission_v3_baseline.csv`、`submission_v3_full_resize.csv`、`submission_v3_five_crop.csv`、`submission_v3_multiscale.csv`。每份 CSV 都依範本的字串 ID 順序寫入 10,791 筆、只有 `id,character`，並驗證 ID 和 50 類映射。範本的角色欄不作為答案。會先通過全量 Baseline 比對，再執行其他方法。特定的歷史差異只能依下方流程明確授權。有差異時，從 `baseline_check.json` 查差異 ID，並核對權重、參考 CSV 和執行環境。抽樣 Baseline 另存快取，以維持正式比對的原始批次邊界。
 - 測試診斷提供各方法所有角色的 `prediction_distribution.csv`、逐圖 `test_diagnostics.csv` 與 `test_summary.json`。拼圖包括 `low_confidence.png`、`prediction_disagreements.png`、`tta_disagreements.png`、`v1_v2_disagreements.png`。每格標示 ID、V1／V2／該方法預測與信心。視角分歧定義為 `1 − 最常見視角 top-1 的票數 / 視角數`，與最終機率平均的類別是不同統計。
 
 成功的批次會逐批寫入 SQLite 快取。本機相同輸入、環境與 batch size 下，`predict` 可沿用 `baseline-check` 的全量 Baseline、`diagnostic` 的其餘推論，被中斷後也可續跑。驗證另有快取，並沿用已算好的去重清單。報表及候選檔內容相同時直接沿用，內容不同時明確停止，可指定如 `--output runs/v3_tta_repeat1` 保存新結果。輸入影像快取依路徑、大小與時間戳追蹤，請使用完整且未變更的原資料。執行同一個輸出目錄時，請讓各階段依序完成。若曾執行舊版 V3 並留下快取，為新版各階段統一指定 `--output runs/v3_tta_verified`，保留舊結果。
@@ -62,7 +62,28 @@ CUDA_VISIBLE_DEVICES=0 python -u classification_v3.py baseline-probe \
 - 依範本定位 ID 的**原始批次**，保留批內順序與可能較短的尾批。用原 V2 DataLoader 和 V3 視角 DataLoader 各重播該批。報告包含前五類 logits／Softmax 機率、前兩名差距、原 V2 類別在目前模型中的分數、輸入張量雜湊及 logits 最大差。原 V2 Submission 只有類別，歷史分數無法從 CSV 還原。
 - `cache.compatible` 表示 SQLite 完整性、已記錄設定和正式 Baseline 的批次結構通過檢查。報告會列出版本、差異欄位、正式與抽樣快取個別筆數及指定 ID 的紀錄，並核對舊核對報告的 V2 CSV 雜湊。當初 SQLite 沒記錄每批的 GPU kernel、TF32 設定或前五分數，相容不等於已證明能逐位元重現歷史推論。
 - 預設兩條路徑在同一進程重播，便於控制當前模型與 cuDNN 設定。若輸入相同但結果仍有疑問，可用兩個新進程各跑一次：分別在上面指令追加 `--probe-path v2 --replay-prefix` 和 `--probe-path v3 --replay-prefix`。每次會從第一批跑到該 ID 的原始批次，保留第一批的 cuDNN 自動選擇過程，仍只報告目標批。
-- 若 metadata 相符且問題只出現在目標批，優先保留 SQLite，以上述命令重算該批或其前綴來追查。若輸入或執行環境的 metadata 不相容，舊 Baseline 的整個方法快取便無法沿用。可將輸出改成 `--output runs/v3_tta_baseline_recheck` 只重跑 `baseline-check`，保留原目錄的所有快取和報告，不必重跑驗證或 TTA。兩條路徑若一致地重現目前的 V3 類別，且原始 V2 類別仍不同，應追查歷史 checkpoint／CSV 來源與當時執行設定。正式保護仍要求所有 ID 一致。
+- 若 metadata 相符且問題只出現在目標批，優先保留 SQLite，以上述命令重算該批或其前綴來追查。若輸入或執行環境的 metadata 不相容，舊 Baseline 的整個方法快取便無法沿用。可將輸出改成 `--output runs/v3_tta_baseline_recheck` 只重跑 `baseline-check`，保留原目錄的所有快取和報告，不必重跑驗證或 TTA。兩條路徑若一致地重現目前的 V3 類別，且原始 V2 類別仍不同，應追查歷史 checkpoint／CSV 來源與當時執行設定。未明確授權時，正式保護要求所有 ID 一致。
+
+## 明確授權已確認的 ID 155 歷史差異
+
+預設仍要求 10,791 筆完全一致。只有原 V2 為 `kent_brockman`、現有正式 Baseline 為 `timothy_lovejoy`，且全表只有 ID 155 不一致時，才適用此流程。程式會重新從磁碟驗證原 SQLite 完整性、原先的 `baseline_check.json`，以及 Probe 的原始批次、兩路輸入與 logits、checkpoint 和 V2 CSV 指紋。任何額外的不一致都會停止。Probe 可以沿用已保存的原始 JSON，或只重播一次目標批次取得報告。
+
+```bash
+export CUDA_VISIBLE_DEVICES=0
+source_run=runs/v3_tta_verified
+output_run=runs/v3_tta_155
+probe_report=$(mktemp runs/v3_probe_155.XXXXXX)
+
+python -u classification_v3.py baseline-probe --id 155 --output "$source_run" > "$probe_report" &&
+python -u classification_v3.py baseline-check --output "$output_run" \
+  --allow-historical-mismatch-id 155 --baseline-probe-report "$probe_report" --baseline-source "$source_run" &&
+python -u classification_v3.py diagnostic --output "$output_run" &&
+python -u classification_v3.py validation --output "$output_run" &&
+python -u classification_v3.py predict --output "$output_run" \
+  --allow-historical-mismatch-id 155 --baseline-probe-report "$probe_report" --baseline-source "$source_run"
+```
+
+新目錄保存 `baseline_exception_authorization.json`，包括允許的 ID、歷史與目前兩個標籤、checkpoint 與歷史 CSV SHA-256、快取快照指紋及完整 Probe。例外選項只用於 `baseline-check` 或 `predict`，每次都要明確提供。正式 Baseline 沿用原 SQLite 裡的整份模型輸出，資料庫以唯讀模式開啟。其餘快取、報表與候選檔寫入新目錄，各候選 CSV 使用各方法自己的模型預測。原始 SQLite、模型與 Submission 均保留。
 
 ## 解讀限制
 

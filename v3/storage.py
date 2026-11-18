@@ -7,6 +7,8 @@ import json
 import math
 import os
 import sqlite3
+from contextlib import closing
+import sqlite3
 from dataclasses import asdict
 from pathlib import Path
 from tempfile import NamedTemporaryFile
@@ -90,6 +92,13 @@ def baseline_cache_issues(predictions, ids, batch_size, class_count):
     return issues
 
 
+def read_baseline_snapshot(path, metadata, ids, batch_size, classes, item):
+    with closing(sqlite3.connect(path.resolve().as_uri() + "?mode=ro", uri=True)) as connection:
+        with connection:
+            connection.execute("BEGIN")
+            return inspect_baseline_cache(connection, metadata, ids, batch_size, classes, item)
+
+
 def inspect_baseline_cache(connection, metadata, ids, batch_size, classes, item):
     integrity = [row[0] for row in connection.execute("PRAGMA integrity_check")]
     saved = connection.execute("SELECT value FROM settings WHERE id = 1").fetchone()
@@ -118,7 +127,7 @@ def inspect_baseline_cache(connection, metadata, ids, batch_size, classes, item)
         "baseline_structure_issues": structural_issues,
         "baseline_target": selected(baseline), "preview_target": selected(preview),
         "compatible": integrity == ["ok"] and saved == expected and not structural_issues,
-    }
+    }, baseline
 
 
 def publish(path, contents):
