@@ -64,9 +64,13 @@ def view_loader(samples, method, evaluation, batch_size, workers):
 
 
 def infer_batches(model, samples, method, evaluation, batch_size, workers, *, warmup=True):
+    loader = view_loader(samples, method, evaluation, batch_size, workers)
+    yield from infer_loader(model, loader, warmup=warmup)
+
+
+def infer_loader(model, loader, *, warmup=True):
     import torch
 
-    loader = view_loader(samples, method, evaluation, batch_size, workers)
     with torch.inference_mode():
         if warmup:
             model(torch.zeros((1, 3, 224, 224), device="cuda"))
