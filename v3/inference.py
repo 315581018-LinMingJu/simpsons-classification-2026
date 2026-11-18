@@ -52,15 +52,21 @@ def summarize_views(probabilities, view_labels, seconds):
     ]
 
 
-def infer_batches(model, samples, method, evaluation, batch_size, workers, *, warmup=True):
+def view_loader(samples, method, evaluation, batch_size, workers):
     import torch
 
     from classification_v2 import Images
 
-    loader = torch.utils.data.DataLoader(
+    return torch.utils.data.DataLoader(
         Images(samples, Views(method, evaluation)), batch_size=batch_size,
         num_workers=workers, pin_memory=True, prefetch_factor=1 if workers else None,
     )
+
+
+def infer_batches(model, samples, method, evaluation, batch_size, workers, *, warmup=True):
+    import torch
+
+    loader = view_loader(samples, method, evaluation, batch_size, workers)
     with torch.inference_mode():
         if warmup:
             model(torch.zeros((1, 3, 224, 224), device="cuda"))

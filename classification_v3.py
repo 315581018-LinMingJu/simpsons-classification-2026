@@ -15,12 +15,13 @@ from compare_v1_v2 import SPLIT_SHA256, load_comparison_split
 from v2.data_checks import CLASS_COUNT, duplicate_diagnostic, read_json
 from v3.inference import SCALES, VIEWS, infer_batches
 from v3.reports import read_reference, read_test_images, submission, test_report, validation_report
-from v3.storage import Cache, file_sha256, image_signature, json_bytes, publish
+from v3.storage import Cache, baseline_cache_issues, file_sha256, image_signature, json_bytes, publish
 
 
 def arguments():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("stage", choices=("diagnostic", "baseline-check", "validation", "predict"))
+    parser.add_argument("stage", choices=("diagnostic", "baseline-check", "baseline-probe",
+                                          "validation", "predict"))
     parser.add_argument("--data", type=Path, default=Path("data/extracted"))
     parser.add_argument("--v1-run", type=Path, default=Path("runs/v1_baseline"))
     parser.add_argument("--v2-run", type=Path, default=Path("runs/v2_primary"))
@@ -30,7 +31,16 @@ def arguments():
     parser.add_argument("--workers", type=int, default=2)
     parser.add_argument("--limit", type=int, default=128, help="diagnostic 樣本數")
     parser.add_argument("--seed", type=int, default=2026, help="diagnostic 抽樣種子")
+    parser.add_argument("--id", dest="probe_id", help="baseline-probe 的 Test ID")
+    parser.add_argument("--probe-path", choices=("both", "v2", "v3"), default="both")
+    parser.add_argument("--replay-prefix", action="store_true", help="從第一批重播到目標批次")
     args = parser.parse_args()
+    if args.stage == "baseline-probe" and args.probe_id is None:
+        parser.error("baseline-probe requires --id")
+    if args.stage != "baseline-probe" and (
+        args.probe_id is not None or args.replay_prefix or args.probe_path != "both"
+    ):
+        parser.error("probe options are only for baseline-probe")
     if args.batch_size < 1 or args.limit < 1 or args.workers < 0:
         parser.error("batch size and diagnostic limit must be positive; workers must be nonnegative")
     args.v2_submission = args.v2_submission or args.v2_run / "submission_v2.csv"
@@ -119,7 +129,8 @@ def main():
         raise ValueError("V2 run_config.json must record the original positive batch_size")
     v2_checkpoint = args.v2_run / "best.pt"
     v1_checkpoint = args.v1_run / "best.pt"
-    args.output.mkdir(parents=True, exist_ok=True)
+    if args.stage != "baseline-probe":
+        args.output.mkdir(parents=True, exist_ok=True)
     if validating:
         train_root = args.data / "train/train/train"
         classes, rows, split_hash = load_comparison_split(train_root, args.v1_run, args.v2_run)
@@ -177,6 +188,13 @@ def main():
     def v2_model():
         return model_for(v2_checkpoint, split_hash)
 
+    if args.stage == "baseline-probe":
+        from v3.baseline_probe import probe
+
+        probe(args, samples, classes, reference, v2_config, evaluation, metadata,
+              reference_hash, v2_model)
+        return
+
     cache_path = args.output / ("validation.sqlite3" if validating else "test.sqlite3")
     with closing(sqlite3.connect(cache_path)) as connection:
         cache = Cache(connection, metadata)
@@ -185,6 +203,10 @@ def main():
             keys = {"baseline": "baseline_preview"} if diagnostic else None
             predictions = predict_cached(cache, samples, VIEWS, v2_model, inference, cache_keys=keys)
         else:
+            issues = baseline_cache_issues(cache.read("baseline"), [item for _, item in samples],
+                                           original_batch_size, len(classes))
+            if issues:
+                raise ValueError("; ".join(issues) + ". Run baseline-probe to inspect the cache.")
             # 維持 V2 的原始樣本順序、批次邊界與 cuDNN 設定。
             torch.backends.cudnn.benchmark = True
             torch.backends.cudnn.deterministic = False

@@ -4,8 +4,10 @@ import csv
 import hashlib
 import io
 import json
+import math
 import os
 import sqlite3
+from dataclasses import asdict
 from pathlib import Path
 from tempfile import NamedTemporaryFile
 
@@ -50,12 +52,7 @@ class Cache:
                 raise ValueError("Cache inputs or settings changed; choose a new --output directory")
 
     def read(self, method):
-        rows = self.connection.execute(
-            "SELECT id, label, confidence, disagreement, seconds FROM predictions WHERE method = ?",
-            (method,),
-        )
-        return {item: Prediction(label, confidence, disagreement, seconds)
-                for item, label, confidence, disagreement, seconds in rows}
+        return read_predictions(self.connection, method)
 
     def add(self, method, batch):
         with self.connection:
@@ -64,6 +61,64 @@ class Cache:
                 [(method, item, pred.label, pred.confidence, pred.view_disagreement, pred.seconds)
                  for item, pred in batch],
             )
+
+
+def read_predictions(connection, method):
+    rows = connection.execute(
+        "SELECT id, label, confidence, disagreement, seconds FROM predictions WHERE method = ?",
+        (method,),
+    )
+    return {item: Prediction(label, confidence, disagreement, seconds)
+            for item, label, confidence, disagreement, seconds in rows}
+
+
+def baseline_cache_issues(predictions, ids, batch_size, class_count):
+    count = len(predictions)
+    issues = []
+    # 正式 Baseline 逐批提交。續跑只能從原順序的完整批次邊界開始。
+    if predictions.keys() != set(ids[:count]) or (count != len(ids) and count % batch_size):
+        issues.append("Baseline cache is not a prefix of complete original batches")
+    if any(
+        type(pred.label) is not int or not 0 <= pred.label < class_count
+        or not isinstance(pred.confidence, (int, float)) or not 0 <= pred.confidence <= 1
+        or pred.view_disagreement != 0
+        or not isinstance(pred.seconds, (int, float)) or not math.isfinite(pred.seconds)
+        or pred.seconds < 0
+        for pred in predictions.values()
+    ):
+        issues.append("Baseline cache contains invalid prediction fields")
+    return issues
+
+
+def inspect_baseline_cache(connection, metadata, ids, batch_size, classes, item):
+    integrity = [row[0] for row in connection.execute("PRAGMA integrity_check")]
+    saved = connection.execute("SELECT value FROM settings WHERE id = 1").fetchone()
+    saved = json.loads(saved[0]) if saved else {}
+    expected = json.loads(json_bytes(metadata))
+    changed = sorted(key for key in saved.keys() | expected.keys() if key not in saved or key not in expected or saved[key] != expected[key])
+    baseline = read_predictions(connection, "baseline")
+    preview = read_predictions(connection, "baseline_preview")
+
+    def selected(predictions):
+        pred = predictions.get(item)
+        if pred is None:
+            return None
+        result = {key: str(value) if isinstance(value, float) and not math.isfinite(value) else value
+                  for key, value in asdict(pred).items()}
+        if type(pred.label) is int and 0 <= pred.label < len(classes):
+            result["character"] = classes[pred.label]
+        return result
+
+    structural_issues = baseline_cache_issues(baseline, ids, batch_size, len(classes))
+    return {
+        "integrity_check": integrity, "saved_cache_version": saved.get("cache_version"),
+        "metadata_matches": not changed and saved == expected,
+        "changed_metadata_keys": changed,
+        "baseline_count": len(baseline), "preview_count": len(preview),
+        "baseline_structure_issues": structural_issues,
+        "baseline_target": selected(baseline), "preview_target": selected(preview),
+        "compatible": integrity == ["ok"] and saved == expected and not structural_issues,
+    }
 
 
 def publish(path, contents):

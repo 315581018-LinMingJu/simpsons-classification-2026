@@ -50,6 +50,20 @@ python classification_v3.py predict
 
 成功的批次會逐批寫入 SQLite 快取。本機相同輸入、環境與 batch size 下，`predict` 可沿用 `baseline-check` 的全量 Baseline、`diagnostic` 的其餘推論，被中斷後也可續跑。驗證另有快取，並沿用已算好的去重清單。報表及候選檔內容相同時直接沿用，內容不同時明確停止，可指定如 `--output runs/v3_tta_repeat1` 保存新結果。輸入影像快取依路徑、大小與時間戳追蹤，請使用完整且未變更的原資料。執行同一個輸出目錄時，請讓各階段依序完成。若曾執行舊版 V3 並留下快取，為新版各階段統一指定 `--output runs/v3_tta_verified`，保留舊結果。
 
+## 排查單筆 Baseline 差異
+
+在和 `baseline-check` 相同的 CUDA 裝置與輸出目錄執行，以 ID 155 為例。指令只讀 SQLite 和舊版產物，JSON 印到標準輸出。
+
+```bash
+CUDA_VISIBLE_DEVICES=0 python -u classification_v3.py baseline-probe \
+  --id 155 --output runs/v3_tta_verified
+```
+
+- 依範本定位 ID 的**原始批次**，保留批內順序與可能較短的尾批。用原 V2 DataLoader 和 V3 視角 DataLoader 各重播該批。報告包含前五類 logits／Softmax 機率、前兩名差距、原 V2 類別在目前模型中的分數、輸入張量雜湊及 logits 最大差。原 V2 Submission 只有類別，歷史分數無法從 CSV 還原。
+- `cache.compatible` 表示 SQLite 完整性、已記錄設定和正式 Baseline 的批次結構通過檢查。報告會列出版本、差異欄位、正式與抽樣快取個別筆數及指定 ID 的紀錄，並核對舊核對報告的 V2 CSV 雜湊。當初 SQLite 沒記錄每批的 GPU kernel、TF32 設定或前五分數，相容不等於已證明能逐位元重現歷史推論。
+- 預設兩條路徑在同一進程重播，便於控制當前模型與 cuDNN 設定。若輸入相同但結果仍有疑問，可用兩個新進程各跑一次：分別在上面指令追加 `--probe-path v2 --replay-prefix` 和 `--probe-path v3 --replay-prefix`。每次會從第一批跑到該 ID 的原始批次，保留第一批的 cuDNN 自動選擇過程，仍只報告目標批。
+- 若 metadata 相符且問題只出現在目標批，優先保留 SQLite，以上述命令重算該批或其前綴來追查。若輸入或執行環境的 metadata 不相容，舊 Baseline 的整個方法快取便無法沿用。可將輸出改成 `--output runs/v3_tta_baseline_recheck` 只重跑 `baseline-check`，保留原目錄的所有快取和報告，不必重跑驗證或 TTA。兩條路徑若一致地重現目前的 V3 類別，且原始 V2 類別仍不同，應追查歷史 checkpoint／CSV 來源與當時執行設定。正式保護仍要求所有 ID 一致。
+
 ## 解讀限制
 
 驗證集與競賽測試集存在已觀察到的表現差距。本地準確率和 TTA 改判比例無法預測 Kaggle Public Score，分布表中某些類別增加也無法在無標籤時判定對錯。信心是模型輸出的機率分數，未經校準。拼圖可用於檢視偏心、邊框、多角色等假設，單憑幾張圖不能確定造成差距的原因。候選檔只會寫到本機。
