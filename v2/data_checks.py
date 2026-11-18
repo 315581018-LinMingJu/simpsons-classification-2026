@@ -25,18 +25,50 @@ def read_json(path):
     return json.loads(path.read_text(encoding="utf-8"))
 
 
-def load_inputs(data, v1, template):
-    train_root = data / "train/train/train"
-    test_root = data / "test_images/test_images"
-    classes = read_json(v1 / "classes.json")
-    config = read_json(v1 / "run_config.json")
-    history = read_json(v1 / "history.json")
+def load_split(train_root, classes, split_bytes):
+    """Validate class indices and exact split coverage against the training tree."""
     if not isinstance(classes, list) or len(classes) != CLASS_COUNT or not all(
         isinstance(name, str) and name for name in classes
     ):
         raise ValueError("classes.json must contain the 50 ordered class names")
     if classes != sorted(p.name for p in train_root.iterdir() if p.is_dir()):
         raise ValueError("classes.json does not match ImageFolder's sorted class folders")
+    images = {
+        p.relative_to(train_root)
+        for p in train_root.rglob("*")
+        if p.is_file() and p.suffix.lower() in IMAGE_EXTENSIONS
+    }
+    labels = {name: i for i, name in enumerate(classes)}
+    rows = []
+    seen = set()
+    with io.StringIO(split_bytes.decode("utf-8-sig"), newline="") as file:
+        reader = csv.DictReader(file)
+        if reader.fieldnames != ["path", "label", "part"]:
+            raise ValueError("Expected split.csv columns path,label,part")
+        for row in reader:
+            relative = Path(row["path"])
+            label = int(row["label"])
+            if relative not in images or relative in seen:
+                raise ValueError(f"Missing, invalid, or repeated split path: {relative}")
+            if labels.get(relative.parts[0]) != label or row["part"] not in COUNTS:
+                raise ValueError(f"Invalid label or partition for {relative}")
+            seen.add(relative)
+            rows.append(Sample(train_root / relative, label, row["part"]))
+    if seen != images or Counter(row.part for row in rows) != COUNTS:
+        raise ValueError("Split does not cover the original dataset and partition counts")
+    for part in COUNTS:
+        if len({row.label for row in rows if row.part == part}) != CLASS_COUNT:
+            raise ValueError(f"Missing class in {part}")
+
+    return rows
+
+
+def load_inputs(data, v1, template):
+    train_root = data / "train/train/train"
+    test_root = data / "test_images/test_images"
+    classes = read_json(v1 / "classes.json")
+    config = read_json(v1 / "run_config.json")
+    history = read_json(v1 / "history.json")
     if not isinstance(config, dict) or not isinstance(history, list) or not history:
         raise ValueError("Expected V1 configuration and a nonempty V1 epoch history")
     expected = {
@@ -56,34 +88,8 @@ def load_inputs(data, v1, template):
     if any(not 0 <= row["val_accuracy"] <= 1 or not row["seconds"] >= 0 for row in history):
         raise ValueError("Invalid V1 accuracy or epoch duration")
 
-    images = {
-        p.relative_to(train_root)
-        for p in train_root.rglob("*")
-        if p.is_file() and p.suffix.lower() in IMAGE_EXTENSIONS
-    }
-    labels = {name: i for i, name in enumerate(classes)}
-    rows = []
-    seen = set()
-    split = v1 / "split.csv"
-    split_bytes = split.read_bytes()
-    with io.StringIO(split_bytes.decode("utf-8-sig"), newline="") as file:
-        reader = csv.DictReader(file)
-        if reader.fieldnames != ["path", "label", "part"]:
-            raise ValueError("Expected split.csv columns path,label,part")
-        for row in reader:
-            relative = Path(row["path"])
-            label = int(row["label"])
-            if relative not in images or relative in seen:
-                raise ValueError(f"Missing, invalid, or repeated split path: {relative}")
-            if labels.get(relative.parts[0]) != label or row["part"] not in COUNTS:
-                raise ValueError(f"Invalid label or partition for {relative}")
-            seen.add(relative)
-            rows.append(Sample(train_root / relative, label, row["part"]))
-    if seen != images or Counter(row.part for row in rows) != COUNTS:
-        raise ValueError("Split does not cover the original dataset and partition counts")
-    for part in COUNTS:
-        if len({row.label for row in rows if row.part == part}) != CLASS_COUNT:
-            raise ValueError(f"Missing class in {part}")
+    split_bytes = (v1 / "split.csv").read_bytes()
+    rows = load_split(train_root, classes, split_bytes)
 
     with template.open(encoding="utf-8-sig", newline="") as file:
         reader = csv.DictReader(file)
