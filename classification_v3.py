@@ -20,7 +20,7 @@ from v3.storage import Cache, file_sha256, image_signature, json_bytes, publish
 
 def arguments():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("stage", choices=("diagnostic", "validation", "predict"))
+    parser.add_argument("stage", choices=("diagnostic", "baseline-check", "validation", "predict"))
     parser.add_argument("--data", type=Path, default=Path("data/extracted"))
     parser.add_argument("--v1-run", type=Path, default=Path("runs/v1_baseline"))
     parser.add_argument("--v2-run", type=Path, default=Path("runs/v2_primary"))
@@ -41,11 +41,12 @@ def arguments():
     return args
 
 
-def predict_cached(cache, samples, methods, make_model, inference):
+def predict_cached(cache, samples, methods, make_model, inference, *, cache_keys=None):
     results = {}
     model = None
     for method in methods:
-        predictions = cache.read(method)
+        key = cache_keys.get(method, method) if cache_keys is not None else method
+        predictions = cache.read(key)
         missing = [(path, item) for path, item in samples if item not in predictions]
         print(f"{method}: 沿用 {len(samples) - len(missing)} 張，待推論 {len(missing)} 張", flush=True)
         if missing:
@@ -53,7 +54,7 @@ def predict_cached(cache, samples, methods, make_model, inference):
                 model = make_model()
             view_method = "baseline" if method == "v1_baseline" else method
             for batch in inference(model, missing, view_method):
-                cache.add(method, batch)
+                cache.add(key, batch)
                 predictions.update(batch)
         results[method] = {item: predictions[item] for _, item in samples}
     return results
@@ -84,6 +85,18 @@ def validation_subset(output, rows, signature, train_root):
     return samples, {item: valid[item].label for _, item in samples}, selection["duplicate_counts"]
 
 
+def check_test_baseline(output, samples, predictions, reference, settings):
+    mismatches = [item for _, item in samples if predictions[item].label != reference[item]]
+    publish(output / "baseline_check.json", json_bytes({
+        "settings": settings, "samples": len(samples),
+        "mismatch_count": len(mismatches), "mismatch_ids": mismatches,
+    }))
+    print(f"正式 Baseline 對照 V2 Submission：{len(mismatches)}/{len(samples)} 筆不同", flush=True)
+    if mismatches:
+        raise RuntimeError("Baseline differs from V2 submission; see baseline_check.json. "
+                           "Candidate submissions were not generated.")
+
+
 def main():
     args = arguments()
 
@@ -95,11 +108,15 @@ def main():
     torch.backends.cudnn.benchmark = False
     torch.backends.cudnn.deterministic = True
     _, evaluation = transforms_v2()
-    saved_eval = read_json(args.v2_run / "run_config.json")["eval_transform"]
-    if saved_eval != repr(evaluation):
+    v2_config = read_json(args.v2_run / "run_config.json")
+    if v2_config["eval_transform"] != repr(evaluation):
         raise ValueError("V2 saved evaluation transform differs from the current runtime")
 
     validating = args.stage == "validation"
+    diagnostic = args.stage == "diagnostic"
+    original_batch_size = v2_config.get("batch_size")
+    if not validating and (type(original_batch_size) is not int or original_batch_size < 1):
+        raise ValueError("V2 run_config.json must record the original positive batch_size")
     v2_checkpoint = args.v2_run / "best.pt"
     v1_checkpoint = args.v1_run / "best.pt"
     args.output.mkdir(parents=True, exist_ok=True)
@@ -123,13 +140,13 @@ def main():
                                    args.data / "sample_submission.csv")
         signature = image_signature(path for path, _ in samples)
         reference = read_reference(args.v2_submission, [item for _, item in samples], classes)
-        if args.stage == "diagnostic":
+        if diagnostic:
             indices = sorted(random.Random(args.seed).sample(
                 range(len(samples)), min(args.limit, len(samples))))
             samples = [samples[index] for index in indices]
 
     metadata = {
-        "cache_version": 1, "image_signature": signature, "split_sha256": split_hash,
+        "cache_version": 2, "image_signature": signature, "split_sha256": split_hash,
         "classes": classes, "v2_checkpoint_sha256": file_sha256(v2_checkpoint),
         "eval_transform": repr(evaluation), "multiscale_short_edges": SCALES, "views": VIEWS,
         "batch_size": args.batch_size, "precision": "float32",
@@ -140,7 +157,14 @@ def main():
         "inference_timing": "GPU transfer, forward, softmax and D2H; excludes loader and warm-up",
     }
     if not validating:
-        metadata["v1_checkpoint_sha256"] = file_sha256(v1_checkpoint)
+        metadata.update({
+            "v1_checkpoint_sha256": file_sha256(v1_checkpoint),
+            "reference_baseline_batch_size": original_batch_size,
+            "reference_baseline_cudnn_benchmark": True,
+            "reference_baseline_cudnn_deterministic": False,
+            "reference_baseline_warmup": False,
+        })
+        reference_hash = file_sha256(args.v2_submission)
 
     def model_for(checkpoint, expected_hash=None):
         model = create_model().eval()
@@ -150,11 +174,37 @@ def main():
     def inference(model, missing, method):
         return infer_batches(model, missing, method, evaluation, args.batch_size, args.workers)
 
+    def v2_model():
+        return model_for(v2_checkpoint, split_hash)
+
     cache_path = args.output / ("validation.sqlite3" if validating else "test.sqlite3")
     with closing(sqlite3.connect(cache_path)) as connection:
         cache = Cache(connection, metadata)
-        predictions = predict_cached(cache, samples, VIEWS,
-                                     lambda: model_for(v2_checkpoint, split_hash), inference)
+
+        if validating or diagnostic:
+            keys = {"baseline": "baseline_preview"} if diagnostic else None
+            predictions = predict_cached(cache, samples, VIEWS, v2_model, inference, cache_keys=keys)
+        else:
+            # 維持 V2 的原始樣本順序、批次邊界與 cuDNN 設定。
+            torch.backends.cudnn.benchmark = True
+            torch.backends.cudnn.deterministic = False
+            try:
+                predictions = predict_cached(
+                    cache, samples, ("baseline",), v2_model,
+                    lambda model, missing, method: infer_batches(
+                        model, missing, method, evaluation, original_batch_size, args.workers,
+                        warmup=False,
+                    ),
+                )
+            finally:
+                torch.backends.cudnn.benchmark = False
+                torch.backends.cudnn.deterministic = True
+            check_test_baseline(args.output, samples, predictions["baseline"], reference,
+                                {**metadata, "v2_reference_sha256": reference_hash})
+            if args.stage == "baseline-check":
+                return
+            tta_methods = [method for method in VIEWS if method != "baseline"]
+            predictions.update(predict_cached(cache, samples, tta_methods, v2_model, inference))
         if not validating:
             predictions.update(predict_cached(cache, samples, ("v1_baseline",),
                                               lambda: model_for(v1_checkpoint), inference))
@@ -167,20 +217,15 @@ def main():
                   f"({row['delta_vs_baseline_pp']:+.4f} pp)", flush=True)
         return
 
-    diagnostic = args.stage == "diagnostic"
     output = args.output / "diagnostic" if diagnostic else args.output
-    report_settings = {**metadata, "scope": args.stage,
-                       "v2_reference_sha256": file_sha256(args.v2_submission)}
+    report_settings = {**metadata, "scope": args.stage, "v2_reference_sha256": reference_hash}
     if diagnostic:
         report_settings.update({"seed": args.seed, "requested_sample_count": args.limit})
     summary = test_report(output, samples, predictions, classes, reference, report_settings)
-    mismatches = summary["baseline_reference_mismatch_count"]
-    print(f"V3 Baseline 對照 V2 Submission：{mismatches}/{len(samples)} 筆不同", flush=True)
     if diagnostic:
+        print(f"抽樣 Baseline 對照 V2 Submission："
+              f"{summary['baseline_reference_mismatch_count']}/{len(samples)} 筆不同", flush=True)
         return
-    if mismatches:
-        raise RuntimeError("Baseline differs from V2 submission; see test_summary.json. "
-                           "Candidate submissions were not generated.")
     ids = [item for _, item in samples]
     for method in VIEWS:
         path = output / f"submission_v3_{method}.csv"

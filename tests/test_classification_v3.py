@@ -182,15 +182,22 @@ class ClassificationV3Tests(unittest.TestCase):
             reference = v2 / "submission_v2.csv"
             reference.write_text("id,character\n009,character_0\n002,character_0\n")
             evaluation = "test transform"
-            (v2 / "run_config.json").write_text(json.dumps({"eval_transform": repr(evaluation)}))
+            (v2 / "run_config.json").write_text(json.dumps({
+                "eval_transform": repr(evaluation), "batch_size": 64,
+            }))
             cuda = SimpleNamespace(is_available=lambda: True, get_device_name=lambda: "fake CUDA")
             cudnn = SimpleNamespace(version=lambda: 1)
             torch = SimpleNamespace(cuda=cuda, backends=SimpleNamespace(cudnn=cudnn),
                                     version=SimpleNamespace(cuda="test"), __version__="test")
             vision = SimpleNamespace(__version__="test")
-            fake_infer = Mock(side_effect=lambda model, samples, method, *args: [
-                [(item, sample_prediction(int(method == "full_resize"))) for _, item in samples]
-            ])
+            def infer(model, samples, method, evaluation, batch_size, workers, *, warmup=True):
+                self.assertEqual(cudnn.benchmark, not warmup)
+                self.assertEqual(cudnn.deterministic, warmup)
+                self.assertEqual(batch_size, 16 if warmup else 64)
+                return [[(item, sample_prediction(int(method == "full_resize")))
+                         for _, item in samples]]
+
+            fake_infer = Mock(side_effect=infer)
 
             def run(stage, output):
                 argv = ["classification_v3.py", stage, "--data", str(data), "--v1-run", str(v1),
@@ -216,9 +223,18 @@ class ClassificationV3Tests(unittest.TestCase):
                 output = root / "v3"
                 run("diagnostic", output)
                 self.assertEqual(fake_infer.call_count, 5)
+                run("baseline-check", output)
+                self.assertEqual(fake_infer.call_count, 6)
+                baseline = fake_infer.call_args
+                self.assertEqual([item for _, item in baseline.args[1]], ids)
+                self.assertEqual(baseline.args[2], "baseline")
+                self.assertEqual(baseline.kwargs, {"warmup": False})
+                self.assertFalse(list(output.glob("submission_v3_*.csv")))
+                check = json.loads((output / "baseline_check.json").read_text())
+                self.assertEqual(check["mismatch_count"], 0)
                 run("predict", output)
                 self.assertEqual(fake_infer.call_count, 10)
-                self.assertTrue(all(len(call.args[1]) == 1 for call in fake_infer.call_args_list))
+                self.assertTrue(all(len(call.args[1]) == 1 for call in fake_infer.call_args_list[6:]))
                 self.assertEqual(len(list(output.glob("submission_v3_*.csv"))), 4)
                 run("predict", output)
                 self.assertEqual(fake_infer.call_count, 10)
@@ -226,9 +242,15 @@ class ClassificationV3Tests(unittest.TestCase):
                 mismatch = root / "mismatch"
                 with self.assertRaisesRegex(RuntimeError, "Baseline differs"):
                     run("predict", mismatch)
+                self.assertEqual(fake_infer.call_count, 11)
+                self.assertEqual(fake_infer.call_args.args[2], "baseline")
+                self.assertTrue(cudnn.deterministic)
+                self.assertFalse(cudnn.benchmark)
                 self.assertFalse(list(mismatch.glob("submission_v3_*.csv")))
-                summary = json.loads((mismatch / "test_summary.json").read_text())
-                self.assertEqual(summary["baseline_reference_mismatch_ids"], ["009"])
+                self.assertFalse((mismatch / "test_summary.json").exists())
+                check = json.loads((mismatch / "baseline_check.json").read_text())
+                self.assertEqual(check["mismatch_ids"], ["009"])
+
 
     def test_reports_render_and_measure_without_test_labels(self):
         with tempfile.TemporaryDirectory() as directory:
