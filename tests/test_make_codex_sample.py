@@ -90,8 +90,9 @@ class SampleArchiveTests(unittest.TestCase):
         samples, manifest, size = minimum
         self.assertLess(size, full[2])
         self.assertEqual(len(samples), len(self.classes) + 2)
-        self.assertEqual(samples[:len(self.classes)], [group[0] for group in train.values()])
-        self.assertEqual(samples[-2:], [random_test[0], hard_test[0]])
+        self.assertEqual([entry.sample for entry in samples[:len(self.classes)]],
+                         [group[0] for group in train.values()])
+        self.assertEqual([entry.sample for entry in samples[-2:]], [random_test[0], hard_test[0]])
         accepted = sampler.plan_archive(train, random_test, hard_test, 2026, counts, size, size + 1)
         self.assertEqual(accepted, minimum)
         output = self.root / "trimmed.zip"
@@ -112,16 +113,67 @@ class SampleArchiveTests(unittest.TestCase):
                 with self.assertRaisesRegex(ValueError, error):
                     sampler.sample_pools(self.data, self.v3, 2026)
 
-    def test_rejects_repo_path_and_does_not_publish_invalid_archive(self):
+    def test_renames_mislabeled_png_and_bmp_without_reencoding(self):
+        train, random_test, _, _ = sampler.sample_pools(self.data, self.v3, 2026)
+        png = random_test[0].path
+        bmp = train[self.classes[0]][0].path
+        Image.new("RGB", (28, 26), "red").save(png, format="PNG")
+        Image.new("RGB", (18, 16), "blue").save(bmp, format="BMP")
+        originals = {png: png.read_bytes(), bmp: bmp.read_bytes()}
+        output = self.root / "mixed.zip"
+        sampler.create_archive(self.data, self.v3, output, 2026)
+        with zipfile.ZipFile(output) as archive:
+            self.assertIsNone(archive.testzip())
+            rows = list(csv.DictReader(io.StringIO(archive.read("manifest.csv").decode())))
+            for path, actual, extension in ((png, "PNG", ".png"), (bmp, "BMP", ".bmp")):
+                row = next(row for row in rows if row["original_filename"] == path.name
+                           and row["actual_format"] == actual)
+                self.assertEqual(row["original_id"], path.stem)
+                self.assertEqual(Path(row["archive_path"]).suffix, extension)
+                self.assertEqual(archive.read(row["archive_path"]), originals[path])
+                self.assertEqual(path.read_bytes(), originals[path])
+                with Image.open(io.BytesIO(archive.read(row["archive_path"]))) as image:
+                    image.verify()
+                if path == png:
+                    self.assertEqual(row["known_character"], "")
+                    self.assertEqual(row["sampling_method"], sampler.RANDOM)
+                else:
+                    self.assertEqual(row["known_character"], self.classes[0])
+
+    def test_rejects_unidentified_image_and_repo_output(self):
         with self.assertRaisesRegex(ValueError, "outside the Git repository"):
             sampler.create_archive(self.data, self.v3, sampler.REPO / "sample.zip", 2026)
-        train, random_test, hard_test, counts = sampler.sample_pools(self.data, self.v3, 2026)
-        samples, metadata, size = sampler.plan_archive(
-            train, random_test, hard_test, 2026, counts, 10**6, 10**6,
-        )
-        samples[0].path.write_bytes(b"not an image")
+        train, _, _, _ = sampler.sample_pools(self.data, self.v3, 2026)
+        bad = train[self.classes[0]][0].path
+        bad.write_bytes(b"not an image")
         output = self.root / "invalid.zip"
-        with self.assertRaisesRegex(ValueError, "not a JPEG"):
-            sampler.write_archive(output, samples, metadata, size, 10**6)
+        with self.assertRaisesRegex(ValueError, "Cannot identify selected image: .*frame_"):
+            sampler.create_archive(self.data, self.v3, output, 2026)
         self.assertFalse(output.exists())
         self.assertFalse(list(self.root.glob("*.tmp")))
+
+    def test_rejects_image_with_readable_header_but_truncated_pixels(self):
+        train, _, _, _ = sampler.sample_pools(self.data, self.v3, 2026)
+        bad = train[self.classes[0]][0].path
+        bad.write_bytes(bad.read_bytes()[:-4])
+        with Image.open(bad) as image:
+            self.assertEqual(image.format, "JPEG")
+            image.verify()
+        output = self.root / "truncated.zip"
+        with self.assertRaisesRegex(ValueError, "Cannot verify or decode selected image: .*frame_"):
+            sampler.create_archive(self.data, self.v3, output, 2026)
+        self.assertFalse(output.exists())
+        self.assertFalse(list(self.root.glob("*.tmp")))
+
+    def test_header_statistics_count_actual_formats_and_unknown_headers(self):
+        Image.new("RGB", (16, 16)).save(self.test / "000.jpg", format="PNG")
+        (self.test / "001.jpg").write_bytes(b"broken")
+        Image.new("RGB", (15, 15)).save(self.train / self.classes[0] / "native.png")
+        stats = sampler.image_format_stats(self.data)
+        self.assertEqual(stats["test"]["total_files"], 8)
+        self.assertEqual(stats["test"]["format_counts"], {"JPEG": 6, "PNG": 1})
+        self.assertEqual(stats["test"]["extension_mismatches"], 1)
+        self.assertEqual(stats["test"]["format_pct_of_detected"]["PNG"], 14.2857)
+        self.assertEqual(stats["test"]["unreadable_headers"], 1)
+        self.assertEqual(stats["train"]["format_counts"], {"JPEG": 6, "PNG": 1})
+        self.assertEqual(stats["train"]["extension_mismatches"], 0)

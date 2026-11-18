@@ -1,4 +1,4 @@
-"""抽取原始 JPEG 樣本，產生可上傳給 Codex 的小型 ZIP。"""
+"""抽取原始圖片樣本，產生可上傳給 Codex 的小型 ZIP。"""
 
 import argparse
 import csv
@@ -12,6 +12,8 @@ from dataclasses import dataclass
 from pathlib import Path
 from tempfile import NamedTemporaryFile
 
+from PIL import Image
+
 from v2.data_checks import CLASS_COUNT, TEST_COUNT
 
 REPO = Path(__file__).resolve().parent
@@ -21,6 +23,7 @@ HARD_LIMIT_BYTES = 30 * MIB
 QUOTAS = (5, 144, 96)
 RANDOM = "random"
 CHANGED = "v3_multiscale_changed"
+IMAGE_ERRORS = (OSError, SyntaxError, ValueError, Image.DecompressionBombError)
 
 
 @dataclass(frozen=True)
@@ -30,14 +33,67 @@ class Sample:
     method: str
     label: str = ""
 
+
+@dataclass(frozen=True)
+class ArchiveImage:
+    sample: Sample
+    actual_format: str
+    extension: str
+    size: int
+
     @property
     def archive_path(self):
-        directory = self.label if self.source == "train" else self.method
-        return f"{self.source}/{directory}/{self.path.name}"
+        sample = self.sample
+        directory = sample.label if sample.source == "train" else sample.method
+        return f"{sample.source}/{directory}/{sample.path.stem}{self.extension}"
 
 
-def jpeg_files(directory):
+def jpg_paths(directory):
     return sorted(path for path in directory.glob("*.jpg") if path.is_file())
+
+
+def detect_format(path):
+    with Image.open(path) as image:
+        if image.format is None:
+            raise ValueError("Pillow did not identify an image format")
+        return image.format
+
+
+def image_format_stats(data):
+    extensions = Image.registered_extensions()
+    result = {}
+    for split, root, pattern in (
+        ("train", data / "train/train/train", "*/*"),
+        ("test", data / "test_images/test_images", "*"),
+    ):
+        if not root.is_dir():
+            raise FileNotFoundError(root)
+        counts = Counter()
+        unreadable, mismatches, examples = 0, 0, []
+        for path in root.glob(pattern):
+            if path.suffix.lower() not in extensions or not path.is_file():
+                continue
+            try:
+                actual = detect_format(path)
+            except IMAGE_ERRORS:
+                unreadable += 1
+                if len(examples) < 10:
+                    examples.append(path.relative_to(data).as_posix())
+                continue
+            counts[actual] += 1
+            mismatches += actual != extensions[path.suffix.lower()]
+        detected = sum(counts.values())
+        result[split] = {
+            "total_files": detected + unreadable,
+            "detected_files": detected,
+            "format_counts": dict(sorted(counts.items())),
+            "format_pct_of_detected": {fmt: round(100 * n / detected, 4)
+                                       for fmt, n in sorted(counts.items())},
+            "extension_mismatches": mismatches,
+            "unreadable_headers": unreadable,
+            "unreadable_examples": sorted(examples),
+        }
+    return result
 
 
 def changed_test_ids(path, test_ids, classes):
@@ -75,15 +131,15 @@ def sample_pools(data, v3_run, seed):
     rng = random.Random(seed)
     train = {}
     for folder in classes:
-        paths = jpeg_files(folder)
+        paths = jpg_paths(folder)
         if not paths:
-            raise ValueError(f"No training JPEGs in {folder}")
+            raise ValueError(f"No training .jpg files in {folder}")
         train[folder.name] = [Sample(path, "train", RANDOM, folder.name)
                               for path in rng.sample(paths, min(QUOTAS[0], len(paths)))]
 
-    test = {path.stem: path for path in jpeg_files(data / "test_images/test_images")}
+    test = {path.stem: path for path in jpg_paths(data / "test_images/test_images")}
     if len(test) != TEST_COUNT:
-        raise ValueError(f"Expected {TEST_COUNT} test JPEGs, found {len(test)}")
+        raise ValueError(f"Expected {TEST_COUNT} test .jpg files, found {len(test)}")
     changed = changed_test_ids(v3_run / "test_diagnostics.csv", test.keys(), train.keys())
     random_ids = rng.sample(sorted(test), min(QUOTAS[1], len(test) - 1))
     eligible = sorted(changed - set(random_ids))
@@ -99,13 +155,16 @@ def sample_pools(data, v3_run, seed):
     )
 
 
-def metadata_files(samples, seed, counts):
+def metadata_files(images, seed, counts):
     manifest = io.StringIO(newline="")
     writer = csv.writer(manifest, lineterminator="\n")
-    writer.writerow(("source", "sampling_method", "original_id", "known_character", "archive_path"))
-    for sample in samples:
+    writer.writerow(("source", "sampling_method", "original_id", "known_character", "archive_path",
+                     "original_filename", "actual_format"))
+    samples = [image.sample for image in images]
+    for image in images:
+        sample = image.sample
         writer.writerow((sample.source, sample.method, sample.path.stem, sample.label,
-                         sample.archive_path))
+                         image.archive_path, sample.path.name, image.actual_format))
     info = {
         "seed": seed,
         "requested": dict(zip(("train_per_class", "random_test", "v3_disagreements"), QUOTAS)),
@@ -123,37 +182,57 @@ def metadata_files(samples, seed, counts):
 
 
 def plan_archive(train, random_test, hard_test, seed, counts, target, hard_limit):
-    sizes = {sample.path: sample.path.stat().st_size for group in (*train.values(), random_test, hard_test)
-             for sample in group}
+    extensions = {fmt: ext for ext, fmt in sorted(Image.registered_extensions().items(), reverse=True)}
+    extensions.update({"JPEG": ".jpg", "PNG": ".png", "TIFF": ".tiff", "JPEG2000": ".jp2"})
+    images = {}
+    for group in (*train.values(), random_test, hard_test):
+        for sample in group:
+            try:
+                actual_format = detect_format(sample.path)
+            except IMAGE_ERRORS as exc:
+                raise ValueError(f"Cannot identify selected image: {sample.path}: {exc}") from exc
+            images[sample] = ArchiveImage(sample, actual_format,
+                                          extensions.get(actual_format, sample.path.suffix),
+                                          sample.path.stat().st_size)
     # 只縮減各組前綴配額，圖片的抽樣順序與單張檔案大小無關。
     steps = max(QUOTAS)
     for scale in range(steps, 0, -1):
         per_class, n_random, n_hard = ((requested * scale + steps - 1) // steps for requested in QUOTAS)
         samples = ([sample for group in train.values() for sample in group[:per_class]]
                    + random_test[:n_random] + hard_test[:n_hard])
-        metadata = metadata_files(samples, seed, counts)
+        selected = [images[sample] for sample in samples]
+        metadata = metadata_files(selected, seed, counts)
         # ZIP_STORED 不用 ZIP64。每筆有 30+46 bytes header 和兩份檔名，結尾 22 bytes。
-        entries = [(sample.archive_path, sizes[sample.path]) for sample in samples]
+        entries = [(image.archive_path, image.size) for image in selected]
         entries.extend((name, len(contents)) for name, contents in metadata.items())
         archive_size = 22 + sum(size + 76 + 2 * len(name.encode("utf-8")) for name, size in entries)
         if archive_size <= target and archive_size < hard_limit:
-            return samples, metadata, archive_size
+            return selected, metadata, archive_size
     if archive_size < hard_limit:
-        return samples, metadata, archive_size
-    raise ValueError("Even one JPEG per class plus both test cohorts exceeds the ZIP limit")
+        return selected, metadata, archive_size
+    raise ValueError("Even one image per class plus both test cohorts exceeds the ZIP limit")
 
 
-def write_archive(output, samples, metadata, planned_size, hard_limit):
+def write_archive(output, images, metadata, planned_size, hard_limit):
     temporary = None
     try:
         with NamedTemporaryFile(dir=output.parent, suffix=".tmp", delete=False) as file:
             temporary = Path(file.name)
             with zipfile.ZipFile(file, "w", compression=zipfile.ZIP_STORED, allowZip64=False) as archive:
-                for sample in samples:
-                    contents = sample.path.read_bytes()
-                    if not contents.startswith(b"\xff\xd8\xff"):
-                        raise ValueError(f"Selected file is not a JPEG: {sample.path}")
-                    archive.writestr(zipfile.ZipInfo(sample.archive_path), contents)
+                for entry in images:
+                    path = entry.sample.path
+                    contents = path.read_bytes()
+                    try:
+                        with Image.open(io.BytesIO(contents)) as image:
+                            if image.format != entry.actual_format or len(contents) != entry.size:
+                                raise ValueError("Image format or byte length changed after planning")
+                            image.verify()
+                        # verify() 不保證每個解碼器都讀完整張圖片，例如 JPEG。
+                        with Image.open(io.BytesIO(contents)) as image:
+                            image.load()
+                    except IMAGE_ERRORS as exc:
+                        raise ValueError(f"Cannot verify or decode selected image: {path}: {exc}") from exc
+                    archive.writestr(zipfile.ZipInfo(entry.archive_path), contents)
                 for name, contents in metadata.items():
                     archive.writestr(zipfile.ZipInfo(name), contents)
         size = temporary.stat().st_size
@@ -174,12 +253,12 @@ def create_archive(data, v3_run, output, seed):
         raise FileExistsError(output)
 
     train, random_test, hard_test, counts = sample_pools(data, v3_run, seed)
-    samples, metadata, size = plan_archive(
+    images, metadata, size = plan_archive(
         train, random_test, hard_test, seed, counts, TARGET_BYTES, HARD_LIMIT_BYTES,
     )
     output.parent.mkdir(parents=True, exist_ok=True)
-    write_archive(output, samples, metadata, size, HARD_LIMIT_BYTES)
-    print(f"ZIP: {output} ({len(samples)} JPEGs, {size / MIB:.2f} MiB)", flush=True)
+    write_archive(output, images, metadata, size, HARD_LIMIT_BYTES)
+    print(f"ZIP: {output} ({len(images)} images, {size / MIB:.2f} MiB)", flush=True)
 
 
 def main():
@@ -188,8 +267,12 @@ def main():
     parser.add_argument("--v3-run", type=Path, default=REPO / "runs/v3_tta_155")
     parser.add_argument("--output", type=Path, default=REPO.parent / "simpsons_codex_sample.zip")
     parser.add_argument("--seed", type=int, default=2026)
+    parser.add_argument("--format-stats", action="store_true", help="只讀圖片檔頭，輸出 Train／Test 格式統計")
     args = parser.parse_args()
-    create_archive(args.data, args.v3_run, args.output, args.seed)
+    if args.format_stats:
+        print(json.dumps(image_format_stats(args.data), indent=2, ensure_ascii=False))
+    else:
+        create_archive(args.data, args.v3_run, args.output, args.seed)
 
 
 if __name__ == "__main__":
