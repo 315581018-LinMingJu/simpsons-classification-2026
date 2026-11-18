@@ -11,6 +11,7 @@ from distribution_audit.compare import (COMBO_FIELDS, QUANTILE_POINTS, combinati
                                        diagnostics_priorities, edge_bin, grouped_changes,
                                        mark_novelty)
 from distribution_audit.features import FEATURES, THUMBNAIL_SIZE, inspect_image, quantiles
+from distribution_audit.novelty import COMBO_COLUMNS
 from v2.data_checks import load_split, read_json
 from v3.reports import read_reference, read_test_images
 from v3.storage import file_sha256, json_bytes, publish, publish_csv
@@ -193,7 +194,7 @@ def audit(args):
                      "share_of_all_changes_pct", "rate_ratio_vs_all_test")
     publish_csv(output / "v3_v5_by_group.csv", group_columns, grouped)
     publish_csv(output / "test_novelty.csv",
-                ("id", "actual_format", "width", "height", "extension_match", *FEATURES, *COMBO_FIELDS,
+                ("id", "actual_format", "width", "height", "extension_match", *FEATURES, *COMBO_COLUMNS,
                  "train_combo_count", "combo_support", "unseen_format", "unseen_size", "unseen_format_size",
                  "visual_tail_distance", "leading_tail_feature", "visual_band",
                  "v3_prediction", "v5_prediction", "changed"),

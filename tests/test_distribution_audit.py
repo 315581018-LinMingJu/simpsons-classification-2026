@@ -118,9 +118,13 @@ class DistributionAuditTests(unittest.TestCase):
             self.assertEqual(report["v3_v5_changes"]["test_images"], 3)
             self.assertTrue(report["test_novelty"]["top_rare_or_unseen_combinations"])
             with (args.output / "test_novelty.csv").open() as file:
-                table = {row["id"]: row for row in csv.DictReader(file)}
+                reader = csv.DictReader(file)
+                self.assertEqual(len(reader.fieldnames), len(set(reader.fieldnames)))
+                table = {row["id"]: row for row in reader}
             self.assertEqual(set(table), {"007", "002"})
             self.assertEqual(table["007"]["v5_prediction"], "bart")
+            self.assertEqual(float(table["007"]["fine_detail"]), 0.0)
+            self.assertIn(table["007"]["fine_detail_bin"], ("low", "mid", "high"))
             with Image.open(args.output / "test_visual_outliers.png") as montage:
                 montage.verify()
             self.assertIn("004.jpg", (args.output / "unreadable_images.csv").read_text())

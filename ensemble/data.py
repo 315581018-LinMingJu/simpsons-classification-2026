@@ -9,6 +9,7 @@ import numpy as np
 from PIL import Image
 
 from distribution_audit.compare import grouped_changes
+from distribution_audit.novelty import COMBO_COLUMNS, read_novelty
 from v2.data_checks import read_json
 from v3.storage import file_sha256, json_bytes, publish, publish_csv
 from v4.geometry import seeded
@@ -125,13 +126,12 @@ def audit_test(output, args, expected_ids, classes, archived, split_hash):
             or offset["test"]["files"] != len(expected_ids)):
         raise ValueError("Distribution audit does not match the current V5 predictions and dataset")
     known_ids = set(expected_ids)
-    with (run / "test_novelty.csv").open(encoding="utf-8-sig", newline="") as file:
-        by_id = {}
-        for row in csv.DictReader(file):
-            item = row["id"]
-            if item not in known_ids or item in by_id:
-                raise ValueError(f"Unexpected or duplicate ID in distribution audit: {item}")
-            by_id[item] = row
+    by_id = {}
+    for row in read_novelty(run / "test_novelty.csv"):
+        item = row["id"]
+        if item not in known_ids or item in by_id:
+            raise ValueError(f"Unexpected or duplicate ID in distribution audit: {item}")
+        by_id[item] = row
     if len(by_id) != offset["test"]["decoded_images"]:
         raise ValueError("Distribution audit novelty table has a different decoded-image count")
 
@@ -141,10 +141,9 @@ def audit_test(output, args, expected_ids, classes, archived, split_hash):
     groups = []
     for item in expected_ids:
         row = by_id.get(item, {})
-        values = {key: row.get(key) or "unknown" for key in ("visual_band", "combo_support", "black_edge")}
-        values["appearance_combination"] = "|".join(row.get(key) or "unknown" for key in (
-            "black_edge", "weak_color", "brightness", "contrast", "fine_detail"
-        ))
+        values = {key: row.get(key) or "unknown" for key in ("visual_band", "combo_support")}
+        values["black_edge"] = row.get("black_edge_bin") or "unknown"
+        values["appearance_combination"] = "|".join(row.get(key) or "unknown" for key in COMBO_COLUMNS)
         groups.append((item, values))
     grouped = grouped_changes(groups, changes)
     fields = ("dimension", "group", "images", "changed", "changed_pct",

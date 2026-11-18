@@ -120,7 +120,7 @@ class EnsembleTests(unittest.TestCase):
                 "test": {"files": 2, "decoded_images": 2},
             }))
             (root / "test_novelty.csv").write_text(
-                "id,visual_band,combo_support,black_edge,weak_color,brightness,contrast,fine_detail\n"
+                "id,visual_band,combo_support,black_edge_bin,weak_color_bin,brightness_bin,contrast_bin,fine_detail_bin\n"
                 "001,upper_tail,rare,little_black,colored,high,low,high\n"
                 "002,inside_reference,observed,mostly_black,colored,low,low,low\n"
             )
@@ -132,6 +132,7 @@ class EnsembleTests(unittest.TestCase):
             self.assertEqual(result["top_transitions"], [{"v5": "homer", "v6": "marge", "count": 1}])
             upper = next(row for row in result["visual_bands"] if row["group"] == "upper_tail")
             self.assertEqual(upper["rate_ratio"], 2)
+            self.assertIn("little_black|colored|high|low|high", (root / "v5_v6_by_group.csv").read_text())
 
     def test_submission_gate_refuses_rejected_results_and_incompatible_provenance(self):
         with tempfile.TemporaryDirectory() as directory:

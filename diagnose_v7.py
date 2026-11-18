@@ -109,13 +109,15 @@ def review(args, classes, test, ids, archived, info, probabilities, cache_state)
     out.mkdir(parents=True, exist_ok=False)
     write_montages(out, groups, files, signals, rows, archived, classes, probabilities, ids)
     aggregates, mismatches = summarize_groups(ids, signals, rows, probabilities, archived)
-    publish_csv(out / "test_impulse_signals.csv",
+    ledger = out / "test_impulse_signals.csv"
+    publish_csv(ledger,
                 ("id", "impulse_fraction", "filter_active", "visual_band", "combo_support"),
                 ((item, signals[item], signals[item] >= MIN_TRIGGER_FRACTION,
                   rows[item]["visual_band"], rows[item]["combo_support"]) for item in signals))
     publish(out / "review.json", json_bytes({
         "provenance": {**info, "distribution_audit_sha256": file_sha256(audit_path)},
         "total_test": len(ids), "inspected": len(signals), "v6_probability_cache": cache_state,
+        "trigger_ledger_sha256": file_sha256(ledger),
         "cached_v6_vs_archived_mismatch_count": mismatches, "trigger_fraction": MIN_TRIGGER_FRACTION,
         "groups": aggregates, "review_ids": list(dict.fromkeys(item for _, _, members in groups for item in members)),
     }))

@@ -1,11 +1,11 @@
 """依全量稽核挑選真實 Test 複核圖，並附上可取得的 V6 訊號。"""
 
-import csv
 from zipfile import BadZipFile
 
 import numpy as np
 from PIL import Image
 
+from distribution_audit.novelty import read_novelty
 from ensemble.data import checked_probs
 from v2.data_checks import read_json
 from v3.storage import file_sha256, publish_csv
@@ -33,15 +33,14 @@ def inspect_test(path):
 
 def audit_rows(path, ids, decoded_count):
     allowed, results = set(ids), {}
-    with path.open(encoding="utf-8-sig", newline="") as file:
-        for row in csv.DictReader(file):
-            item = row["id"]
-            if item not in allowed or item in results:
-                raise ValueError(f"Unexpected or duplicate Test ID in distribution audit: {item}")
-            detail = float(row["fine_detail"])
-            if not np.isfinite(detail) or detail < 0:
-                raise ValueError(f"Invalid fine detail score: {item}")
-            results[item] = row
+    for row in read_novelty(path):
+        item = row["id"]
+        if item not in allowed or item in results:
+            raise ValueError(f"Unexpected or duplicate Test ID in distribution audit: {item}")
+        detail = float(row["fine_detail"])
+        if not np.isfinite(detail) or detail < 0:
+            raise ValueError(f"Invalid fine detail score: {item}")
+        results[item] = row
     if len(results) != decoded_count:
         raise ValueError("Distribution audit decoded count differs from the novelty table")
     return results

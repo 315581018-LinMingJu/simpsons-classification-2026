@@ -36,3 +36,28 @@ CUDA_VISIBLE_DEVICES="$gpu_index" .venv/bin/python -u diagnose_v7.py validate
 CPU Review 粗估 **3–12 分鐘**。GPU Validate 與少量真實 Test 複核粗估單張 RTX 5090 **5–20 分鐘、2–6 GiB VRAM**，尚未實測。預設 batch size 16、workers 4。若共享記憶體有限，兩階段可降低 `--workers`。
 
 Review 產生 `review.json`、`test_categories.png`、`filter_examples.png`（有觸發例時）、`test_impulse_signals.csv`、`test_review.csv`。標註驗證產生 `validation/validation_report.json`、`paired_validation.csv` 及 `selected_test_v6_probe.csv`。先回傳兩份 JSON 即可。需要討論真實圖時，附上人工讀圖摘要或少量自選例子。權重、圖片與其他產物可以留在 Server。
+
+## V7 保守候選
+
+正式 Review 確認 10,791 張 Test 中有 1,728 張觸發，標註的 Textured Impulse 驗證由 41.50% 升至 59.83%，Clean 和 Texture Control 均維持原準確率。保守候選只讀既有 Review、Validation 及原始權重。它會核對同一 Test 影像簽章、原模板 ID 順序、原 V6 CSV、V6 checkpoint、Review 逐圖觸發表，以及已通過的標註驗證。只重新量測清單中的 1,728 張遮罩，必須符合原有比例和 0.3% 門檻。舊 Review 沒有逐圖清單雜湊時可照常驗證，這次產物會記錄雜湊與舊報告未存該欄。未觸發的 9,063 張沿用原 V6 CSV 的類別。觸發圖以原 V6 權重及同一個 Multi-scale 前處理重算，不重新訓練。
+
+```bash
+cd /usr1/Aa315581018/simpsons-classification-2026
+git pull --ff-only origin main
+nvidia-smi
+read -r -p "已確認可使用的一張 GPU index：" gpu_index
+CUDA_VISIBLE_DEVICES="$gpu_index" .venv/bin/python -u predict_v7.py
+```
+
+若 Review 跑次放在非預設位置，使用 `--v7-run` 指到包含 `review/` 和 `validation/` 的目錄。若封存 CSV 路徑不同，使用 `--v6-submission`，內容需與 Review 雜湊相同。無全量 V6 機率時，同一群觸發圖各跑原圖與濾後版本，最多 34,560 個視角輸入。使用相符的原 V6 全量機率快取時可省略原圖重播。單張 RTX 5090 粗估 **3–15 分鐘、2–6 GiB VRAM**，batch size 16、workers 4，尚未在 Server 實測。
+
+所有輸出在 `runs/v7_candidate/`：
+
+- `submission_v7.csv` 驗證完整 10,791 ID、順序、合法 50 類及未觸發圖完整保留。
+- `candidate_summary.json` 報告全體與觸發組的改判率，另列當次原圖與原 V6 CSV 的差異、濾波前後改判、分組信心和前兩名差值。
+- `active_predictions.csv` 為 1,728 張逐圖資料，分別列出原 V6 CSV 類別、原圖機率來源與重播類別、濾後類別及信心。`role_transitions.csv` 對照原 V6 CSV 到候選。
+- `settings.json` 記錄輸入與程式雜湊、推論設定及版本。原圖和濾後 NPZ 都只含觸發圖，可續用相同設定重跑。全部刊出使用不可覆蓋的寫入規則。
+
+Distribution Audit 的新 `test_novelty.csv` 使用 `*_bin` 獨立保存分箱，避免和數值 `fine_detail`、`brightness`、`contrast` 重名。V7 Review 與集成稽核對可辨識的舊格式依欄位位置讀取；不明的重複欄會停止。產生候選只讀已驗證的觸發清單，不需要重新產生或更改舊 Audit、Review。
+
+有標註的改善來自注入式顆粒，不保證真實 Test 的顆粒也有同等收益。濾波仍可能去掉細線及背景紋理、漏掉成片噪聲。候選對原 V6 改判可能含少量模型重播差異，需配合濾波前後改判數解讀。Test 信心上升無法證明答對。程式不會提交 Kaggle。
