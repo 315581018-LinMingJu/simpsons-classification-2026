@@ -11,7 +11,9 @@ V16 使用 V14-A Epoch 3 和 V14-B Epoch 4 的 ConvNeXt-Tiny checkpoint。每個
 | A | `runs/v14_continuation/a/epoch_03.pt` | `runs/v14_continuation/a/candidate_epoch_03/` |
 | B | `runs/v14_continuation/b/epoch_04.pt` | `runs/v14_continuation/b/candidate_epoch_04/` |
 
-候選目錄各需原始 `summary.json` 和 `submission.csv`。如果移動了候選目錄，在三個資料階段都指定同樣的 `--archive-a` 或 `--archive-b`。保留 V14 的 `prepare.json`、兩組的 `settings.json` 和 `history.json`，以及 V8 Prepare 與部署相關檔案。
+候選目錄各需原始 `summary.json` 和 `submission.csv`。請使用含 `method`、`batch_size` 和 `test_provenance` 的完整檔案。已驗證的 V14 v1 正式流程固定開啟選擇性去顆粒，完整封存可省略獨立的 `denoise` 欄位。若欄位存在，值必須為 JSON 布林 `true`。如果移動了候選目錄，在三個資料階段都指定同樣的 `--archive-a` 或 `--archive-b`。保留 V14 的 `prepare.json`、兩組的 `settings.json` 和 `history.json`，以及 V8 Prepare 與部署相關檔案。
+
+可把固定版本的 GitHub 原始碼封存解壓至 `runs/v16/code-<SHA>`。執行時維持工作目錄在原專案根目錄，將下列命令的 `classification_v16.py` 換成 `runs/v16/code-<SHA>/classification_v16.py`。若舊輸出目錄已有不同程式版本的 `prepare.json`，三個資料階段請一致使用新的 `--output runs/v16/archive-fix-<SHA>`。
 
 在專案根目錄使用原有虛擬環境。
 

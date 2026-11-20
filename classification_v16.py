@@ -107,16 +107,22 @@ def load_arm(args, name, prepare_sha, test, ids, classes):
     csv_path = archive_dir / "submission.csv"
     csv_sha = file_sha256(csv_path)
     expected = {"arm": name, "epoch": epoch, "checkpoint_sha256": digest, "submission_sha256": csv_sha,
-                "test_provenance": test.provenance, "images": len(ids), "method": METHOD, "denoise": True}
-    if any(summary.get(k) != v for k, v in expected.items()) or summary.get("denoise") is not True:
+                "test_provenance": test.provenance, "images": len(ids), "method": METHOD}
+    if any(summary.get(k) != v for k, v in expected.items()):
         raise ValueError(f"V14 {name.upper()} archived submission provenance differs")
+    # 已驗證的 V14 v1 固定使用 TestImages(..., True)。明確記載的值仍須吻合。
+    if summary.get("denoise", True) is not True:
+        raise ValueError(f"V14 {name.upper()} archived denoise setting contradicts the V14 protocol")
     batch_size = summary.get("batch_size")
-    if type(batch_size) is not int or batch_size not in (4, 8, 16, 32):
+    # V14 的 CLI 限制手動指定值，省略時沿用原 V8 封存的 batch size。
+    if (type(batch_size) is not int or batch_size < 1
+            or batch_size not in (4, 8, 16, 32, test.archive_settings["batch_size"])):
         raise ValueError(f"V14 {name.upper()} archived Test batch size is invalid")
     archive = read_reference(csv_path, ids, classes)
     seconds = summary.get("seconds")
     fingerprint = {"epoch": epoch, "checkpoint_sha256": digest, "submission_sha256": csv_sha,
                    "summary_sha256": file_sha256(archive_dir / "summary.json"), "test_batch_size": batch_size,
+                   "denoise_source": "summary" if "denoise" in summary else "verified_v14_protocol",
                    "archived_test_seconds": seconds if type(seconds) in (int, float)
                    and math.isfinite(seconds) and seconds > 0 else None}
     return Arm(path, settings, epoch, archive_dir, archive, fingerprint)
