@@ -39,7 +39,7 @@ data/extracted/sample_submission.csv
 
 | 成員 | 骨幹＠解析度 | Epochs | 最佳 epoch | Clean | Test-style | 時間（約） | VRAM |
 |---|---|---|---|---|---|---|---|
-| main | Base@224 | 10 | 9 | 99.917% | 98.824% | 全程 40 分鐘（含驗證） | 10.7 GiB |
+| main | Base@224 | 10 | 9 | 99.917% | 98.824% | 32.3 分鐘（訓練 25.9） | 10.7 GiB |
 | b288 | Base@288 | 12 | 11 | 99.938% | 99.278% | 每 epoch 訓練 4.6 分鐘 | 15.6 GiB |
 | large | Large@224 | 10 | 10 | 99.938% | 99.200% | 每 epoch 訓練 3.7 分鐘 | 16.7 GiB |
 
