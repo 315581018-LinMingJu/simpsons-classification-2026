@@ -1,0 +1,9 @@
+# 實際使用版本（研究室 Server，RTX 5090）
+torch==2.14.1        # +cu130
+torchvision==0.29.1  # +cu130
+timm==1.0.31         # 以 pip install --no-deps timm 安裝，避免更動 torch
+huggingface_hub
+safetensors
+pyyaml
+numpy
+Pillow

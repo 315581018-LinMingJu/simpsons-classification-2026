@@ -16,7 +16,7 @@ from PIL import Image
 
 from v2.data_checks import CLASS_COUNT, TEST_COUNT
 
-REPO = Path(__file__).resolve().parent
+REPO = Path(__file__).resolve().parents[1]  # 移到 experiments/ 後仍指向專案根目錄
 MIB = 1024 * 1024
 TARGET_BYTES = 25 * MIB
 HARD_LIMIT_BYTES = 30 * MIB

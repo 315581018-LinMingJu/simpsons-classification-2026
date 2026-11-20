@@ -221,3 +221,9 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# 專案資料與實驗產物（不進版控）
+data/
+runs/
+*.pt
+*.npz
