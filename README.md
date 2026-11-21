@@ -11,12 +11,13 @@ Kaggle 競賽：[ml-2026-iaii-classification2](https://www.kaggle.com/competitio
 | 開發期最佳（V16，ConvNeXt-Tiny 機率融合） | — | 0.82174 |
 | 對照組：ConvNeXt-Base，不用測試風格增強 | 99.87%／78.47% | — |
 | **V20**：重現測試干擾增強＋ConvNeXt-Base（ImageNet-22K） | 99.917%／98.824% | 0.98517 |
-| **V21（最終）**：ConvNeXt-Base@288＋ConvNeXt-Large@224 機率融合 | 99.943%／99.345% | **0.98887** |
+| V21：ConvNeXt-Base@288＋ConvNeXt-Large@224 機率融合 | 99.943%／99.345% | 0.98887 |
+| **V22（最終）**：ConvNeXt-Large@288＋ConvNeXt-Base@384 機率融合 | 99.943%／99.598% | **0.99073** |
 
 - 驗證集完全重現 `baseline.py` 的切分（seed 2026、每類 20%，Train 77,547／Val 19,382）。
 - **Test-style 驗證**：把與測試集相同的干擾流程（見下）以固定種子套在驗證圖上，用來估計模型在真實測試條件下的表現；模型與融合組合都只依驗證集挑選，**未用 Public 分數挑選**。
 - 基準與對照組的驗證數字不含 TTA；V20／V21 含水平翻轉 TTA。四種干擾條件、全部不含 TTA 的完整比較見報告。
-- 最終 Kaggle 選擇：V21＋V20。
+- 最終 Kaggle 選擇：V22＋V21。
 
 ## 給助教的閱讀順序
 
@@ -24,7 +25,7 @@ Kaggle 競賽：[ml-2026-iaii-classification2](https://www.kaggle.com/competitio
 2. [`report/README.md`](report/README.md)：**實驗報告**（基準與改進的對照、各干擾條件分析、混淆角色、訓練成本）
 3. [`final/README.md`](final/README.md)：最終方法的完整設定與重現指令
 4. [`final/classification_v20.py`](final/classification_v20.py)：訓練、增強、驗證、預測（單一檔案）
-5. [`final/classification_v21.py`](final/classification_v21.py)：驗證集挑選的機率融合
+5. [`final/classification_v21.py`](final/classification_v21.py)：驗證集挑選的機率融合（V21、V22 都用這支程式）
 6. [`experiments/README.md`](experiments/README.md)：V1–V19 開發歷程與失敗原因（參考用）
 
 ## 目錄結構
@@ -33,7 +34,7 @@ Kaggle 競賽：[ml-2026-iaii-classification2](https://www.kaggle.com/competitio
 README.md              ← 本頁（總覽）
 report/                ← 實驗報告與評估工具
 baseline/              ← 官方 baseline.py（ResNet-18，原封不動）
-final/                 ← 最終繳交方法（V20、V21）
+final/                 ← 最終繳交方法（V20 訓練程式、V21／V22 融合）
   classification_v20.py    訓練／預測主程式
   classification_v21.py    驗證集機率與融合
   run_member.sh            一鍵訓練一個融合成員
