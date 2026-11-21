@@ -1,4 +1,4 @@
-# 最終方法：V20（測試風格增強＋ConvNeXt）與 V21（驗證集挑選融合）
+# 最終方法：V20（測試風格增強＋ConvNeXt）與 V21／V22（驗證集挑選融合）
 
 所有指令都從**專案根目錄**執行，資料放在 `data/extracted/`（Kaggle 下載解壓縮後的結構）：
 
@@ -39,15 +39,21 @@ data/extracted/sample_submission.csv
 
 | 成員 | 骨幹＠解析度 | Epochs | 最佳 epoch | Clean | Test-style | 時間（約） | VRAM |
 |---|---|---|---|---|---|---|---|
-| main | Base@224 | 10 | 9 | 99.917% | 98.824% | 全程 40 分鐘（含驗證） | 10.7 GiB |
+| main | Base@224 | 10 | 9 | 99.917% | 98.824% | 32.3 分鐘（訓練 25.9） | 10.7 GiB |
 | b288 | Base@288 | 12 | 11 | 99.938% | 99.278% | 每 epoch 訓練 4.6 分鐘 | 15.6 GiB |
 | large | Large@224 | 10 | 10 | 99.938% | 99.200% | 每 epoch 訓練 3.7 分鐘 | 16.7 GiB |
+| large288 | Large@288（batch 32） | 12 | 12 | 99.928% | 99.484% | 見 history.json | — |
+| base384 | Base@384（batch 32） | 12 | 12 | 99.948% | 99.453% | 見 history.json | — |
 
 | 融合組合 | Clean | Test-style | Kaggle Public |
 |---|---|---|---|
 | main（V20 單模型） | 99.917% | 98.813%* | 0.98517 |
 | main＋b288＋large | 99.954% | 99.293% | 未提交 |
-| **b288＋large（V21，採用）** | 99.943% | **99.345%** | **0.98887** |
+| b288＋large（V21） | 99.943% | 99.345% | 0.98887 |
+| large288＋base384＋b288＋large | 99.943% | 99.582% | 未提交 |
+| large288＋base384＋large | 99.948% | 99.556% | 未提交 |
+| large288＋base384＋b288 | 99.943% | 99.551% | 未提交 |
+| **large288＋base384（V22，最終）** | 99.943% | **99.598%** | **0.99073** |
 
 \* `valprobs` 以 softmax 機率平均做 TTA；訓練中的驗證以 logits 相加，數值略有差異（98.824%）。
 
@@ -76,6 +82,13 @@ BG="$BG" bash final/run_member.sh 2 large convnext_large.fb_in22k_ft_in1k 224 10
 # 依驗證集比較融合組合，輸出 submission_v21.csv
 python final/classification_v21.py ensemble runs/v20/main runs/v20/b288 runs/v20/large --output runs/v21/all3
 python final/classification_v21.py ensemble runs/v20/b288 runs/v20/large --output runs/v21/b288_large
+
+# V22：高解析度成員（batch 32 以控制 VRAM）
+BG="$BG" bash final/run_member.sh 2 large288 convnext_large.fb_in22k_ft_in1k 288 12 32
+BG="$BG" bash final/run_member.sh 4 base384  convnext_base.fb_in22k_ft_in1k  384 12 32
+python final/classification_v21.py ensemble runs/v20/large288 runs/v20/base384 --output runs/v22/new2
+# 融合程式固定輸出 submission_v21.csv；正式提交時複製為 submission_v22.csv（內容相同）
+cp -n runs/v22/new2/ensemble-2/submission_v21.csv runs/v22/new2/ensemble-2/submission_v22.csv
 ```
 
 輸出位置：
