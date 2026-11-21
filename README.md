@@ -1,7 +1,7 @@
 # The Simpsons 50 類角色分類（ML 2026 IAII Classification）
 
 Kaggle 競賽：[ml-2026-iaii-classification2](https://www.kaggle.com/competitions/ml-2026-iaii-classification2)
-學號：315581018
+姓名：林明儒　學號：315581018
 
 ## 成績摘要
 
@@ -22,17 +22,18 @@ Kaggle 競賽：[ml-2026-iaii-classification2](https://www.kaggle.com/competitio
 ## 給助教的閱讀順序
 
 1. 本頁：結果與核心想法
-2. [`report/README.md`](report/README.md)：**實驗報告**（基準與改進的對照、各干擾條件分析、混淆角色、訓練成本）
-3. [`final/README.md`](final/README.md)：最終方法的完整設定與重現指令
-4. [`final/classification_v20.py`](final/classification_v20.py)：訓練、增強、驗證、預測（單一檔案）
-5. [`final/classification_v21.py`](final/classification_v21.py)：驗證集挑選的機率融合（V21、V22 都用這支程式）
-6. [`experiments/README.md`](experiments/README.md)：V1–V19 開發歷程與失敗原因（參考用）
+2. [`report/Simpsons_分類實驗報告_315581018.pdf`](report/Simpsons_分類實驗報告_315581018.pdf)：**完整實驗報告 PDF（34 頁）**，含 Task 2 混淆矩陣與 Task 3 filter／feature map
+3. [`report/README.md`](report/README.md)：實驗報告摘要（基準與改進的對照、各干擾條件分析、混淆角色、訓練成本）
+4. [`final/README.md`](final/README.md)：最終方法的完整設定與重現指令
+5. [`final/classification_v20.py`](final/classification_v20.py)：訓練、增強、驗證、預測（單一檔案）
+6. [`final/classification_v21.py`](final/classification_v21.py)：驗證集挑選的機率融合（V21、V22 都用這支程式）
+7. [`experiments/README.md`](experiments/README.md)：V1–V19 開發歷程與失敗原因（參考用）
 
 ## 目錄結構
 
 ```
 README.md              ← 本頁（總覽）
-report/                ← 實驗報告與評估工具
+report/                ← 實驗報告（PDF、README）與評估工具
 baseline/              ← 官方 baseline.py（ResNet-18，原封不動）
 final/                 ← 最終繳交方法（V20 訓練程式、V21／V22 融合）
   classification_v20.py    訓練／預測主程式
