@@ -1,0 +1,34 @@
+{
+  "checkpoint_sha256": "58f5ce082f1f6d2d45c55f1511de989969edbcbfb18717c9c47aed56a583b1cb",
+  "conditions": {
+    "clean": {
+      "gain_macro_pp": {
+        "ci95_pp": [
+          -0.08333333333333336,
+          0.5
+        ],
+        "pp": 0.16666666666666666
+      },
+      "images": 1200,
+      "losses": 1,
+      "v2_accuracy_pct": 99.66666666666667,
+      "v5_accuracy_pct": 99.83333333333333,
+      "wins": 3
+    },
+    "heldout_background": {
+      "gain_macro_pp": {
+        "ci95_pp": [
+          -0.08333333333333336,
+          0.5
+        ],
+        "pp": 0.16666666666666666
+      },
+      "images": 1200,
+      "losses": 1,
+      "v2_accuracy_pct": 99.66666666666667,
+      "v5_accuracy_pct": 99.83333333333333,
+      "wins": 3
+    }
+  },
+  "decision": "inconclusive"
+}

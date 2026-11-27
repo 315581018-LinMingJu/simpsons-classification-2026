@@ -1,0 +1,30 @@
+{
+  "a_b_disagreement": 892,
+  "a_b_disagreement_pct": 8.266147715689,
+  "changed_vs_a": 154,
+  "changed_vs_a_pct": 1.4271151885830784,
+  "checkpoint_sha256": {
+    "a": "8d010dee1919abbe2e3c0bc130f0f8be6dc0a70473ac3b86fc50a4a4e8fda43f",
+    "b": "564e60d6d632b9fc83911e3d36e307d5b2e84215182a58685a83c34240246296"
+  },
+  "images": 10791,
+  "prepare_sha256": "36b6802a7dad535f13b2b357911bb4824e5b559fa09cb1f6d9256cd166926e57",
+  "replay_mismatches": {
+    "a": 0,
+    "b": 0
+  },
+  "seconds": {
+    "a": {
+      "all": 264.7499117880361
+    },
+    "b": {
+      "all": 267.58994326891843
+    }
+  },
+  "selection": "default_a80_b20",
+  "submission": "/usr1/Aa315581018/simpsons-classification-2026/runs/v16/archive-fix-49dc35247fa67babe7ccac7c1ce12136dd780ade/candidate/submission_v16.csv",
+  "submission_sha256": "42e0e6f0f14dd21c7d86f4cfdc805c870d1badc886398a3e649ba8a61b50ed1e",
+  "validation_sha256": "da58336aedbba3520fe9cb8fae886625375f70fcf176eb3918c8ee023b24ec6e",
+  "weight_a": 0.8,
+  "weight_b": 0.2
+}

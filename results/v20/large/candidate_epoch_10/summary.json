@@ -1,0 +1,14 @@
+{
+  "submission": "runs/v20/large/candidate_epoch_10/submission_v20.csv",
+  "submission_sha256": "75f2b4b8fce0d0fe85ede1d1acafc05ea8bee6856dc29bf149d8e5fbd76c9851",
+  "images": 10791,
+  "epoch": 10,
+  "checkpoint": "best.pt",
+  "val_clean": 0.9993808688473842,
+  "val_testlike": 0.9921060778041482,
+  "mean_confidence": 0.9218446612358093,
+  "predicted_class_min": 205,
+  "predicted_class_max": 235,
+  "changed_vs_v16": 1893,
+  "changed_vs_v18": 1484
+}

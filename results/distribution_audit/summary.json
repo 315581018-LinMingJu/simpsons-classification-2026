@@ -1,0 +1,485 @@
+{
+  "labels": {
+    "allowed_characters": [
+      "abraham_grampa_simpson",
+      "agnes_skinner",
+      "apu_nahasapeemapetilon",
+      "barney_gumble",
+      "bart_simpson",
+      "brandine_spuckler",
+      "carl_carlson",
+      "charles_montgomery_burns",
+      "chief_wiggum",
+      "cletus_spuckler",
+      "comic_book_guy",
+      "disco_stu",
+      "dolph_starbeam",
+      "duff_man",
+      "edna_krabappel",
+      "fat_tony",
+      "gary_chalmers",
+      "gil",
+      "groundskeeper_willie",
+      "homer_simpson",
+      "jimbo_jones",
+      "kearney_zzyzwicz",
+      "kent_brockman",
+      "krusty_the_clown",
+      "lenny_leonard",
+      "lionel_hutz",
+      "lisa_simpson",
+      "lunchlady_doris",
+      "maggie_simpson",
+      "marge_simpson",
+      "martin_prince",
+      "mayor_quimby",
+      "milhouse_van_houten",
+      "miss_hoover",
+      "moe_szyslak",
+      "ned_flanders",
+      "nelson_muntz",
+      "otto_mann",
+      "patty_bouvier",
+      "principal_skinner",
+      "professor_john_frink",
+      "rainier_wolfcastle",
+      "ralph_wiggum",
+      "selma_bouvier",
+      "sideshow_bob",
+      "sideshow_mel",
+      "snake_jailbird",
+      "timothy_lovejoy",
+      "troy_mcclure",
+      "waylon_smithers"
+    ],
+    "test_ground_truth_available": false,
+    "train_class_imbalance": {
+      "classes_below_one_fifth_median": 0,
+      "highest_frequency": [
+        [
+          "abraham_grampa_simpson",
+          2067,
+          2067
+        ],
+        [
+          "chief_wiggum",
+          2067,
+          2067
+        ],
+        [
+          "homer_simpson",
+          2067,
+          2067
+        ],
+        [
+          "milhouse_van_houten",
+          2067,
+          2067
+        ],
+        [
+          "sideshow_bob",
+          2067,
+          2067
+        ]
+      ],
+      "lowest_frequency": [
+        [
+          "lunchlady_doris",
+          1851,
+          1851
+        ],
+        [
+          "fat_tony",
+          1855,
+          1855
+        ],
+        [
+          "otto_mann",
+          1857,
+          1857
+        ],
+        [
+          "jimbo_jones",
+          1862,
+          1862
+        ],
+        [
+          "dolph_starbeam",
+          1863,
+          1863
+        ]
+      ],
+      "max": 2067,
+      "max_over_min": 1.1166936790923825,
+      "median": 1903.0,
+      "min": 1851
+    }
+  },
+  "priority_signals": [
+    {
+      "next_check": "人工確認照片背景／圖塊，優先對照 V5 的背景適應與區塊取景。",
+      "signal": "outer_black_support",
+      "test_minus_train_pp": 93.01142047823838,
+      "test_pct": 94.18960244648318,
+      "train_pct": 1.1781819682447978
+    },
+    {
+      "next_check": "用拼圖區分紋理、真實雜訊和壓縮痕跡，再決定是否驗證去噪。",
+      "signal": "high_frequency_support",
+      "test_minus_train_pp": 71.87617384593113,
+      "test_pct": 74.81234361968306,
+      "train_pct": 2.9361697737519217
+    },
+    {
+      "next_check": "人工區分局部灰階、反色及低飽和，再測原圖與校色視角的配對改判。",
+      "signal": "weak_color_support",
+      "test_minus_train_pp": 7.651449558715266,
+      "test_pct": 10.277082754146974,
+      "train_pct": 2.625633195431708
+    }
+  ],
+  "provenance": {
+    "black_rgb_channel_max": 24,
+    "split_sha256": "d6b86a9b8cd01f8a1a631902bcb1e2b9c394c345cc80443ac940d53982ca5054",
+    "thumbnail_max_edge": 192,
+    "v3_submission_sha256": "f7e5903bbf69c4210d9c4fe76d9b9bc7b107f7e6aac8b18d139632dc64ad6e89",
+    "v5_submission_sha256": "a4477e7736ea84c5d730aecfa9650830c45cfc0ada8c6200a750aa8b0bab1ee9",
+    "workers": 4
+  },
+  "reference_fit": {
+    "bins_from_train_p20_p80": {
+      "brightness": [
+        0.20075812339782714,
+        0.3665087819099426
+      ],
+      "contrast": [
+        0.217997208237648,
+        0.29782692790031434
+      ],
+      "fine_detail": [
+        0.0,
+        0.007843137718737125
+      ]
+    },
+    "rare_train_frequency_at_most": 0.001,
+    "tail_train_p01_p99_iqr": {
+      "black_edge_fraction": [
+        0.4663677130044843,
+        1.0,
+        0.18497757847533625
+      ],
+      "brightness": [
+        0.09955181568861007,
+        0.6081076622009277,
+        0.13339969515800476
+      ],
+      "contrast": [
+        0.14920191884040832,
+        0.42812924385070805,
+        0.0639498233795166
+      ],
+      "fine_detail": [
+        0.0,
+        0.023529410362243652,
+        0.01
+      ],
+      "weak_color_fraction": [
+        0.06760308159722223,
+        0.8491948784722223,
+        0.18394639756944442
+      ]
+    },
+    "upper_tail_test_p90_threshold": 9.843679995670595
+  },
+  "seconds": 102.41905352007598,
+  "test": {
+    "decode_or_header_errors": 0,
+    "decoded_images": 10791,
+    "extension_mismatch_pct": 100.0,
+    "extension_mismatches": 10791,
+    "feature_medians": {
+      "black_edge_fraction": 0.0038314176245210726,
+      "black_outer_band_fraction": 0.004769592016436748,
+      "brightness": 0.45851993560791016,
+      "center_weak_color_fraction": 0.020146520146520148,
+      "contrast": 0.20515011250972748,
+      "edge_luma_std": 0.1476912647485733,
+      "fine_detail": 0.0313725471496582,
+      "weak_color_fraction": 0.08845766129032258
+    },
+    "files": 10791,
+    "formats_by_readable_header": {
+      "PNG": 10791
+    },
+    "non_mostly_black_edge_count": 10164,
+    "non_mostly_black_edge_pct": 94.18960244648318,
+    "readable_headers": 10791,
+    "sizes": {
+      "aspect_groups": {
+        "near_square": 10791
+      },
+      "aspect_width_over_height_quantiles": [
+        0.8978102189781022,
+        0.9538461538461539,
+        1.0,
+        1.047244094488189,
+        1.113821138211382
+      ],
+      "height_quantiles": [
+        246.0,
+        254.0,
+        264.0,
+        274.0,
+        282.0
+      ],
+      "height_range": [
+        244,
+        284
+      ],
+      "samples": 10791,
+      "square_count": 506,
+      "width_quantiles": [
+        246.0,
+        254.0,
+        264.0,
+        274.0,
+        282.0
+      ],
+      "width_range": [
+        244,
+        284
+      ]
+    }
+  },
+  "test_novelty": {
+    "highest_visual_tail_ids": [
+      "284",
+      "3173",
+      "10786",
+      "3448",
+      "5654",
+      "9574",
+      "755",
+      "7204",
+      "3616",
+      "5046",
+      "7847",
+      "293"
+    ],
+    "top_rare_or_unseen_combinations": [
+      {
+        "black_edge": "little_black",
+        "brightness": "high",
+        "contrast": "low",
+        "fine_detail": "high",
+        "test_count": 3861,
+        "test_pct": 35.77981651376147,
+        "train_count": 60,
+        "train_pct": 0.061900979067152244,
+        "train_support": "rare",
+        "v3_v5_changed": 1169,
+        "v3_v5_changed_pct": 30.277130277130276,
+        "weak_color": "colored"
+      },
+      {
+        "black_edge": "little_black",
+        "brightness": "high",
+        "contrast": "mid",
+        "fine_detail": "high",
+        "test_count": 1986,
+        "test_pct": 18.404225743675283,
+        "train_count": 37,
+        "train_pct": 0.03817227042474389,
+        "train_support": "rare",
+        "v3_v5_changed": 599,
+        "v3_v5_changed_pct": 30.16112789526687,
+        "weak_color": "colored"
+      },
+      {
+        "black_edge": "little_black",
+        "brightness": "mid",
+        "contrast": "low",
+        "fine_detail": "high",
+        "test_count": 724,
+        "test_pct": 6.709294782689278,
+        "train_count": 7,
+        "train_pct": 0.007221780891167762,
+        "train_support": "rare",
+        "v3_v5_changed": 206,
+        "v3_v5_changed_pct": 28.45303867403315,
+        "weak_color": "colored"
+      },
+      {
+        "black_edge": "mixed",
+        "brightness": "mid",
+        "contrast": "low",
+        "fine_detail": "high",
+        "test_count": 579,
+        "test_pct": 5.365582429802613,
+        "train_count": 25,
+        "train_pct": 0.025792074611313436,
+        "train_support": "rare",
+        "v3_v5_changed": 190,
+        "v3_v5_changed_pct": 32.81519861830743,
+        "weak_color": "colored"
+      },
+      {
+        "black_edge": "little_black",
+        "brightness": "high",
+        "contrast": "low",
+        "fine_detail": "high",
+        "test_count": 460,
+        "test_pct": 4.262811602261143,
+        "train_count": 0,
+        "train_pct": 0.0,
+        "train_support": "unseen",
+        "v3_v5_changed": 135,
+        "v3_v5_changed_pct": 29.347826086956523,
+        "weak_color": "mixed_color"
+      },
+      {
+        "black_edge": "mixed",
+        "brightness": "mid",
+        "contrast": "mid",
+        "fine_detail": "high",
+        "test_count": 327,
+        "test_pct": 3.0303030303030303,
+        "train_count": 40,
+        "train_pct": 0.0412673193781015,
+        "train_support": "rare",
+        "v3_v5_changed": 101,
+        "v3_v5_changed_pct": 30.8868501529052,
+        "weak_color": "colored"
+      },
+      {
+        "black_edge": "little_black",
+        "brightness": "high",
+        "contrast": "mid",
+        "fine_detail": "high",
+        "test_count": 282,
+        "test_pct": 2.613288851820962,
+        "train_count": 5,
+        "train_pct": 0.005158414922262687,
+        "train_support": "rare",
+        "v3_v5_changed": 82,
+        "v3_v5_changed_pct": 29.078014184397162,
+        "weak_color": "mixed_color"
+      },
+      {
+        "black_edge": "mixed",
+        "brightness": "high",
+        "contrast": "low",
+        "fine_detail": "high",
+        "test_count": 248,
+        "test_pct": 2.2982114725233993,
+        "train_count": 51,
+        "train_pct": 0.05261583220707941,
+        "train_support": "rare",
+        "v3_v5_changed": 73,
+        "v3_v5_changed_pct": 29.43548387096774,
+        "weak_color": "colored"
+      }
+    ],
+    "unseen_format": 10791,
+    "unseen_format_size": 10791,
+    "unseen_size": 10791,
+    "visual_support": {
+      "observed": 1088,
+      "rare": 8948,
+      "unseen": 755
+    }
+  },
+  "train": {
+    "decode_or_header_errors": 0,
+    "decoded_images": 96929,
+    "extension_mismatch_pct": 0.0,
+    "extension_mismatches": 0,
+    "feature_medians": {
+      "black_edge_fraction": 0.8172645739910314,
+      "black_outer_band_fraction": 0.7841442594963721,
+      "brightness": 0.27471065521240234,
+      "center_weak_color_fraction": 0.019856770833333332,
+      "contrast": 0.25641199946403503,
+      "edge_luma_std": 0.17159968614578247,
+      "fine_detail": 0.003921627998352051,
+      "weak_color_fraction": 0.3876410590277778
+    },
+    "files": 96929,
+    "formats_by_readable_header": {
+      "JPEG": 96929
+    },
+    "non_mostly_black_edge_count": 1142,
+    "non_mostly_black_edge_pct": 1.1781819682447978,
+    "readable_headers": 96929,
+    "sizes": {
+      "aspect_groups": {
+        "near_square": 96929
+      },
+      "aspect_width_over_height_quantiles": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "height_quantiles": [
+        224.0,
+        224.0,
+        224.0,
+        224.0,
+        224.0
+      ],
+      "height_range": [
+        224,
+        224
+      ],
+      "samples": 96929,
+      "square_count": 96929,
+      "width_quantiles": [
+        224.0,
+        224.0,
+        224.0,
+        224.0,
+        224.0
+      ],
+      "width_range": [
+        224,
+        224
+      ]
+    }
+  },
+  "v3_v5_changes": {
+    "changed": 3229,
+    "changed_pct": 29.92308405152442,
+    "test_images": 10791,
+    "visual_band_groups": [
+      {
+        "changed": 76,
+        "changed_pct": 23.24159021406728,
+        "dimension": "visual_tail",
+        "group": "inside_reference",
+        "images": 327,
+        "rate_ratio_vs_all_test": 0.7767110560545061,
+        "share_of_all_changes_pct": 2.3536698668318365
+      },
+      {
+        "changed": 2648,
+        "changed_pct": 28.21824381926684,
+        "dimension": "visual_tail",
+        "group": "other_outside_reference",
+        "images": 9384,
+        "rate_ratio_vs_all_test": 0.9430259184072729,
+        "share_of_all_changes_pct": 82.00681325487767
+      },
+      {
+        "changed": 505,
+        "changed_pct": 46.75925925925926,
+        "dimension": "visual_tail",
+        "group": "upper_tail",
+        "images": 1080,
+        "rate_ratio_vs_all_test": 1.5626483947558585,
+        "share_of_all_changes_pct": 15.639516878290493
+      }
+    ]
+  }
+}

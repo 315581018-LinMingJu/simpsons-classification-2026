@@ -1,0 +1,1258 @@
+{
+  "hard_condition_weights": {
+    "clipped": 0.2,
+    "context": 0.3,
+    "distractor": 0.2,
+    "impulse": 0.25,
+    "negative": 0.05
+  },
+  "images_per_condition": 200,
+  "independent_validation": false,
+  "prepare_sha256": "36b6802a7dad535f13b2b357911bb4824e5b559fa09cb1f6d9256cd166926e57",
+  "reused_screen": true,
+  "seconds": {
+    "a": {
+      "clean": 8.271471856045537,
+      "clipped": 6.290902800974436,
+      "context": 6.531124608940445,
+      "distractor": 6.726345513947308,
+      "impulse": 8.361552988993935,
+      "negative": 6.41324931406416
+    },
+    "b": {
+      "clean": 5.005401057074778,
+      "clipped": 6.352258444065228,
+      "context": 6.2563625439070165,
+      "distractor": 6.702858110074885,
+      "impulse": 8.362732575042173,
+      "negative": 6.332207269966602
+    }
+  },
+  "selected": "a80",
+  "selection": "default_a80_b20",
+  "selection_thresholds": {
+    "hard_ci95_lower_gt_pp": 0,
+    "max_clean_drop_pp": 0.5,
+    "max_hard_condition_drop_pp": 4.0,
+    "min_hard_gain_pp": 0.75
+  },
+  "trials_vs_a": {
+    "a": {
+      "conditions": {
+        "clean": {
+          "accuracy_effect": {
+            "ci95_pp": [
+              0.0,
+              0.0
+            ],
+            "pp": 0.0
+          },
+          "accuracy_pct": 100.0,
+          "disagreement": {
+            "ci95_pp": [
+              0.0,
+              0.0
+            ],
+            "pp": 0.0
+          },
+          "losses": 0,
+          "wins": 0
+        },
+        "clipped": {
+          "accuracy_effect": {
+            "ci95_pp": [
+              0.0,
+              0.0
+            ],
+            "pp": 0.0
+          },
+          "accuracy_pct": 98.0,
+          "disagreement": {
+            "ci95_pp": [
+              0.0,
+              0.0
+            ],
+            "pp": 0.0
+          },
+          "losses": 0,
+          "wins": 0
+        },
+        "context": {
+          "accuracy_effect": {
+            "ci95_pp": [
+              0.0,
+              0.0
+            ],
+            "pp": 0.0
+          },
+          "accuracy_pct": 98.0,
+          "disagreement": {
+            "ci95_pp": [
+              0.0,
+              0.0
+            ],
+            "pp": 0.0
+          },
+          "losses": 0,
+          "wins": 0
+        },
+        "distractor": {
+          "accuracy_effect": {
+            "ci95_pp": [
+              0.0,
+              0.0
+            ],
+            "pp": 0.0
+          },
+          "accuracy_pct": 98.0,
+          "disagreement": {
+            "ci95_pp": [
+              0.0,
+              0.0
+            ],
+            "pp": 0.0
+          },
+          "losses": 0,
+          "wins": 0
+        },
+        "impulse": {
+          "accuracy_effect": {
+            "ci95_pp": [
+              0.0,
+              0.0
+            ],
+            "pp": 0.0
+          },
+          "accuracy_pct": 95.5,
+          "disagreement": {
+            "ci95_pp": [
+              0.0,
+              0.0
+            ],
+            "pp": 0.0
+          },
+          "losses": 0,
+          "wins": 0
+        },
+        "negative": {
+          "accuracy_effect": {
+            "ci95_pp": [
+              0.0,
+              0.0
+            ],
+            "pp": 0.0
+          },
+          "accuracy_pct": 70.0,
+          "disagreement": {
+            "ci95_pp": [
+              0.0,
+              0.0
+            ],
+            "pp": 0.0
+          },
+          "losses": 0,
+          "wins": 0
+        }
+      },
+      "hard_accuracy_pct": 95.975,
+      "hard_disagreement": {
+        "ci95_pp": [
+          0.0,
+          0.0
+        ],
+        "pp": 0.0
+      },
+      "hard_effect": {
+        "ci95_pp": [
+          0.0,
+          0.0
+        ],
+        "pp": 0.0
+      },
+      "hard_image_condition_losses": 0,
+      "hard_image_condition_wins": 0
+    },
+    "a50": {
+      "conditions": {
+        "clean": {
+          "accuracy_effect": {
+            "ci95_pp": [
+              0.0,
+              0.0
+            ],
+            "pp": 0.0
+          },
+          "accuracy_pct": 100.0,
+          "disagreement": {
+            "ci95_pp": [
+              0.0,
+              0.0
+            ],
+            "pp": 0.0
+          },
+          "losses": 0,
+          "wins": 0
+        },
+        "clipped": {
+          "accuracy_effect": {
+            "ci95_pp": [
+              0.0,
+              0.0
+            ],
+            "pp": 0.0
+          },
+          "accuracy_pct": 98.0,
+          "disagreement": {
+            "ci95_pp": [
+              0.0,
+              1.5
+            ],
+            "pp": 0.5
+          },
+          "losses": 0,
+          "wins": 0
+        },
+        "context": {
+          "accuracy_effect": {
+            "ci95_pp": [
+              0.0,
+              1.5
+            ],
+            "pp": 0.5
+          },
+          "accuracy_pct": 98.5,
+          "disagreement": {
+            "ci95_pp": [
+              0.0,
+              1.5
+            ],
+            "pp": 0.5
+          },
+          "losses": 0,
+          "wins": 1
+        },
+        "distractor": {
+          "accuracy_effect": {
+            "ci95_pp": [
+              0.0,
+              0.0
+            ],
+            "pp": 0.0
+          },
+          "accuracy_pct": 98.0,
+          "disagreement": {
+            "ci95_pp": [
+              0.0,
+              1.5
+            ],
+            "pp": 0.5
+          },
+          "losses": 0,
+          "wins": 0
+        },
+        "impulse": {
+          "accuracy_effect": {
+            "ci95_pp": [
+              0.0,
+              2.5
+            ],
+            "pp": 1.0
+          },
+          "accuracy_pct": 96.5,
+          "disagreement": {
+            "ci95_pp": [
+              0.0,
+              2.5
+            ],
+            "pp": 1.0
+          },
+          "losses": 0,
+          "wins": 2
+        },
+        "negative": {
+          "accuracy_effect": {
+            "ci95_pp": [
+              -3.0,
+              2.0
+            ],
+            "pp": -0.5
+          },
+          "accuracy_pct": 69.5,
+          "disagreement": {
+            "ci95_pp": [
+              7.0,
+              14.5
+            ],
+            "pp": 10.5
+          },
+          "losses": 5,
+          "wins": 4
+        }
+      },
+      "hard_accuracy_pct": 96.35,
+      "hard_disagreement": {
+        "ci95_pp": [
+          0.525,
+          1.8006249999999968
+        ],
+        "pp": 1.125
+      },
+      "hard_effect": {
+        "ci95_pp": [
+          0.0,
+          0.825
+        ],
+        "pp": 0.375
+      },
+      "hard_image_condition_losses": 5,
+      "hard_image_condition_wins": 7,
+      "versus_default": {
+        "conditions": {
+          "clean": {
+            "accuracy_effect": {
+              "ci95_pp": [
+                0.0,
+                0.0
+              ],
+              "pp": 0.0
+            },
+            "accuracy_pct": 100.0,
+            "disagreement": {
+              "ci95_pp": [
+                0.0,
+                0.0
+              ],
+              "pp": 0.0
+            },
+            "losses": 0,
+            "wins": 0
+          },
+          "clipped": {
+            "accuracy_effect": {
+              "ci95_pp": [
+                0.0,
+                0.0
+              ],
+              "pp": 0.0
+            },
+            "accuracy_pct": 98.0,
+            "disagreement": {
+              "ci95_pp": [
+                0.0,
+                1.5
+              ],
+              "pp": 0.5
+            },
+            "losses": 0,
+            "wins": 0
+          },
+          "context": {
+            "accuracy_effect": {
+              "ci95_pp": [
+                0.0,
+                1.5
+              ],
+              "pp": 0.5
+            },
+            "accuracy_pct": 98.5,
+            "disagreement": {
+              "ci95_pp": [
+                0.0,
+                1.5
+              ],
+              "pp": 0.5
+            },
+            "losses": 0,
+            "wins": 1
+          },
+          "distractor": {
+            "accuracy_effect": {
+              "ci95_pp": [
+                0.0,
+                0.0
+              ],
+              "pp": 0.0
+            },
+            "accuracy_pct": 98.0,
+            "disagreement": {
+              "ci95_pp": [
+                0.0,
+                0.0
+              ],
+              "pp": 0.0
+            },
+            "losses": 0,
+            "wins": 0
+          },
+          "impulse": {
+            "accuracy_effect": {
+              "ci95_pp": [
+                0.0,
+                1.5
+              ],
+              "pp": 0.5
+            },
+            "accuracy_pct": 96.5,
+            "disagreement": {
+              "ci95_pp": [
+                0.0,
+                1.5
+              ],
+              "pp": 0.5
+            },
+            "losses": 0,
+            "wins": 1
+          },
+          "negative": {
+            "accuracy_effect": {
+              "ci95_pp": [
+                -2.0,
+                3.0
+              ],
+              "pp": 0.5
+            },
+            "accuracy_pct": 69.5,
+            "disagreement": {
+              "ci95_pp": [
+                5.0,
+                11.5
+              ],
+              "pp": 8.0
+            },
+            "losses": 3,
+            "wins": 4
+          }
+        },
+        "hard_accuracy_pct": 96.35,
+        "hard_disagreement": {
+          "ci95_pp": [
+            0.32500000000000007,
+            1.3249999999999997
+          ],
+          "pp": 0.775
+        },
+        "hard_effect": {
+          "ci95_pp": [
+            -1.3877787807814457e-17,
+            0.6756249999999966
+          ],
+          "pp": 0.29999999999999993
+        },
+        "hard_image_condition_losses": 3,
+        "hard_image_condition_wins": 6
+      }
+    },
+    "a70": {
+      "conditions": {
+        "clean": {
+          "accuracy_effect": {
+            "ci95_pp": [
+              0.0,
+              0.0
+            ],
+            "pp": 0.0
+          },
+          "accuracy_pct": 100.0,
+          "disagreement": {
+            "ci95_pp": [
+              0.0,
+              0.0
+            ],
+            "pp": 0.0
+          },
+          "losses": 0,
+          "wins": 0
+        },
+        "clipped": {
+          "accuracy_effect": {
+            "ci95_pp": [
+              0.0,
+              0.0
+            ],
+            "pp": 0.0
+          },
+          "accuracy_pct": 98.0,
+          "disagreement": {
+            "ci95_pp": [
+              0.0,
+              0.0
+            ],
+            "pp": 0.0
+          },
+          "losses": 0,
+          "wins": 0
+        },
+        "context": {
+          "accuracy_effect": {
+            "ci95_pp": [
+              0.0,
+              0.0
+            ],
+            "pp": 0.0
+          },
+          "accuracy_pct": 98.0,
+          "disagreement": {
+            "ci95_pp": [
+              0.0,
+              0.0
+            ],
+            "pp": 0.0
+          },
+          "losses": 0,
+          "wins": 0
+        },
+        "distractor": {
+          "accuracy_effect": {
+            "ci95_pp": [
+              0.0,
+              0.0
+            ],
+            "pp": 0.0
+          },
+          "accuracy_pct": 98.0,
+          "disagreement": {
+            "ci95_pp": [
+              0.0,
+              1.5
+            ],
+            "pp": 0.5
+          },
+          "losses": 0,
+          "wins": 0
+        },
+        "impulse": {
+          "accuracy_effect": {
+            "ci95_pp": [
+              0.0,
+              2.5
+            ],
+            "pp": 1.0
+          },
+          "accuracy_pct": 96.5,
+          "disagreement": {
+            "ci95_pp": [
+              0.0,
+              2.5
+            ],
+            "pp": 1.0
+          },
+          "losses": 0,
+          "wins": 2
+        },
+        "negative": {
+          "accuracy_effect": {
+            "ci95_pp": [
+              -3.0,
+              0.5
+            ],
+            "pp": -1.0
+          },
+          "accuracy_pct": 69.0,
+          "disagreement": {
+            "ci95_pp": [
+              3.0,
+              9.0
+            ],
+            "pp": 6.0
+          },
+          "losses": 3,
+          "wins": 1
+        }
+      },
+      "hard_accuracy_pct": 96.175,
+      "hard_disagreement": {
+        "ci95_pp": [
+          0.3000000000000001,
+          1.05
+        ],
+        "pp": 0.65
+      },
+      "hard_effect": {
+        "ci95_pp": [
+          -0.07500000000000001,
+          0.525
+        ],
+        "pp": 0.2
+      },
+      "hard_image_condition_losses": 3,
+      "hard_image_condition_wins": 3,
+      "versus_default": {
+        "conditions": {
+          "clean": {
+            "accuracy_effect": {
+              "ci95_pp": [
+                0.0,
+                0.0
+              ],
+              "pp": 0.0
+            },
+            "accuracy_pct": 100.0,
+            "disagreement": {
+              "ci95_pp": [
+                0.0,
+                0.0
+              ],
+              "pp": 0.0
+            },
+            "losses": 0,
+            "wins": 0
+          },
+          "clipped": {
+            "accuracy_effect": {
+              "ci95_pp": [
+                0.0,
+                0.0
+              ],
+              "pp": 0.0
+            },
+            "accuracy_pct": 98.0,
+            "disagreement": {
+              "ci95_pp": [
+                0.0,
+                0.0
+              ],
+              "pp": 0.0
+            },
+            "losses": 0,
+            "wins": 0
+          },
+          "context": {
+            "accuracy_effect": {
+              "ci95_pp": [
+                0.0,
+                0.0
+              ],
+              "pp": 0.0
+            },
+            "accuracy_pct": 98.0,
+            "disagreement": {
+              "ci95_pp": [
+                0.0,
+                0.0
+              ],
+              "pp": 0.0
+            },
+            "losses": 0,
+            "wins": 0
+          },
+          "distractor": {
+            "accuracy_effect": {
+              "ci95_pp": [
+                0.0,
+                0.0
+              ],
+              "pp": 0.0
+            },
+            "accuracy_pct": 98.0,
+            "disagreement": {
+              "ci95_pp": [
+                0.0,
+                0.0
+              ],
+              "pp": 0.0
+            },
+            "losses": 0,
+            "wins": 0
+          },
+          "impulse": {
+            "accuracy_effect": {
+              "ci95_pp": [
+                0.0,
+                1.5
+              ],
+              "pp": 0.5
+            },
+            "accuracy_pct": 96.5,
+            "disagreement": {
+              "ci95_pp": [
+                0.0,
+                1.5
+              ],
+              "pp": 0.5
+            },
+            "losses": 0,
+            "wins": 1
+          },
+          "negative": {
+            "accuracy_effect": {
+              "ci95_pp": [
+                -1.0,
+                1.0
+              ],
+              "pp": 0.0
+            },
+            "accuracy_pct": 69.0,
+            "disagreement": {
+              "ci95_pp": [
+                1.5,
+                6.0
+              ],
+              "pp": 3.5000000000000004
+            },
+            "losses": 1,
+            "wins": 1
+          }
+        },
+        "hard_accuracy_pct": 96.175,
+        "hard_disagreement": {
+          "ci95_pp": [
+            0.1,
+            0.5750000000000001
+          ],
+          "pp": 0.30000000000000004
+        },
+        "hard_effect": {
+          "ci95_pp": [
+            -0.05,
+            0.375
+          ],
+          "pp": 0.125
+        },
+        "hard_image_condition_losses": 1,
+        "hard_image_condition_wins": 2
+      }
+    },
+    "a80": {
+      "conditions": {
+        "clean": {
+          "accuracy_effect": {
+            "ci95_pp": [
+              0.0,
+              0.0
+            ],
+            "pp": 0.0
+          },
+          "accuracy_pct": 100.0,
+          "disagreement": {
+            "ci95_pp": [
+              0.0,
+              0.0
+            ],
+            "pp": 0.0
+          },
+          "losses": 0,
+          "wins": 0
+        },
+        "clipped": {
+          "accuracy_effect": {
+            "ci95_pp": [
+              0.0,
+              0.0
+            ],
+            "pp": 0.0
+          },
+          "accuracy_pct": 98.0,
+          "disagreement": {
+            "ci95_pp": [
+              0.0,
+              0.0
+            ],
+            "pp": 0.0
+          },
+          "losses": 0,
+          "wins": 0
+        },
+        "context": {
+          "accuracy_effect": {
+            "ci95_pp": [
+              0.0,
+              0.0
+            ],
+            "pp": 0.0
+          },
+          "accuracy_pct": 98.0,
+          "disagreement": {
+            "ci95_pp": [
+              0.0,
+              0.0
+            ],
+            "pp": 0.0
+          },
+          "losses": 0,
+          "wins": 0
+        },
+        "distractor": {
+          "accuracy_effect": {
+            "ci95_pp": [
+              0.0,
+              0.0
+            ],
+            "pp": 0.0
+          },
+          "accuracy_pct": 98.0,
+          "disagreement": {
+            "ci95_pp": [
+              0.0,
+              1.5
+            ],
+            "pp": 0.5
+          },
+          "losses": 0,
+          "wins": 0
+        },
+        "impulse": {
+          "accuracy_effect": {
+            "ci95_pp": [
+              0.0,
+              1.5
+            ],
+            "pp": 0.5
+          },
+          "accuracy_pct": 96.0,
+          "disagreement": {
+            "ci95_pp": [
+              0.0,
+              1.5
+            ],
+            "pp": 0.5
+          },
+          "losses": 0,
+          "wins": 1
+        },
+        "negative": {
+          "accuracy_effect": {
+            "ci95_pp": [
+              -2.5,
+              0.0
+            ],
+            "pp": -1.0
+          },
+          "accuracy_pct": 69.0,
+          "disagreement": {
+            "ci95_pp": [
+              0.5,
+              4.5
+            ],
+            "pp": 2.5
+          },
+          "losses": 2,
+          "wins": 0
+        }
+      },
+      "hard_accuracy_pct": 96.05,
+      "hard_disagreement": {
+        "ci95_pp": [
+          0.1,
+          0.675
+        ],
+        "pp": 0.35
+      },
+      "hard_effect": {
+        "ci95_pp": [
+          -0.1,
+          0.3256249999999966
+        ],
+        "pp": 0.075
+      },
+      "hard_image_condition_losses": 2,
+      "hard_image_condition_wins": 1
+    },
+    "a90": {
+      "conditions": {
+        "clean": {
+          "accuracy_effect": {
+            "ci95_pp": [
+              0.0,
+              0.0
+            ],
+            "pp": 0.0
+          },
+          "accuracy_pct": 100.0,
+          "disagreement": {
+            "ci95_pp": [
+              0.0,
+              0.0
+            ],
+            "pp": 0.0
+          },
+          "losses": 0,
+          "wins": 0
+        },
+        "clipped": {
+          "accuracy_effect": {
+            "ci95_pp": [
+              0.0,
+              0.0
+            ],
+            "pp": 0.0
+          },
+          "accuracy_pct": 98.0,
+          "disagreement": {
+            "ci95_pp": [
+              0.0,
+              0.0
+            ],
+            "pp": 0.0
+          },
+          "losses": 0,
+          "wins": 0
+        },
+        "context": {
+          "accuracy_effect": {
+            "ci95_pp": [
+              0.0,
+              0.0
+            ],
+            "pp": 0.0
+          },
+          "accuracy_pct": 98.0,
+          "disagreement": {
+            "ci95_pp": [
+              0.0,
+              0.0
+            ],
+            "pp": 0.0
+          },
+          "losses": 0,
+          "wins": 0
+        },
+        "distractor": {
+          "accuracy_effect": {
+            "ci95_pp": [
+              0.0,
+              0.0
+            ],
+            "pp": 0.0
+          },
+          "accuracy_pct": 98.0,
+          "disagreement": {
+            "ci95_pp": [
+              0.0,
+              0.0
+            ],
+            "pp": 0.0
+          },
+          "losses": 0,
+          "wins": 0
+        },
+        "impulse": {
+          "accuracy_effect": {
+            "ci95_pp": [
+              0.0,
+              0.0
+            ],
+            "pp": 0.0
+          },
+          "accuracy_pct": 95.5,
+          "disagreement": {
+            "ci95_pp": [
+              0.0,
+              0.0
+            ],
+            "pp": 0.0
+          },
+          "losses": 0,
+          "wins": 0
+        },
+        "negative": {
+          "accuracy_effect": {
+            "ci95_pp": [
+              -1.5,
+              0.0
+            ],
+            "pp": -0.5
+          },
+          "accuracy_pct": 69.5,
+          "disagreement": {
+            "ci95_pp": [
+              0.0,
+              3.0
+            ],
+            "pp": 1.5
+          },
+          "losses": 1,
+          "wins": 0
+        }
+      },
+      "hard_accuracy_pct": 95.94999999999999,
+      "hard_disagreement": {
+        "ci95_pp": [
+          0.0,
+          0.15000000000000002
+        ],
+        "pp": 0.07500000000000001
+      },
+      "hard_effect": {
+        "ci95_pp": [
+          -0.07500000000000001,
+          0.0
+        ],
+        "pp": -0.025
+      },
+      "hard_image_condition_losses": 1,
+      "hard_image_condition_wins": 0,
+      "versus_default": {
+        "conditions": {
+          "clean": {
+            "accuracy_effect": {
+              "ci95_pp": [
+                0.0,
+                0.0
+              ],
+              "pp": 0.0
+            },
+            "accuracy_pct": 100.0,
+            "disagreement": {
+              "ci95_pp": [
+                0.0,
+                0.0
+              ],
+              "pp": 0.0
+            },
+            "losses": 0,
+            "wins": 0
+          },
+          "clipped": {
+            "accuracy_effect": {
+              "ci95_pp": [
+                0.0,
+                0.0
+              ],
+              "pp": 0.0
+            },
+            "accuracy_pct": 98.0,
+            "disagreement": {
+              "ci95_pp": [
+                0.0,
+                0.0
+              ],
+              "pp": 0.0
+            },
+            "losses": 0,
+            "wins": 0
+          },
+          "context": {
+            "accuracy_effect": {
+              "ci95_pp": [
+                0.0,
+                0.0
+              ],
+              "pp": 0.0
+            },
+            "accuracy_pct": 98.0,
+            "disagreement": {
+              "ci95_pp": [
+                0.0,
+                0.0
+              ],
+              "pp": 0.0
+            },
+            "losses": 0,
+            "wins": 0
+          },
+          "distractor": {
+            "accuracy_effect": {
+              "ci95_pp": [
+                0.0,
+                0.0
+              ],
+              "pp": 0.0
+            },
+            "accuracy_pct": 98.0,
+            "disagreement": {
+              "ci95_pp": [
+                0.0,
+                1.5
+              ],
+              "pp": 0.5
+            },
+            "losses": 0,
+            "wins": 0
+          },
+          "impulse": {
+            "accuracy_effect": {
+              "ci95_pp": [
+                -1.5,
+                0.0
+              ],
+              "pp": -0.5
+            },
+            "accuracy_pct": 95.5,
+            "disagreement": {
+              "ci95_pp": [
+                0.0,
+                1.5
+              ],
+              "pp": 0.5
+            },
+            "losses": 1,
+            "wins": 0
+          },
+          "negative": {
+            "accuracy_effect": {
+              "ci95_pp": [
+                0.0,
+                1.5
+              ],
+              "pp": 0.5
+            },
+            "accuracy_pct": 69.5,
+            "disagreement": {
+              "ci95_pp": [
+                0.0,
+                2.5
+              ],
+              "pp": 1.0
+            },
+            "losses": 0,
+            "wins": 1
+          }
+        },
+        "hard_accuracy_pct": 95.94999999999999,
+        "hard_disagreement": {
+          "ci95_pp": [
+            0.025,
+            0.6
+          ],
+          "pp": 0.275
+        },
+        "hard_effect": {
+          "ci95_pp": [
+            -0.35,
+            0.05
+          ],
+          "pp": -0.1
+        },
+        "hard_image_condition_losses": 1,
+        "hard_image_condition_wins": 1
+      }
+    },
+    "b": {
+      "conditions": {
+        "clean": {
+          "accuracy_effect": {
+            "ci95_pp": [
+              0.0,
+              0.0
+            ],
+            "pp": 0.0
+          },
+          "accuracy_pct": 100.0,
+          "disagreement": {
+            "ci95_pp": [
+              0.0,
+              0.0
+            ],
+            "pp": 0.0
+          },
+          "losses": 0,
+          "wins": 0
+        },
+        "clipped": {
+          "accuracy_effect": {
+            "ci95_pp": [
+              0.0,
+              0.0
+            ],
+            "pp": 0.0
+          },
+          "accuracy_pct": 98.0,
+          "disagreement": {
+            "ci95_pp": [
+              0.0,
+              1.5
+            ],
+            "pp": 0.5
+          },
+          "losses": 0,
+          "wins": 0
+        },
+        "context": {
+          "accuracy_effect": {
+            "ci95_pp": [
+              0.0,
+              1.5
+            ],
+            "pp": 0.5
+          },
+          "accuracy_pct": 98.5,
+          "disagreement": {
+            "ci95_pp": [
+              0.0,
+              2.5
+            ],
+            "pp": 1.0
+          },
+          "losses": 0,
+          "wins": 1
+        },
+        "distractor": {
+          "accuracy_effect": {
+            "ci95_pp": [
+              0.0,
+              1.5
+            ],
+            "pp": 0.5
+          },
+          "accuracy_pct": 98.5,
+          "disagreement": {
+            "ci95_pp": [
+              0.0,
+              2.5
+            ],
+            "pp": 1.0
+          },
+          "losses": 0,
+          "wins": 1
+        },
+        "impulse": {
+          "accuracy_effect": {
+            "ci95_pp": [
+              0.0,
+              2.5
+            ],
+            "pp": 1.0
+          },
+          "accuracy_pct": 96.5,
+          "disagreement": {
+            "ci95_pp": [
+              0.0,
+              3.0
+            ],
+            "pp": 1.5
+          },
+          "losses": 0,
+          "wins": 2
+        },
+        "negative": {
+          "accuracy_effect": {
+            "ci95_pp": [
+              -10.5,
+              -3.0
+            ],
+            "pp": -6.5
+          },
+          "accuracy_pct": 63.5,
+          "disagreement": {
+            "ci95_pp": [
+              16.5,
+              25.5
+            ],
+            "pp": 21.0
+          },
+          "losses": 17,
+          "wins": 4
+        }
+      },
+      "hard_accuracy_pct": 96.15,
+      "hard_disagreement": {
+        "ci95_pp": [
+          1.0750000000000004,
+          3.1999999999999993
+        ],
+        "pp": 2.025
+      },
+      "hard_effect": {
+        "ci95_pp": [
+          -0.32500000000000007,
+          0.7999999999999998
+        ],
+        "pp": 0.17500000000000002
+      },
+      "hard_image_condition_losses": 17,
+      "hard_image_condition_wins": 8
+    }
+  },
+  "weight_a": 0.8,
+  "weight_b": 0.2
+}

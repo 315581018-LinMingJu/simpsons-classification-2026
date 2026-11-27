@@ -1,0 +1,26 @@
+{
+  "members": [
+    "large288:convnext_large.fb_in22k_ft_in1k@288",
+    "base384:convnext_base.fb_in22k_ft_in1k@384"
+  ],
+  "per_run": {
+    "large288:convnext_large.fb_in22k_ft_in1k@288": {
+      "clean": 0.9992776803219482,
+      "testlike": 0.9948405737282014
+    },
+    "base384:convnext_base.fb_in22k_ft_in1k@384": {
+      "clean": 0.9994840573728201,
+      "testlike": 0.9945310081518935
+    }
+  },
+  "ensemble_val": {
+    "clean": 0.9994324631101021,
+    "testlike": 0.9959756475079972
+  },
+  "submission": "runs/v22/new2/ensemble-2/submission_v21.csv",
+  "submission_sha256": "35db3b8a10161bed9eafdefb106a1ace51832299b10c032b2e1510e3e67a233a",
+  "images": 10791,
+  "predicted_class_min": 205,
+  "predicted_class_max": 233,
+  "changed_vs_v20": 156
+}

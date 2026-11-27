@@ -1,0 +1,32 @@
+V18 smoke train [####################] 128/128 100.00% elapsed 3.8s ETA 0.0s
+{
+  "decision": "smoke_ok",
+  "peak_vram_gib": 1.685546875,
+  "pseudo_images_per_epoch": 13818,
+  "screen_after_8_batches": {
+    "clean": 1.0,
+    "hard": 0.95975
+  },
+  "test_view_batches": [
+    [
+      10,
+      16,
+      50
+    ],
+    [
+      10,
+      16,
+      50
+    ]
+  ],
+  "train": {
+    "images": 128,
+    "kinds": {
+      "pseudo": 22,
+      "v8_recipe": 106
+    },
+    "loss": 0.09762303624302149,
+    "optimizer_steps": 2
+  },
+  "train_images_per_epoch": 77547
+}

@@ -1,0 +1,12 @@
+{"device": "NVIDIA GeForce RTX 5090", "classes": 50, "train": 77547, "validation": 19382, "smoke": false}
+{"epoch": 1, "train_loss": 0.8820822714570982, "val_accuracy": 0.9701269218862862, "seconds": 79.7} best=97.0127%
+{"epoch": 2, "train_loss": 0.39177751672322947, "val_accuracy": 0.9801362088535754, "seconds": 77.36} best=98.0136%
+{"epoch": 3, "train_loss": 0.316130229587049, "val_accuracy": 0.9872562171086575, "seconds": 74.84} best=98.7256%
+{"epoch": 4, "train_loss": 0.2825131180268053, "val_accuracy": 0.9885976679393251, "seconds": 74.99} best=98.8598%
+{"epoch": 5, "train_loss": 0.25663295961770505, "val_accuracy": 0.9885976679393251, "seconds": 75.97} best=98.8598%
+{"epoch": 6, "train_loss": 0.2380985185058733, "val_accuracy": 0.9930347745330719, "seconds": 65.41} best=99.3035%
+{"epoch": 7, "train_loss": 0.22482684103861084, "val_accuracy": 0.9933959343720978, "seconds": 71.65} best=99.3396%
+{"epoch": 8, "train_loss": 0.21007716289673042, "val_accuracy": 0.9941182540501496, "seconds": 75.0} best=99.4118%
+{"epoch": 9, "train_loss": 0.20227147511878382, "val_accuracy": 0.9909194097616345, "seconds": 71.94} best=99.4118%
+{"epoch": 10, "train_loss": 0.19544137155223215, "val_accuracy": 0.9946857909400475, "seconds": 70.66} best=99.4686%
+SUBMISSION_READY: /usr1/Aa315581018/simpsons-classification-2026/submission_v1.csv rows=10791 best_val_accuracy=99.4686%

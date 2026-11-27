@@ -1,0 +1,24 @@
+{
+  "arm": "b",
+  "environment": {
+    "bf16": true,
+    "built_cuda": "13.0",
+    "capability": [
+      12,
+      0
+    ],
+    "convnext_base": true,
+    "cuda_available": true,
+    "cudnn": 92400,
+    "devices_visible": 1,
+    "gpu": "NVIDIA GeForce RTX 5090",
+    "numpy": "2.2.6",
+    "pillow": "12.3.0",
+    "python": "3.10.12 (main, Aug 31 2026, 10:18:17) [GCC 11.4.0]",
+    "torch": "2.14.1+cu130",
+    "torchvision": "0.29.1+cu130",
+    "total_gib": 31.3564453125
+  },
+  "prepare_sha256": "da2bd7becc4520b0bc790559ce8123c585c3b13f08ce257f26952269049aeef5",
+  "protocol": "simpsons-v14-continuation-v1"
+}

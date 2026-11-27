@@ -1,0 +1,315 @@
+{
+  "accuracy": {
+    "negative": 0.2125
+  },
+  "checkpoint_sha256": "f902b7a7f5a5280179ea15428e1c6f5ce6aa4272eca3152dc7dc118762186a23",
+  "conditions": [
+    "negative"
+  ],
+  "context": {
+    "amp": "bf16",
+    "augmentation": "robust",
+    "batch_size": 8,
+    "effective_batch": 64,
+    "environment": {
+      "bf16": true,
+      "built_cuda": "13.0",
+      "capability": [
+        12,
+        0
+      ],
+      "convnext_base": true,
+      "cuda_available": true,
+      "cudnn": 92400,
+      "devices_visible": 1,
+      "gpu": "NVIDIA GeForce RTX 5090",
+      "numpy": "2.2.6",
+      "pillow": "12.3.0",
+      "python": "3.10.12 (main, Aug 31 2026, 10:18:17) [GCC 11.4.0]",
+      "torch": "2.14.1+cu130",
+      "torchvision": "0.29.1+cu130",
+      "total_gib": 31.3564453125
+    },
+    "eval_batch_size": 16,
+    "head_lr": 0.001,
+    "identity": {
+      "benchmark_sha256": "3002b4e88a89a17741268708a7c5b53cd77575249a286c264adeb0426e4561cb",
+      "checkpoint_sha256": "7d0791e88c5eca731b8d3ff82aaec907eb481619791edb6842859a209a89cb25",
+      "code_sha256": {
+        "classification_v11.py": "94eb6e0a35b7ce3dfdb7a050ae3cbec6f5ce2edcf9f03260f08c5a23db55591a",
+        "classification_v2.py": "e9210083b6174f22d549b3b594649ab413e4d72e75d74c922fd0a62e16a455ce",
+        "v11/data.py": "69e7754d43045969ac8fe4f145c313c27c1d9b05b1565805891618a61180ca3a",
+        "v11/decision.py": "0f74dbb2e2aa9ac2b1fde8303438c2dcfddecf73ec039c9f00b046ef816891ad",
+        "v11/retrieval.py": "bf03069fd310e1812812e38e2e0c88ea0d6368d280853c8e69124d8af2f232a2",
+        "v3/inference.py": "7f97a434105974b8dbc26c55fea244becf0ce9dc62a4f9017cd304689e6cbadb",
+        "v3/storage.py": "0d7a6ab08cf6e3fda804ab77208aa1dd6a80522420afc4e3a121da96e2511cb0",
+        "v4/analysis.py": "c3821b71b0abcfa4cda1a3a3b63ee279084bace77931e9210ae8fd0d73b01235",
+        "v4/geometry.py": "86ed9a15a978976d0213792203a03f04a1421f7ce1b229e636940b873078377f",
+        "v5/background.py": "7e4a26cb6fe4e84b31e340d4f017e86ec2b8b5e9c6ccaaefe43ae8e07b969bf5",
+        "v5/challenge.py": "bb3b67db9721c9d5bf985e9e22a596b08e7b5da1586103cd7b2998c85aa6f97c",
+        "v7/impulse.py": "17a6f6cad7ec664e82b5f4b34e87e3dab7951d7816061c618960f387d17d85f5",
+        "v8/data.py": "1e5e160ddcb7aef30ba9630f3ab1bad99edd045d4594a5f5471a30c6f5c57b14",
+        "v8/experiment.py": "c1fa74c0027109585925df71731d8f2835322a6ec9e16b3bed55c1025cab96bf",
+        "v8/models.py": "5287c2c9f84e935347582484c84aa9e0809acd0749026981c482c54641d19cd3"
+      },
+      "manifest_sha256": {
+        "train": "cdb02262f7a830212543a47bbb5dcc1905a28f2fc08d7ad3425317371438b238",
+        "validation": "97585973f3f091bec120d2ac12b906b4e0161fc01f8f75fa915ea722e9534550"
+      },
+      "numpy": "2.2.6",
+      "pillow": "12.3.0",
+      "protocol": "simpsons-v13-v1",
+      "shift_cohort": "v11_near_duplicate_screened",
+      "training_signatures": {
+        "extend": "c38a5ebb96eecaf36c9c0a56630e5c1593e92aa9ddcb39204010c96678fbda4a",
+        "pilot": "4c7fa2bbb268de2c4510b81c6a9b66842e3f1479e24ddd0949e2d3574d79fb97",
+        "smoke": "90b67e32321f8f884712fda099d62a4c9c76bd236f9ec568faecfd97ca08b8c3"
+      },
+      "v11_audit_sha256": "b3bf5020f967bda4ba4eab639304f8c4727bdadede4eede86f19e7ccabf29743",
+      "v13_code_sha256": {
+        "classification_v12.py": "e87947623abb191fd0da9fec2036cbcb21c851b08b689c7631b3e675b8e89dc3",
+        "classification_v13.py": "147a43f5a45ee7ff0b9ca3f7fa80756b325b29b399ec9300b3925265e538b555",
+        "v12/model.py": "0309e1e9e57b129f2694143c26a9d3dce31833d329319161034c17e5a08557d1",
+        "v12/protocol.py": "b879a6c535cd368e44ebab37c4069291835423b435065131660a98289dad39e4",
+        "v13/protocol.py": "0ea71df97373401d7f2f54ae1928d2673854d3d68314633d33226720b51c8c58",
+        "v13/training.py": "d64a29a4ff334769622faaa29b0aa1a412798c78ce13408ef7870d0025b390b7",
+        "v6/composite.py": "b8a136ff879cb5dabbdfa97ed29b598244812e758482af3cfd73d4bd5bf1ba69"
+      },
+      "v8_eval_batch_size": 16,
+      "v8_image_signature": "3f061ce21a3576dd23e6b942ac606bcfd472dca16c765cd688bdfaf4ffbc8831",
+      "v8_settings_sha256": "96ac58cecc86d81354b99d4bd3a74b63b9432607b2cec280184d72cc89d06b4e",
+      "v8_submission_sha256": "bb3b02ddbf6a2c9b87b011f1d9fe0101c7eaa1756f2437e7d981689c8c35a9a8",
+      "validation_seed": 2026,
+      "weights": {
+        "base": {
+          "sha256": "6075fbad31c688f9ed013922a59daf0fc2f4dc12e6e43bc01fa840c7bd1ca2cd",
+          "url": "https://download.pytorch.org/models/convnext_base-6075fbad.pth"
+        },
+        "tiny": {
+          "sha256": "983f1562536e84ff750a1576fb08e54de751dbf2e17c0d8a4a13704341fdcd3d",
+          "url": "https://download.pytorch.org/models/convnext_tiny-983f1562.pth"
+        }
+      }
+    },
+    "prepare_sha256": "d8025df84080b6271e2ccf0fca149756a94c3222b0c930b6b5d289b35fbdf211",
+    "stage_lr": 0.0001,
+    "stochastic_depth": 0,
+    "weight_decay": 0.0001,
+    "workers": 4
+  },
+  "denoise": true,
+  "fold": "screen",
+  "hard_accuracy": null,
+  "image_signature": "5ebfe38e36dd0b0fa56dae950d33557da1d14c3caac4eebaff308f660e81c64e",
+  "method": "multiscale",
+  "per_class": {
+    "abraham_grampa_simpson": {
+      "negative": 0.25,
+      "samples": 8
+    },
+    "agnes_skinner": {
+      "negative": 0.125,
+      "samples": 8
+    },
+    "apu_nahasapeemapetilon": {
+      "negative": 0.625,
+      "samples": 8
+    },
+    "barney_gumble": {
+      "negative": 0.0,
+      "samples": 8
+    },
+    "bart_simpson": {
+      "negative": 0.25,
+      "samples": 8
+    },
+    "brandine_spuckler": {
+      "negative": 0.125,
+      "samples": 8
+    },
+    "carl_carlson": {
+      "negative": 0.125,
+      "samples": 8
+    },
+    "charles_montgomery_burns": {
+      "negative": 0.0,
+      "samples": 8
+    },
+    "chief_wiggum": {
+      "negative": 0.375,
+      "samples": 8
+    },
+    "cletus_spuckler": {
+      "negative": 0.125,
+      "samples": 8
+    },
+    "comic_book_guy": {
+      "negative": 0.0,
+      "samples": 8
+    },
+    "disco_stu": {
+      "negative": 0.25,
+      "samples": 8
+    },
+    "dolph_starbeam": {
+      "negative": 0.75,
+      "samples": 8
+    },
+    "duff_man": {
+      "negative": 1.0,
+      "samples": 8
+    },
+    "edna_krabappel": {
+      "negative": 0.375,
+      "samples": 8
+    },
+    "fat_tony": {
+      "negative": 0.5,
+      "samples": 8
+    },
+    "gary_chalmers": {
+      "negative": 0.5,
+      "samples": 8
+    },
+    "gil": {
+      "negative": 0.0,
+      "samples": 8
+    },
+    "groundskeeper_willie": {
+      "negative": 0.25,
+      "samples": 8
+    },
+    "homer_simpson": {
+      "negative": 0.25,
+      "samples": 8
+    },
+    "jimbo_jones": {
+      "negative": 0.75,
+      "samples": 8
+    },
+    "kearney_zzyzwicz": {
+      "negative": 0.0,
+      "samples": 8
+    },
+    "kent_brockman": {
+      "negative": 0.25,
+      "samples": 8
+    },
+    "krusty_the_clown": {
+      "negative": 0.125,
+      "samples": 8
+    },
+    "lenny_leonard": {
+      "negative": 0.375,
+      "samples": 8
+    },
+    "lionel_hutz": {
+      "negative": 0.0,
+      "samples": 8
+    },
+    "lisa_simpson": {
+      "negative": 0.0,
+      "samples": 8
+    },
+    "lunchlady_doris": {
+      "negative": 0.0,
+      "samples": 8
+    },
+    "maggie_simpson": {
+      "negative": 0.625,
+      "samples": 8
+    },
+    "marge_simpson": {
+      "negative": 0.125,
+      "samples": 8
+    },
+    "martin_prince": {
+      "negative": 0.125,
+      "samples": 8
+    },
+    "mayor_quimby": {
+      "negative": 0.125,
+      "samples": 8
+    },
+    "milhouse_van_houten": {
+      "negative": 0.25,
+      "samples": 8
+    },
+    "miss_hoover": {
+      "negative": 0.25,
+      "samples": 8
+    },
+    "moe_szyslak": {
+      "negative": 0.0,
+      "samples": 8
+    },
+    "ned_flanders": {
+      "negative": 0.0,
+      "samples": 8
+    },
+    "nelson_muntz": {
+      "negative": 0.0,
+      "samples": 8
+    },
+    "otto_mann": {
+      "negative": 0.0,
+      "samples": 8
+    },
+    "patty_bouvier": {
+      "negative": 0.125,
+      "samples": 8
+    },
+    "principal_skinner": {
+      "negative": 0.125,
+      "samples": 8
+    },
+    "professor_john_frink": {
+      "negative": 0.25,
+      "samples": 8
+    },
+    "rainier_wolfcastle": {
+      "negative": 0.0,
+      "samples": 8
+    },
+    "ralph_wiggum": {
+      "negative": 0.0,
+      "samples": 8
+    },
+    "selma_bouvier": {
+      "negative": 0.0,
+      "samples": 8
+    },
+    "sideshow_bob": {
+      "negative": 0.25,
+      "samples": 8
+    },
+    "sideshow_mel": {
+      "negative": 0.125,
+      "samples": 8
+    },
+    "snake_jailbird": {
+      "negative": 0.0,
+      "samples": 8
+    },
+    "timothy_lovejoy": {
+      "negative": 0.25,
+      "samples": 8
+    },
+    "troy_mcclure": {
+      "negative": 0.25,
+      "samples": 8
+    },
+    "waylon_smithers": {
+      "negative": 0.375,
+      "samples": 8
+    }
+  },
+  "precision": "fp32",
+  "predictions_sha256": "facc5a84cab5441510b802f8d2d4976d277137425deb47c155ad4eeb16637108",
+  "samples": 400,
+  "timings": {
+    "negative": {
+      "seconds": 12.427619085996412
+    }
+  }
+}

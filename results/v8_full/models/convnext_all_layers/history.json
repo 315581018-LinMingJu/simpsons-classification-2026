@@ -1,0 +1,37 @@
+[
+  {
+    "epoch": 1,
+    "loss": 0.36706150054181463,
+    "train_seconds": 440.49252874800004,
+    "evaluation": {
+      "clean": {
+        "seconds": 1.2537509320536628,
+        "mean_confidence": 0.9657592264190317
+      },
+      "context": {
+        "seconds": 2.377947044908069,
+        "mean_confidence": 0.8989130550995469
+      },
+      "impulse": {
+        "seconds": 2.5047420379705727,
+        "mean_confidence": 0.7896152397431433
+      },
+      "clipped": {
+        "seconds": 2.4072921799961478,
+        "mean_confidence": 0.886829289495945
+      },
+      "distractor": {
+        "seconds": 3.186372326919809,
+        "mean_confidence": 0.893181924931705
+      },
+      "negative": {
+        "seconds": 2.404504584032111,
+        "mean_confidence": 0.5980589935556054
+      }
+    },
+    "clean_accuracy": 0.9775,
+    "hard_accuracy": 0.8636250000000001,
+    "peak_allocated_gib": 1.4679231643676758,
+    "peak_reserved_gib": 1.693359375
+  }
+]

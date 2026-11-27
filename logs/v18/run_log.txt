@@ -1,0 +1,73 @@
+V18 epoch 1/2 | train 77,547 + pseudo 13,818 = 91,365 images | LR 1e-05
+V18 train epoch 1 [####################] 91,365/91,365 100.00% elapsed 720.1s ETA 0.0s
+{
+  "clean": 1.0,
+  "clean_delta_vs_a3_pp": 0.0,
+  "epoch": 1,
+  "hard": 0.9695,
+  "hard_delta_vs_a3_pp": 0.9750000000000036,
+  "loss": 0.0822578749750359,
+  "peak_vram_gib": 1.716796875,
+  "seconds": 759.2278689920204
+}
+V18 epoch 2/2 | train 77,547 + pseudo 13,818 = 91,365 images | LR 5e-06
+V18 train epoch 2 [####################] 91,365/91,365 100.00% elapsed 703.2s ETA 0.0s
+{
+  "clean": 1.0,
+  "clean_delta_vs_a3_pp": 0.0,
+  "epoch": 2,
+  "hard": 0.97875,
+  "hard_delta_vs_a3_pp": 1.9000000000000017,
+  "loss": 0.0703605561135588,
+  "peak_vram_gib": 1.716796875,
+  "seconds": 741.6632496990496
+}
+{
+  "decision": "train_complete",
+  "epochs": [
+    {
+      "clean_delta_vs_a3_pp": 0.0,
+      "epoch": 1,
+      "hard_delta_vs_a3_pp": 0.9750000000000036,
+      "loss": 0.0822578749750359
+    },
+    {
+      "clean_delta_vs_a3_pp": 0.0,
+      "epoch": 2,
+      "hard_delta_vs_a3_pp": 1.9000000000000017,
+      "loss": 0.0703605561135588
+    }
+  ]
+}
+V18 epoch 2 test [####################] 10,791/10,791 100.00% elapsed 246.9s ETA 0.0s
+{
+  "changed_vs_a3": 889,
+  "changed_vs_a3_pct": 8.238346770456863,
+  "changed_vs_v16": 868,
+  "changed_vs_v16_pct": 8.043740153831896,
+  "checkpoint_sha256": "99b63cd0cb6fdc23ac4b20aeed2ec72e9daeb41e335afdd0f8e6690e00e65423",
+  "epoch": 2,
+  "images": 10791,
+  "non_pseudo_changed_vs_v16": 868,
+  "pseudo_images": 6909,
+  "pseudo_label_kept": 6909,
+  "submission": "/usr1/Aa315581018/simpsons-classification-2026/runs/v18/candidate_epoch_02/submission_v18.csv",
+  "submission_sha256": "5c6b9a74b12135d6693b453d6d5536b542bc386999cb7eee9c780902f7ede6c5",
+  "test_seconds": 247.00264139997307
+}
+V18 epoch 1 test [####################] 10,791/10,791 100.00% elapsed 247.7s ETA 0.0s
+{
+  "changed_vs_a3": 869,
+  "changed_vs_a3_pct": 8.053007135575942,
+  "changed_vs_v16": 844,
+  "changed_vs_v16_pct": 7.821332591974794,
+  "checkpoint_sha256": "b216033e29ff529eebb11140b9f1d73fbe5afa9c409a12f09ff43902dc359b4a",
+  "epoch": 1,
+  "images": 10791,
+  "non_pseudo_changed_vs_v16": 844,
+  "pseudo_images": 6909,
+  "pseudo_label_kept": 6909,
+  "submission": "/usr1/Aa315581018/simpsons-classification-2026/runs/v18/candidate_epoch_01/submission_v18.csv",
+  "submission_sha256": "3b6741c0bbf43b55e566d216d3381d60639a53f6bd42ca323a207814b7a57e32",
+  "test_seconds": 247.79760164802428
+}

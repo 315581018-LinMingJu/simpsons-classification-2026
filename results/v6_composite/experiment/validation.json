@@ -1,0 +1,79 @@
+{
+  "arms": {
+    "control": {
+      "checkpoint_sha256": "a27b08d1472ff49ae0b6860f2ba15a61b675102c4136f38d8e8b4b132335d4f9",
+      "loss": 0.032759811947649965,
+      "train_seconds": 38.566519627929665
+    },
+    "v6": {
+      "checkpoint_sha256": "b8d175f4d0e262b903a66c553501b54033f96b9dfbfacafc5f4c9dff4a7492ee",
+      "loss": 0.17151318898747364,
+      "train_seconds": 60.173746573971584
+    }
+  },
+  "conditions": {
+    "clean": {
+      "control_accuracy_pct": 99.75,
+      "near_ceiling": true,
+      "v5_accuracy_pct": 99.75,
+      "v6_accuracy_pct": 99.625,
+      "vs_control": {
+        "both_wrong": 1,
+        "losses": 2,
+        "macro_gain": {
+          "ci95_pp": [
+            -0.5,
+            0.25
+          ],
+          "pp": -0.125
+        },
+        "wins": 1
+      },
+      "vs_v5": {
+        "both_wrong": 2,
+        "losses": 1,
+        "macro_gain": {
+          "ci95_pp": [
+            -0.375,
+            0.0
+          ],
+          "pp": -0.125
+        },
+        "wins": 0
+      }
+    },
+    "heldout_composite": {
+      "control_accuracy_pct": 40.25,
+      "near_ceiling": false,
+      "v5_accuracy_pct": 38.0,
+      "v6_accuracy_pct": 64.25,
+      "vs_control": {
+        "both_wrong": 269,
+        "losses": 17,
+        "macro_gain": {
+          "ci95_pp": [
+            21.125,
+            27.0
+          ],
+          "pp": 24.0
+        },
+        "wins": 209
+      },
+      "vs_v5": {
+        "both_wrong": 272,
+        "losses": 14,
+        "macro_gain": {
+          "ci95_pp": [
+            23.375,
+            29.25
+          ],
+          "pp": 26.25
+        },
+        "wins": 224
+      }
+    }
+  },
+  "decision": "supports_composite",
+  "elapsed_seconds": 150.15341787191574,
+  "images_per_condition": 800
+}
