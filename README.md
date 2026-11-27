@@ -19,6 +19,15 @@ Kaggle 競賽：[ml-2026-iaii-classification2](https://www.kaggle.com/competitio
 - 基準與對照組的驗證數字不含 TTA；V20／V21 含水平翻轉 TTA。四種干擾條件、全部不含 TTA 的完整比較見報告。
 - 最終 Kaggle 選擇：V22＋V21。
 
+## 對應課程「標準作法」
+
+| 標準作法 | 本專案的做法 | 位置 |
+|---|---|---|
+| 1. ResNet baseline | 原封不動執行官方 `baseline.py`（ResNet-18），同一切分下 Clean 99.54%、Test-style 47.26% | `baseline/`、報告第 5.2、7.1 節 |
+| 2. Data augmentation | 重新實作作業提供的增強 #1（幾何／色彩／雜訊）與 #2（黑白遮罩＋邊框＋照片背景），訓練時 85% 圖片套用；單一因素對照：Test-style 78.47% → 98.73% | `final/classification_v20.py` 的 `testify()`、報告第 5.3、8.1 節 |
+| 3. Pre-trained model | timm 的 ConvNeXt-Base／Large（ImageNet-22K 預訓練、ImageNet-1K 微調） | 報告第 5.5 節 |
+| 4. Transfer learning | 換成 50 類分類頭後**完整微調**整個網路（AdamW、warmup＋cosine、label smoothing、drop path） | 報告第 5.6 節 |
+
 ## 給助教的閱讀順序
 
 1. 本頁：結果與核心想法
