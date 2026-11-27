@@ -12,7 +12,7 @@
 ## 使用的 AI
 | 階段 | AI | 用途 |
 |---|---|---|
-| V1–V17 | 先前使用的 AI 助理（細節見 `01_handoff_prompt_V1-V17.md` 與 `experiments/` 各版 README） | 早期版本的程式開發與實驗 |
+| V1–V17 | ChatGPT | 早期版本的程式開發與實驗（細節見 `01_handoff_prompt_V1-V17.md` 與 `experiments/` 各版 README） |
 | 交接與規範 | ChatGPT | 產生 `01`、`02` 兩份給 Claude 的指令 |
 | V17–V22、報告、繳交 | Claude Opus 5.5（claude.ai） | 實驗設計、程式撰寫、結果分析、文件與 PDF 報告 |
 
