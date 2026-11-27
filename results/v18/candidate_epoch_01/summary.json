@@ -1,0 +1,15 @@
+{
+  "changed_vs_a3": 869,
+  "changed_vs_a3_pct": 8.053007135575942,
+  "changed_vs_v16": 844,
+  "changed_vs_v16_pct": 7.821332591974794,
+  "checkpoint_sha256": "b216033e29ff529eebb11140b9f1d73fbe5afa9c409a12f09ff43902dc359b4a",
+  "epoch": 1,
+  "images": 10791,
+  "non_pseudo_changed_vs_v16": 844,
+  "pseudo_images": 6909,
+  "pseudo_label_kept": 6909,
+  "submission": "/usr1/Aa315581018/simpsons-classification-2026/runs/v18/candidate_epoch_01/submission_v18.csv",
+  "submission_sha256": "3b6741c0bbf43b55e566d216d3381d60639a53f6bd42ca323a207814b7a57e32",
+  "test_seconds": 247.79760164802428
+}

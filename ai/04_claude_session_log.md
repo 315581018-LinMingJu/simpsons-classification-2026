@@ -37,7 +37,7 @@
 | 26 | 「那時候我忘記我做什麼事情有違規了」 | 說明 V18 的灰色地帶與處理方式 | — |
 | 27 | 「要po上去github 我叫林明儒」 | PDF 加姓名、改正 README 中的時間與 VRAM，推到分支 `report-pdf` | PR #3 合併 |
 | 28 | 提供 Classroom 50 截圖：「給了 我現在才發現」 | 判斷須繳交到課程組織的 repo；嘗試直接寫入失敗（Claude App 未安裝於課程組織）；教使用者安裝 git 並以 `git push classroom main` 推送 | Classroom repo 與個人 repo 內容相同 |
-| 29 | 提供課程公告（規則：程式、設定、AI 指令、執行 log 檔、實驗結果跟報告） | 比對缺漏，新增 `ai/`（本資料夾）、`logs/`、`results/` | 本次 commit |
+| 29 | 提供課程公告（規則：程式、設定、AI 指令、執行 log 檔、實驗結果跟報告） | 比對缺漏，新增 `ai/`（本資料夾）、`logs/`、`results/`；請使用者在 Server 打包 log 與設定檔；依使用者提供的截圖補上 Private 成績 | Private 0.99232、第 5 名 |
 
 ## 與 AI 互動中的重要決策
 

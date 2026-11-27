@@ -1,0 +1,30 @@
+{
+  "seed": 2026,
+  "epochs": 10,
+  "batch_size": 64,
+  "optimizer": "AdamW",
+  "lr": 0.0001,
+  "weight_decay": 0.0001,
+  "architecture": "resnet18",
+  "train_transform": "Compose(\n    RandomResizedCrop(size=(224, 224), scale=(0.55, 1.0), ratio=(0.75, 1.3333), interpolation=bilinear, antialias=True)\n    RandomHorizontalFlip(p=0.5)\n    RandomApply(\n    p=0.5\n    RandomAffine(degrees=[-15.0, 15.0], translate=(0.12, 0.12), scale=(0.82, 1.0), interpolation=bilinear, fill=(124, 116, 104))\n)\n    RandomGrayscale(p=0.12)\n    ToTensor()\n    Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])\n    RandomErasing(p=0.25, scale=(0.02, 0.15), ratio=(0.3, 3.3), value=0, inplace=False)\n)",
+  "eval_transform": "Compose(\n    Resize(size=256, interpolation=bilinear, max_size=None, antialias=True)\n    CenterCrop(size=(224, 224))\n    ToTensor()\n    Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])\n)",
+  "split_sha256": "d6b86a9b8cd01f8a1a631902bcb1e2b9c394c345cc80443ac940d53982ca5054",
+  "v1_best_epoch": 10,
+  "v1_best_val_accuracy": 0.9946857909400475,
+  "v1_epoch_seconds_total": 737.5199999999999,
+  "sample_counts": {
+    "train": 77547,
+    "val": 19382,
+    "test": 10791
+  },
+  "mode": "train",
+  "train_images_used": 77547,
+  "val_images_used": 19382,
+  "precision": "float32",
+  "weights": "IMAGENET1K_V1",
+  "workers": 4,
+  "torch": "2.14.1+cu130",
+  "torchvision": "0.29.1+cu130",
+  "cuda": "13.0",
+  "gpu": "NVIDIA GeForce RTX 5090"
+}

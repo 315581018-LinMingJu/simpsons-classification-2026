@@ -1,0 +1,19 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+V20 smoke train [####################] 1,920/1,920 100.00% elapsed 20s ETA 0s
+V20 smoke val clean [####################] 512/512 100.00% elapsed 2s ETA 0s
+V20 smoke val testlike [####################] 512/512 100.00% elapsed 4s ETA 0s
+/usr1/Aa315581018/simpsons-classification-2026/runs/v20/code-b539d567/classification_v20.py:453: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:820.)
+  "est_train_minutes_per_epoch": len(train) / rate / 60, "loss_last": float(loss),
+{
+  "decision": "smoke_ok",
+  "train_images_per_sec": 197.0530469043007,
+  "est_train_minutes_per_epoch": 6.558893761372193,
+  "loss_last": 4.175533771514893,
+  "val_clean_512": 0.048828125,
+  "val_testlike_512": 0.013671875,
+  "train_images": 77547,
+  "val_images": 19382,
+  "backgrounds": 5640,
+  "peak_vram_gib": 10.701171875
+}

@@ -1,0 +1,82 @@
+[
+  {
+    "epoch": 1,
+    "train_loss": 0.32914588432975944,
+    "validation_accuracy": 0.9670312661232071,
+    "validation_evaluated": 19382,
+    "seconds": 86.10189318656921,
+    "smoke_or_subset": false
+  },
+  {
+    "epoch": 2,
+    "train_loss": 0.08659798074400062,
+    "validation_accuracy": 0.9786399752347539,
+    "validation_evaluated": 19382,
+    "seconds": 90.2002911567688,
+    "smoke_or_subset": false
+  },
+  {
+    "epoch": 3,
+    "train_loss": 0.05779445378980414,
+    "validation_accuracy": 0.98539882365081,
+    "validation_evaluated": 19382,
+    "seconds": 87.32445430755615,
+    "smoke_or_subset": false
+  },
+  {
+    "epoch": 4,
+    "train_loss": 0.03564662283424592,
+    "validation_accuracy": 0.9847280982354762,
+    "validation_evaluated": 19382,
+    "seconds": 83.21692633628845,
+    "smoke_or_subset": false
+  },
+  {
+    "epoch": 5,
+    "train_loss": 0.025884936220466528,
+    "validation_accuracy": 0.9880301310494273,
+    "validation_evaluated": 19382,
+    "seconds": 87.41649150848389,
+    "smoke_or_subset": false
+  },
+  {
+    "epoch": 6,
+    "train_loss": 0.013473865140271591,
+    "validation_accuracy": 0.9906098441853266,
+    "validation_evaluated": 19382,
+    "seconds": 88.97608852386475,
+    "smoke_or_subset": false
+  },
+  {
+    "epoch": 7,
+    "train_loss": 0.00764821444973259,
+    "validation_accuracy": 0.9942730368383036,
+    "validation_evaluated": 19382,
+    "seconds": 87.94056344032288,
+    "smoke_or_subset": false
+  },
+  {
+    "epoch": 8,
+    "train_loss": 0.00425412229021867,
+    "validation_accuracy": 0.9942214425755856,
+    "validation_evaluated": 19382,
+    "seconds": 87.18095088005066,
+    "smoke_or_subset": false
+  },
+  {
+    "epoch": 9,
+    "train_loss": 0.0020225800724302115,
+    "validation_accuracy": 0.9954081106180993,
+    "validation_evaluated": 19382,
+    "seconds": 89.62761807441711,
+    "smoke_or_subset": false
+  },
+  {
+    "epoch": 10,
+    "train_loss": 0.0010675604233840556,
+    "validation_accuracy": 0.9953565163553812,
+    "validation_evaluated": 19382,
+    "seconds": 89.92707824707031,
+    "smoke_or_subset": false
+  }
+]

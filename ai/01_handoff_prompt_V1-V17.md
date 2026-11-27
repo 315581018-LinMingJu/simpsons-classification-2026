@@ -1,6 +1,6 @@
 # 交接指令：把 V1–V17 專案交給 Claude
 
-> 來源：使用者請另一個 AI 助理（〔請填名稱，例如 ChatGPT〕）整理的交接 Prompt，第 1 行是使用者對該助理的指令，其後為該助理產出的 Prompt 全文。2026-11-20 由使用者原文提供給 Claude（Claude Opus 5.5，claude.ai），作為 V17 之後所有工作的起點。內容未修改。
+> 來源：使用者請另一個 AI 助理 ChatGPT 整理的交接 Prompt，第 1 行是使用者對該助理的指令，其後為該助理產出的 Prompt 全文。2026-11-20 由使用者原文提供給 Claude（Claude Opus 5.5，claude.ai），作為 V17 之後所有工作的起點。內容未修改。
 
 ---
 

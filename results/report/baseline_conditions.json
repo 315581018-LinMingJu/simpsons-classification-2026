@@ -1,0 +1,101 @@
+{
+  "name": "baseline",
+  "kind": "baseline",
+  "checkpoint": "runs/report/baseline_resnet18/best.pt",
+  "epoch": 9,
+  "validation_accuracy": 0.9954081106180993,
+  "val_images": 19382,
+  "backgrounds": 5640,
+  "accuracy": {
+    "clean": 0.9954081106180993,
+    "distort": 0.5989062016303787,
+    "composite": 0.9296770199153854,
+    "full": 0.47260344649674957
+  },
+  "full_worst_classes": [
+    [
+      "timothy_lovejoy",
+      0.2225
+    ],
+    [
+      "patty_bouvier",
+      0.3032
+    ],
+    [
+      "gary_chalmers",
+      0.3087
+    ],
+    [
+      "lionel_hutz",
+      0.3273
+    ],
+    [
+      "miss_hoover",
+      0.3324
+    ],
+    [
+      "otto_mann",
+      0.3342
+    ],
+    [
+      "agnes_skinner",
+      0.3539
+    ],
+    [
+      "professor_john_frink",
+      0.3583
+    ]
+  ],
+  "full_top_confusions": [
+    [
+      "snake_jailbird",
+      "comic_book_guy",
+      62
+    ],
+    [
+      "barney_gumble",
+      "comic_book_guy",
+      57
+    ],
+    [
+      "gary_chalmers",
+      "comic_book_guy",
+      55
+    ],
+    [
+      "lunchlady_doris",
+      "comic_book_guy",
+      54
+    ],
+    [
+      "fat_tony",
+      "comic_book_guy",
+      53
+    ],
+    [
+      "waylon_smithers",
+      "comic_book_guy",
+      53
+    ],
+    [
+      "gil",
+      "comic_book_guy",
+      52
+    ],
+    [
+      "moe_szyslak",
+      "comic_book_guy",
+      48
+    ],
+    [
+      "ralph_wiggum",
+      "comic_book_guy",
+      48
+    ],
+    [
+      "agnes_skinner",
+      "lisa_simpson",
+      47
+    ]
+  ]
+}

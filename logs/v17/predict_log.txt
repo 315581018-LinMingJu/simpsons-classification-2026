@@ -1,0 +1,14 @@
+V17 v17 test/all [####################] 10,791/10,791 100.00% elapsed 249.1s ETA 0.0s
+{
+  "averaged_sha256": "055a8a0ec397ae4b4ddc77c2af37e63e299ee5199f72ad1388cba51341664054",
+  "changed_vs_a3": 285,
+  "changed_vs_a3_pct": 2.6410897970531,
+  "changed_vs_v16": 247,
+  "changed_vs_v16_pct": 2.288944490779353,
+  "images": 10791,
+  "prepare_sha256": "dda2af391f0d7843a4160e7b12d5989169f701f9e59990ac00fefc1e2396fd69",
+  "submission": "/usr1/Aa315581018/simpsons-classification-2026/runs/v17/candidate/submission_v17.csv",
+  "submission_sha256": "dc62be69116c9e234df7a6ffc63748cf32183a4a9c8b5892c076984f7ef9ccc5",
+  "test_seconds": 249.71565747994464,
+  "validation_sha256": "086c2a937f7196f2f1ca4ad7074c35f739c197dbe23537c3941ec0f53e26d43e"
+}

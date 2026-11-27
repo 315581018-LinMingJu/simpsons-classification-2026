@@ -1,0 +1,282 @@
+[
+  {
+    "epoch": 1,
+    "loss": 3.39549951171875,
+    "train_seconds": 44.90130115894135,
+    "evaluation": {
+      "clean": {
+        "seconds": 1.2475852969801053,
+        "mean_confidence": 0.07655357998795807
+      },
+      "context": {
+        "seconds": 2.3352529940893874,
+        "mean_confidence": 0.05059712341986597
+      },
+      "impulse": {
+        "seconds": 2.3148069499293342,
+        "mean_confidence": 0.046165850008837876
+      },
+      "clipped": {
+        "seconds": 2.378888709936291,
+        "mean_confidence": 0.05056463242508471
+      },
+      "distractor": {
+        "seconds": 3.2290754939895123,
+        "mean_confidence": 0.05112827201373875
+      },
+      "negative": {
+        "seconds": 2.31099103204906,
+        "mean_confidence": 0.05110721146687865
+      }
+    },
+    "clean_accuracy": 0.255,
+    "hard_accuracy": 0.09350000000000001,
+    "peak_allocated_gib": 0.4633021354675293,
+    "peak_reserved_gib": 0.701171875
+  },
+  {
+    "epoch": 2,
+    "loss": 3.1845498657226563,
+    "train_seconds": 42.0905963400146,
+    "evaluation": {
+      "clean": {
+        "seconds": 0.6776837180368602,
+        "mean_confidence": 0.10655047567561268
+      },
+      "context": {
+        "seconds": 2.23778681200929,
+        "mean_confidence": 0.06174134349450469
+      },
+      "impulse": {
+        "seconds": 2.5437617420684546,
+        "mean_confidence": 0.053302814904600385
+      },
+      "clipped": {
+        "seconds": 2.3966851220466197,
+        "mean_confidence": 0.061603415235877035
+      },
+      "distractor": {
+        "seconds": 3.2094790630508214,
+        "mean_confidence": 0.06003681194037199
+      },
+      "negative": {
+        "seconds": 2.435212939977646,
+        "mean_confidence": 0.061413233829662205
+      }
+    },
+    "clean_accuracy": 0.3975,
+    "hard_accuracy": 0.14275,
+    "peak_allocated_gib": 0.4633021354675293,
+    "peak_reserved_gib": 0.701171875
+  },
+  {
+    "epoch": 3,
+    "loss": 2.940711456298828,
+    "train_seconds": 44.64775421493687,
+    "evaluation": {
+      "clean": {
+        "seconds": 0.7704943800345063,
+        "mean_confidence": 0.14573730028234422
+      },
+      "context": {
+        "seconds": 2.374613858992234,
+        "mean_confidence": 0.077855683863163
+      },
+      "impulse": {
+        "seconds": 2.4126767750130966,
+        "mean_confidence": 0.06324521543458105
+      },
+      "clipped": {
+        "seconds": 2.3572216460015625,
+        "mean_confidence": 0.07715580814518035
+      },
+      "distractor": {
+        "seconds": 3.012361939996481,
+        "mean_confidence": 0.07393949448131025
+      },
+      "negative": {
+        "seconds": 2.4621703820303082,
+        "mean_confidence": 0.07487037170678378
+      }
+    },
+    "clean_accuracy": 0.475,
+    "hard_accuracy": 0.19387500000000002,
+    "peak_allocated_gib": 0.4633021354675293,
+    "peak_reserved_gib": 0.701171875
+  },
+  {
+    "epoch": 4,
+    "loss": 2.705145706176758,
+    "train_seconds": 45.48505917110015,
+    "evaluation": {
+      "clean": {
+        "seconds": 1.2616032399237156,
+        "mean_confidence": 0.19419372047297656
+      },
+      "context": {
+        "seconds": 2.486224079038948,
+        "mean_confidence": 0.09883256291039288
+      },
+      "impulse": {
+        "seconds": 2.4855403089895844,
+        "mean_confidence": 0.07753785512410104
+      },
+      "clipped": {
+        "seconds": 2.4518089269986376,
+        "mean_confidence": 0.09722760149277747
+      },
+      "distractor": {
+        "seconds": 3.2382813290460035,
+        "mean_confidence": 0.09173230991698801
+      },
+      "negative": {
+        "seconds": 2.4536292150150985,
+        "mean_confidence": 0.08941589680500328
+      }
+    },
+    "clean_accuracy": 0.535,
+    "hard_accuracy": 0.234375,
+    "peak_allocated_gib": 0.4633021354675293,
+    "peak_reserved_gib": 0.6875
+  },
+  {
+    "epoch": 5,
+    "loss": 2.4668169250488283,
+    "train_seconds": 41.82818945799954,
+    "evaluation": {
+      "clean": {
+        "seconds": 0.6913387040840462,
+        "mean_confidence": 0.25127352225594224
+      },
+      "context": {
+        "seconds": 2.254366141045466,
+        "mean_confidence": 0.12732662371359765
+      },
+      "impulse": {
+        "seconds": 2.3777685560053214,
+        "mean_confidence": 0.09628071770071983
+      },
+      "clipped": {
+        "seconds": 2.421993146999739,
+        "mean_confidence": 0.12405535284429789
+      },
+      "distractor": {
+        "seconds": 3.145613400032744,
+        "mean_confidence": 0.11551913235336542
+      },
+      "negative": {
+        "seconds": 2.218598518986255,
+        "mean_confidence": 0.11085735180415213
+      }
+    },
+    "clean_accuracy": 0.58,
+    "hard_accuracy": 0.28750000000000003,
+    "peak_allocated_gib": 0.4633021354675293,
+    "peak_reserved_gib": 0.6875
+  },
+  {
+    "epoch": 6,
+    "loss": 2.25707755279541,
+    "train_seconds": 42.8665764729958,
+    "evaluation": {
+      "clean": {
+        "seconds": 0.7666055710287765,
+        "mean_confidence": 0.31038152435794475
+      },
+      "context": {
+        "seconds": 2.408688555005938,
+        "mean_confidence": 0.1627517069876194
+      },
+      "impulse": {
+        "seconds": 2.275142305996269,
+        "mean_confidence": 0.11579624476842582
+      },
+      "clipped": {
+        "seconds": 2.2021995229879394,
+        "mean_confidence": 0.1565838433150202
+      },
+      "distractor": {
+        "seconds": 3.2981784120202065,
+        "mean_confidence": 0.14618598648346962
+      },
+      "negative": {
+        "seconds": 2.4149233589414507,
+        "mean_confidence": 0.1329247736185789
+      }
+    },
+    "clean_accuracy": 0.6275,
+    "hard_accuracy": 0.32912500000000006,
+    "peak_allocated_gib": 0.4633021354675293,
+    "peak_reserved_gib": 0.6875
+  },
+  {
+    "epoch": 7,
+    "loss": 2.040611499786377,
+    "train_seconds": 43.04705734900199,
+    "evaluation": {
+      "clean": {
+        "seconds": 0.7884151020552963,
+        "mean_confidence": 0.376479587033391
+      },
+      "context": {
+        "seconds": 2.4898504390148446,
+        "mean_confidence": 0.20168100037612022
+      },
+      "impulse": {
+        "seconds": 2.516043348936364,
+        "mean_confidence": 0.1394754788093269
+      },
+      "clipped": {
+        "seconds": 2.1377342040650547,
+        "mean_confidence": 0.19254706341773273
+      },
+      "distractor": {
+        "seconds": 3.1085444119526073,
+        "mean_confidence": 0.18212987313047052
+      },
+      "negative": {
+        "seconds": 2.430846981005743,
+        "mean_confidence": 0.15494702312164008
+      }
+    },
+    "clean_accuracy": 0.645,
+    "hard_accuracy": 0.35675,
+    "peak_allocated_gib": 0.4633021354675293,
+    "peak_reserved_gib": 0.6875
+  },
+  {
+    "epoch": 8,
+    "loss": 1.8790136909484862,
+    "train_seconds": 43.18338772491552,
+    "evaluation": {
+      "clean": {
+        "seconds": 0.7640955840470269,
+        "mean_confidence": 0.4357072556577623
+      },
+      "context": {
+        "seconds": 2.4023157539777458,
+        "mean_confidence": 0.2392311867699027
+      },
+      "impulse": {
+        "seconds": 2.3923835060559213,
+        "mean_confidence": 0.16067969637922944
+      },
+      "clipped": {
+        "seconds": 2.265901761013083,
+        "mean_confidence": 0.22788133647292852
+      },
+      "distractor": {
+        "seconds": 3.014035363914445,
+        "mean_confidence": 0.21722792658023538
+      },
+      "negative": {
+        "seconds": 2.4812552569201216,
+        "mean_confidence": 0.17759674769826234
+      }
+    },
+    "clean_accuracy": 0.7075,
+    "hard_accuracy": 0.39475,
+    "peak_allocated_gib": 0.4633021354675293,
+    "peak_reserved_gib": 0.6875
+  }
+]

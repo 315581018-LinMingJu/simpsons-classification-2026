@@ -1,0 +1,651 @@
+{
+  "batch_size": 16,
+  "benchmark_sha256": "3002b4e88a89a17741268708a7c5b53cd77575249a286c264adeb0426e4561cb",
+  "checkpoint_sha256": "7d0791e88c5eca731b8d3ff82aaec907eb481619791edb6842859a209a89cb25",
+  "decision": "no_candidate_passed",
+  "environment": {
+    "commit": "",
+    "cuda": "13.0",
+    "cudnn": 92400,
+    "gpu": "NVIDIA GeForce RTX 5090",
+    "gpu_total_gib": 31.3564453125,
+    "numpy": "2.2.6",
+    "pillow": "12.3.0",
+    "python": "3.10.12 (main, Aug 31 2026, 10:18:17) [GCC 11.4.0]",
+    "torch": "2.14.1+cu130",
+    "torchvision": "0.29.1+cu130"
+  },
+  "gate": {
+    "confirm_ci95_lower_must_exceed": 0,
+    "hard_confirm_min_pp": 1.0,
+    "hard_screen_min_pp": 0.75,
+    "max_clean_drop_pp": 0.5,
+    "max_major_drop_pp": 5.0
+  },
+  "image_signature": "9123b303917e84269bd098dd610ccc95626f5a73ac32e66bbcc138e16a9817d5",
+  "methods": {
+    "center256_denoise": {
+      "accuracy": {
+        "clean": 0.9775,
+        "clipped": 0.9175,
+        "context": 0.9325,
+        "distractor": 0.915,
+        "impulse": 0.875,
+        "negative": 0.595
+      },
+      "change_rate": {
+        "clean": 0.02,
+        "clipped": 0.0575,
+        "context": 0.0325,
+        "distractor": 0.0475,
+        "impulse": 0.0925,
+        "negative": 0.185
+      },
+      "gain_pp": {
+        "clean": -0.25,
+        "clipped": 0.0,
+        "context": 0.0,
+        "distractor": -1.7500000000000002,
+        "impulse": -1.7500000000000002,
+        "negative": 0.0
+      },
+      "hard_accuracy": 0.8947499999999999,
+      "hard_effect": {
+        "ci95_pp": [
+          -1.8625,
+          0.29999999999999993
+        ],
+        "pp": -0.7874999999999999
+      },
+      "losses": {
+        "clean": 4,
+        "clipped": 8,
+        "context": 4,
+        "distractor": 10,
+        "impulse": 15,
+        "negative": 18
+      },
+      "passes": false,
+      "views_per_image": 1,
+      "wins": {
+        "clean": 3,
+        "clipped": 8,
+        "context": 4,
+        "distractor": 3,
+        "impulse": 8,
+        "negative": 18
+      }
+    },
+    "five240_denoise": {
+      "accuracy": {
+        "clean": 0.9775,
+        "clipped": 0.9025,
+        "context": 0.93,
+        "distractor": 0.915,
+        "impulse": 0.885,
+        "negative": 0.57
+      },
+      "change_rate": {
+        "clean": 0.0125,
+        "clipped": 0.0375,
+        "context": 0.0225,
+        "distractor": 0.0325,
+        "impulse": 0.0475,
+        "negative": 0.12
+      },
+      "gain_pp": {
+        "clean": -0.25,
+        "clipped": -1.5,
+        "context": -0.25,
+        "distractor": -1.7500000000000002,
+        "impulse": -0.75,
+        "negative": -2.5
+      },
+      "hard_accuracy": 0.8922500000000001,
+      "hard_effect": {
+        "ci95_pp": [
+          -1.8625,
+          -0.2621875000000017
+        ],
+        "pp": -1.0375
+      },
+      "losses": {
+        "clean": 2,
+        "clipped": 8,
+        "context": 4,
+        "distractor": 7,
+        "impulse": 7,
+        "negative": 16
+      },
+      "passes": false,
+      "views_per_image": 5,
+      "wins": {
+        "clean": 1,
+        "clipped": 2,
+        "context": 3,
+        "distractor": 0,
+        "impulse": 4,
+        "negative": 6
+      }
+    },
+    "five288_denoise": {
+      "accuracy": {
+        "clean": 0.975,
+        "clipped": 0.9225,
+        "context": 0.9375,
+        "distractor": 0.935,
+        "impulse": 0.8775,
+        "negative": 0.605
+      },
+      "change_rate": {
+        "clean": 0.0225,
+        "clipped": 0.035,
+        "context": 0.0225,
+        "distractor": 0.035,
+        "impulse": 0.05,
+        "negative": 0.1425
+      },
+      "gain_pp": {
+        "clean": -0.5,
+        "clipped": 0.5,
+        "context": 0.5,
+        "distractor": 0.25,
+        "impulse": -1.5,
+        "negative": 1.0
+      },
+      "hard_accuracy": 0.902375,
+      "hard_effect": {
+        "ci95_pp": [
+          -0.8375,
+          0.8375
+        ],
+        "pp": -0.02499999999999998
+      },
+      "losses": {
+        "clean": 5,
+        "clipped": 3,
+        "context": 2,
+        "distractor": 4,
+        "impulse": 9,
+        "negative": 14
+      },
+      "passes": false,
+      "views_per_image": 5,
+      "wins": {
+        "clean": 3,
+        "clipped": 5,
+        "context": 4,
+        "distractor": 5,
+        "impulse": 3,
+        "negative": 18
+      }
+    },
+    "full_anchor240_denoise": {
+      "accuracy": {
+        "clean": 0.9775,
+        "clipped": 0.91,
+        "context": 0.92,
+        "distractor": 0.9175,
+        "impulse": 0.8875,
+        "negative": 0.5725
+      },
+      "change_rate": {
+        "clean": 0.005,
+        "clipped": 0.035,
+        "context": 0.04,
+        "distractor": 0.055,
+        "impulse": 0.055,
+        "negative": 0.175
+      },
+      "gain_pp": {
+        "clean": -0.25,
+        "clipped": -0.75,
+        "context": -1.25,
+        "distractor": -1.5,
+        "impulse": -0.5,
+        "negative": -2.25
+      },
+      "hard_accuracy": 0.892,
+      "hard_effect": {
+        "ci95_pp": [
+          -2.1628125000000002,
+          -0.06250000000000006
+        ],
+        "pp": -1.0625
+      },
+      "losses": {
+        "clean": 1,
+        "clipped": 6,
+        "context": 8,
+        "distractor": 10,
+        "impulse": 8,
+        "negative": 19
+      },
+      "passes": false,
+      "views_per_image": 6,
+      "wins": {
+        "clean": 0,
+        "clipped": 3,
+        "context": 3,
+        "distractor": 4,
+        "impulse": 6,
+        "negative": 10
+      }
+    },
+    "full_denoise": {
+      "accuracy": {
+        "clean": 0.9775,
+        "clipped": 0.9075,
+        "context": 0.91,
+        "distractor": 0.915,
+        "impulse": 0.86,
+        "negative": 0.535
+      },
+      "change_rate": {
+        "clean": 0.01,
+        "clipped": 0.0575,
+        "context": 0.07,
+        "distractor": 0.0675,
+        "impulse": 0.1075,
+        "negative": 0.2925
+      },
+      "gain_pp": {
+        "clean": -0.25,
+        "clipped": -1.0,
+        "context": -2.25,
+        "distractor": -1.7500000000000002,
+        "impulse": -3.25,
+        "negative": -6.0
+      },
+      "hard_accuracy": 0.8792500000000001,
+      "hard_effect": {
+        "ci95_pp": [
+          -3.9625,
+          -0.8875
+        ],
+        "pp": -2.3375
+      },
+      "losses": {
+        "clean": 2,
+        "clipped": 10,
+        "context": 14,
+        "distractor": 13,
+        "impulse": 22,
+        "negative": 36
+      },
+      "passes": false,
+      "views_per_image": 1,
+      "wins": {
+        "clean": 1,
+        "clipped": 6,
+        "context": 5,
+        "distractor": 6,
+        "impulse": 9,
+        "negative": 12
+      }
+    },
+    "full_raw": {
+      "accuracy": {
+        "clean": 0.9775,
+        "clipped": 0.9075,
+        "context": 0.91,
+        "distractor": 0.915,
+        "impulse": 0.7975,
+        "negative": 0.535
+      },
+      "change_rate": {
+        "clean": 0.01,
+        "clipped": 0.0575,
+        "context": 0.07,
+        "distractor": 0.0675,
+        "impulse": 0.1675,
+        "negative": 0.2925
+      },
+      "gain_pp": {
+        "clean": -0.25,
+        "clipped": -1.0,
+        "context": -2.25,
+        "distractor": -1.7500000000000002,
+        "impulse": -9.5,
+        "negative": -6.0
+      },
+      "hard_accuracy": 0.8636250000000001,
+      "hard_effect": {
+        "ci95_pp": [
+          -5.5128125,
+          -2.3749999999999996
+        ],
+        "pp": -3.9
+      },
+      "losses": {
+        "clean": 2,
+        "clipped": 10,
+        "context": 14,
+        "distractor": 13,
+        "impulse": 43,
+        "negative": 36
+      },
+      "passes": false,
+      "views_per_image": 1,
+      "wins": {
+        "clean": 1,
+        "clipped": 6,
+        "context": 5,
+        "distractor": 6,
+        "impulse": 5,
+        "negative": 12
+      }
+    },
+    "multiscale_raw": {
+      "accuracy": {
+        "clean": 0.98,
+        "clipped": 0.9175,
+        "context": 0.9325,
+        "distractor": 0.9325,
+        "impulse": 0.815,
+        "negative": 0.595
+      },
+      "change_rate": {
+        "clean": 0.0,
+        "clipped": 0.0,
+        "context": 0.0,
+        "distractor": 0.0,
+        "impulse": 0.1325,
+        "negative": 0.0
+      },
+      "gain_pp": {
+        "clean": 0.0,
+        "clipped": 0.0,
+        "context": 0.0,
+        "distractor": 0.0,
+        "impulse": -7.75,
+        "negative": 0.0
+      },
+      "hard_accuracy": 0.8832500000000001,
+      "hard_effect": {
+        "ci95_pp": [
+          -2.5625,
+          -1.3125
+        ],
+        "pp": -1.9375
+      },
+      "losses": {
+        "clean": 0,
+        "clipped": 0,
+        "context": 0,
+        "distractor": 0,
+        "impulse": 33,
+        "negative": 0
+      },
+      "passes": false,
+      "views_per_image": 10,
+      "wins": {
+        "clean": 0,
+        "clipped": 0,
+        "context": 0,
+        "distractor": 0,
+        "impulse": 2,
+        "negative": 0
+      }
+    },
+    "two_centers_denoise": {
+      "accuracy": {
+        "clean": 0.98,
+        "clipped": 0.915,
+        "context": 0.9275,
+        "distractor": 0.9325,
+        "impulse": 0.885,
+        "negative": 0.6075
+      },
+      "change_rate": {
+        "clean": 0.01,
+        "clipped": 0.0225,
+        "context": 0.015,
+        "distractor": 0.0225,
+        "impulse": 0.0475,
+        "negative": 0.1075
+      },
+      "gain_pp": {
+        "clean": 0.0,
+        "clipped": -0.25,
+        "context": -0.5,
+        "distractor": 0.0,
+        "impulse": -0.75,
+        "negative": 1.25
+      },
+      "hard_accuracy": 0.899375,
+      "hard_effect": {
+        "ci95_pp": [
+          -1.0000000000000002,
+          0.2753124999999983
+        ],
+        "pp": -0.32499999999999996
+      },
+      "losses": {
+        "clean": 2,
+        "clipped": 4,
+        "context": 3,
+        "distractor": 2,
+        "impulse": 7,
+        "negative": 5
+      },
+      "passes": false,
+      "views_per_image": 2,
+      "wins": {
+        "clean": 2,
+        "clipped": 3,
+        "context": 1,
+        "distractor": 2,
+        "impulse": 4,
+        "negative": 10
+      }
+    },
+    "v8_multiscale_denoise": {
+      "accuracy": {
+        "clean": 0.98,
+        "clipped": 0.9175,
+        "context": 0.9325,
+        "distractor": 0.9325,
+        "impulse": 0.8925,
+        "negative": 0.595
+      },
+      "change_rate": {
+        "clean": 0.0,
+        "clipped": 0.0,
+        "context": 0.0,
+        "distractor": 0.0,
+        "impulse": 0.0,
+        "negative": 0.0
+      },
+      "gain_pp": {
+        "clean": 0.0,
+        "clipped": 0.0,
+        "context": 0.0,
+        "distractor": 0.0,
+        "impulse": 0.0,
+        "negative": 0.0
+      },
+      "hard_accuracy": 0.902625,
+      "hard_effect": {
+        "ci95_pp": [
+          0.0,
+          0.0
+        ],
+        "pp": 0.0
+      },
+      "losses": {
+        "clean": 0,
+        "clipped": 0,
+        "context": 0,
+        "distractor": 0,
+        "impulse": 0,
+        "negative": 0
+      },
+      "passes": false,
+      "views_per_image": 10,
+      "wins": {
+        "clean": 0,
+        "clipped": 0,
+        "context": 0,
+        "distractor": 0,
+        "impulse": 0,
+        "negative": 0
+      }
+    }
+  },
+  "phase": "screen",
+  "protocol": "v9_convnext_tta_v1",
+  "recipes": {
+    "center256_denoise": {
+      "denoise": true,
+      "full_frame_weight": null,
+      "views": [
+        "center256"
+      ]
+    },
+    "five240_denoise": {
+      "denoise": true,
+      "full_frame_weight": null,
+      "views": [
+        "240_tl",
+        "240_tr",
+        "240_bl",
+        "240_br",
+        "240_center"
+      ]
+    },
+    "five288_denoise": {
+      "denoise": true,
+      "full_frame_weight": null,
+      "views": [
+        "288_tl",
+        "288_tr",
+        "288_bl",
+        "288_br",
+        "288_center"
+      ]
+    },
+    "full_anchor240_denoise": {
+      "denoise": true,
+      "full_frame_weight": 0.5,
+      "views": [
+        "full",
+        "240_tl",
+        "240_tr",
+        "240_bl",
+        "240_br",
+        "240_center"
+      ]
+    },
+    "full_denoise": {
+      "denoise": true,
+      "full_frame_weight": null,
+      "views": [
+        "full"
+      ]
+    },
+    "full_raw": {
+      "denoise": false,
+      "full_frame_weight": null,
+      "views": [
+        "full"
+      ]
+    },
+    "multiscale_raw": {
+      "denoise": false,
+      "full_frame_weight": null,
+      "views": [
+        "240_tl",
+        "240_tr",
+        "240_bl",
+        "240_br",
+        "240_center",
+        "288_tl",
+        "288_tr",
+        "288_bl",
+        "288_br",
+        "288_center"
+      ]
+    },
+    "two_centers_denoise": {
+      "denoise": true,
+      "full_frame_weight": null,
+      "views": [
+        "240_center",
+        "288_center"
+      ]
+    },
+    "v8_multiscale_denoise": {
+      "denoise": true,
+      "full_frame_weight": null,
+      "views": [
+        "240_tl",
+        "240_tr",
+        "240_bl",
+        "240_br",
+        "240_center",
+        "288_tl",
+        "288_tr",
+        "288_bl",
+        "288_br",
+        "288_center"
+      ]
+    }
+  },
+  "reference_accuracy": {
+    "clean": 0.98,
+    "clipped": 0.9175,
+    "context": 0.9325,
+    "distractor": 0.9325,
+    "impulse": 0.8925,
+    "negative": 0.595
+  },
+  "samples_per_condition": 400,
+  "seed": 2026,
+  "selected": null,
+  "source_origin": {
+    "kind": "imagenet1k",
+    "sha256": "983f1562536e84ff750a1576fb08e54de751dbf2e17c0d8a4a13704341fdcd3d",
+    "url": "https://download.pytorch.org/models/convnext_tiny-983f1562.pth",
+    "weight": "ConvNeXt_Tiny_Weights.IMAGENET1K_V1"
+  },
+  "split_sha256": "d6b86a9b8cd01f8a1a631902bcb1e2b9c394c345cc80443ac940d53982ca5054",
+  "submission_sha256": "bb3b02ddbf6a2c9b87b011f1d9fe0101c7eaa1756f2437e7d981689c8c35a9a8",
+  "template_sha256": "04bf783c94ff8b4a4e706cde7f9ceeeb32c29a9319d7325a16a345a8f1ff2423",
+  "test_image_signature": "4a6dc52943ec2f13cc3a52b210c30e0e8fd8f13c5d5fb67a4d49c689d09137b5",
+  "timings": {
+    "clean": {
+      "image_forwards": 4811,
+      "inference_seconds": 2.2693813109071925,
+      "wall_seconds": 8.743766866973601
+    },
+    "clipped": {
+      "image_forwards": 4800,
+      "inference_seconds": 2.004921349347569,
+      "wall_seconds": 12.757247527944855
+    },
+    "context": {
+      "image_forwards": 4800,
+      "inference_seconds": 2.3095380598679185,
+      "wall_seconds": 13.257135121966712
+    },
+    "distractor": {
+      "image_forwards": 4800,
+      "inference_seconds": 1.9912193098571151,
+      "wall_seconds": 13.348345333011821
+    },
+    "impulse": {
+      "image_forwards": 9200,
+      "inference_seconds": 4.659512363490649,
+      "wall_seconds": 19.594486159970984
+    },
+    "negative": {
+      "image_forwards": 4800,
+      "inference_seconds": 2.4278019410558045,
+      "wall_seconds": 13.314050963963382
+    }
+  },
+  "v8_settings_sha256": "96ac58cecc86d81354b99d4bd3a74b63b9432607b2cec280184d72cc89d06b4e",
+  "validation_manifest_sha256": "97585973f3f091bec120d2ac12b906b4e0161fc01f8f75fa915ea722e9534550",
+  "workers": 4
+}

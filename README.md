@@ -5,19 +5,21 @@ Kaggle 競賽：[ml-2026-iaii-classification2](https://www.kaggle.com/competitio
 
 ## 成績摘要
 
-| 方法 | 驗證正確率（Clean／Test-style） | Kaggle Public |
-|---|---|---|
-| 官方 Baseline：ResNet-18 | 99.54%／47.26% | 0.58418（主辦方公布） |
-| 開發期最佳（V16，ConvNeXt-Tiny 機率融合） | — | 0.82174 |
-| 對照組：ConvNeXt-Base，不用測試風格增強 | 99.87%／78.47% | — |
-| **V20**：重現測試干擾增強＋ConvNeXt-Base（ImageNet-22K） | 99.917%／98.824% | 0.98517 |
-| V21：ConvNeXt-Base@288＋ConvNeXt-Large@224 機率融合 | 99.943%／99.345% | 0.98887 |
-| **V22（最終）**：ConvNeXt-Large@288＋ConvNeXt-Base@384 機率融合 | 99.943%／99.598% | **0.99073** |
+**最終成績：Kaggle Private Leaderboard 第 5 名，Private Score 0.99232**（V22；Private 排名比 Public 上升 4 名）
+
+| 方法 | 驗證正確率（Clean／Test-style） | Kaggle Public | Kaggle Private |
+|---|---|---|---|
+| 官方 Baseline：ResNet-18 | 99.54%／47.26% | 0.58418（主辦方公布） | — |
+| 開發期最佳（V16，ConvNeXt-Tiny 機率融合） | — | 0.82174 | — |
+| 對照組：ConvNeXt-Base，不用測試風格增強 | 99.87%／78.47% | — | — |
+| **V20**：重現測試干擾增強＋ConvNeXt-Base（ImageNet-22K） | 99.917%／98.824% | 0.98517 | — |
+| V21：ConvNeXt-Base@288＋ConvNeXt-Large@224 機率融合 | 99.943%／99.345% | 0.98887 | 0.99099 |
+| **V22（最終）**：ConvNeXt-Large@288＋ConvNeXt-Base@384 機率融合 | 99.943%／99.598% | **0.99073** | **0.99232** |
 
 - 驗證集完全重現 `baseline.py` 的切分（seed 2026、每類 20%，Train 77,547／Val 19,382）。
 - **Test-style 驗證**：把與測試集相同的干擾流程（見下）以固定種子套在驗證圖上，用來估計模型在真實測試條件下的表現；模型與融合組合都只依驗證集挑選，**未用 Public 分數挑選**。
 - 基準與對照組的驗證數字不含 TTA；V20／V21 含水平翻轉 TTA。四種干擾條件、全部不含 TTA 的完整比較見報告。
-- 最終 Kaggle 選擇：V22＋V21。
+- 最終評分的兩份提交為 V22 與 V21（未手動勾選時，Kaggle 自動選擇 Public 最高的兩份），以 Private 較高的 V22（0.99232）計分。Private 欄位「—」表示該版本的 Private 分數未記錄於本 repo。
 
 ## 對應課程「標準作法」
 
@@ -31,18 +33,23 @@ Kaggle 競賽：[ml-2026-iaii-classification2](https://www.kaggle.com/competitio
 ## 給助教的閱讀順序
 
 1. 本頁：結果與核心想法
-2. [`report/Simpsons_分類實驗報告_315581018.pdf`](report/Simpsons_分類實驗報告_315581018.pdf)：**完整實驗報告 PDF（34 頁）**，含 Task 2 混淆矩陣與 Task 3 filter／feature map
+2. [`report/Simpsons_分類實驗報告_315581018.pdf`](report/Simpsons_分類實驗報告_315581018.pdf)：**完整實驗報告 PDF（35 頁）**，含 Task 2 混淆矩陣與 Task 3 filter／feature map
 3. [`report/README.md`](report/README.md)：實驗報告摘要（基準與改進的對照、各干擾條件分析、混淆角色、訓練成本）
 4. [`final/README.md`](final/README.md)：最終方法的完整設定與重現指令
 5. [`final/classification_v20.py`](final/classification_v20.py)：訓練、增強、驗證、預測（單一檔案）
 6. [`final/classification_v21.py`](final/classification_v21.py)：驗證集挑選的機率融合（V21、V22 都用這支程式）
 7. [`experiments/README.md`](experiments/README.md)：V1–V19 開發歷程與失敗原因（參考用）
+8. [`ai/README.md`](ai/README.md)：**AI 指令**與 AI 使用紀錄
+9. [`logs/README.md`](logs/README.md)、[`results/README.md`](results/README.md)：**執行 log 檔**、每次訓練的**設定檔**與結果檔
 
 ## 目錄結構
 
 ```
 README.md              ← 本頁（總覽）
 report/                ← 實驗報告（PDF、README）與評估工具
+ai/                    ← AI 指令（交接 prompt、GitHub 規範、偏好）與 AI 工作紀錄
+logs/                  ← Server 上實際執行的 log 檔
+results/               ← 每次訓練的設定檔（config／settings）、history、混淆矩陣、summary
 baseline/              ← 官方 baseline.py（ResNet-18，原封不動）
 final/                 ← 最終繳交方法（V20 訓練程式、V21／V22 融合）
   classification_v20.py    訓練／預測主程式

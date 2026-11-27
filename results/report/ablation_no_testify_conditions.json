@@ -1,0 +1,103 @@
+{
+  "name": "ablation_no_testify",
+  "kind": "v20",
+  "checkpoint": "runs/v20/ablation_no_testify/best.pt",
+  "epoch": 9,
+  "model": "convnext_base.fb_in22k_ft_in1k",
+  "size": 224,
+  "p_testify": 0.0,
+  "val_images": 19382,
+  "backgrounds": 5640,
+  "accuracy": {
+    "clean": 0.9986585491693324,
+    "distort": 0.8782375399855537,
+    "composite": 0.9863275203797338,
+    "full": 0.7846971416778454
+  },
+  "full_worst_classes": [
+    [
+      "otto_mann",
+      0.4501
+    ],
+    [
+      "timothy_lovejoy",
+      0.5121
+    ],
+    [
+      "sideshow_mel",
+      0.6507
+    ],
+    [
+      "gary_chalmers",
+      0.6939
+    ],
+    [
+      "snake_jailbird",
+      0.6952
+    ],
+    [
+      "carl_carlson",
+      0.723
+    ],
+    [
+      "professor_john_frink",
+      0.7246
+    ],
+    [
+      "patty_bouvier",
+      0.7287
+    ]
+  ],
+  "full_top_confusions": [
+    [
+      "maggie_simpson",
+      "lisa_simpson",
+      36
+    ],
+    [
+      "otto_mann",
+      "moe_szyslak",
+      23
+    ],
+    [
+      "sideshow_mel",
+      "krusty_the_clown",
+      22
+    ],
+    [
+      "otto_mann",
+      "krusty_the_clown",
+      20
+    ],
+    [
+      "ralph_wiggum",
+      "charles_montgomery_burns",
+      20
+    ],
+    [
+      "lionel_hutz",
+      "waylon_smithers",
+      19
+    ],
+    [
+      "carl_carlson",
+      "apu_nahasapeemapetilon",
+      19
+    ],
+    [
+      "cletus_spuckler",
+      "brandine_spuckler",
+      18
+    ],
+    [
+      "selma_bouvier",
+      "patty_bouvier",
+      18
+    ],
+    [
+      "otto_mann",
+      "brandine_spuckler",
+      17
+    ]
+  ]
+}

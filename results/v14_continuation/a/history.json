@@ -1,0 +1,1978 @@
+[
+  {
+    "loss": 0.16149626506456058,
+    "images": 77547,
+    "optimizer_steps": 1212,
+    "augmentation_counts": {
+      "v8_recipe": 77547
+    },
+    "epoch": 1,
+    "lr": 3e-05,
+    "batch_size": 16,
+    "workers": 4,
+    "train_seconds": 429.58875126496423,
+    "epoch_seconds": 469.70763220998924,
+    "peak_vram_gib": 1.689453125,
+    "metrics": {
+      "accuracy": {
+        "clean": 0.98,
+        "context": 0.965,
+        "impulse": 0.92,
+        "clipped": 0.955,
+        "distractor": 0.965,
+        "negative": 0.645
+      },
+      "hard_accuracy": 0.93575,
+      "per_class": {
+        "abraham_grampa_simpson": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.5
+        },
+        "agnes_skinner": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.75
+        },
+        "apu_nahasapeemapetilon": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.5
+        },
+        "barney_gumble": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.5
+        },
+        "bart_simpson": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 0.75,
+          "clipped": 0.75,
+          "distractor": 1.0,
+          "negative": 0.5
+        },
+        "brandine_spuckler": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 1.0
+        },
+        "carl_carlson": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 1.0
+        },
+        "charles_montgomery_burns": {
+          "samples": 4,
+          "clean": 0.75,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.5
+        },
+        "chief_wiggum": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.75
+        },
+        "cletus_spuckler": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 1.0
+        },
+        "comic_book_guy": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 0.75,
+          "impulse": 0.75,
+          "clipped": 0.75,
+          "distractor": 0.75,
+          "negative": 0.5
+        },
+        "disco_stu": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.25
+        },
+        "dolph_starbeam": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.75
+        },
+        "duff_man": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 1.0
+        },
+        "edna_krabappel": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.75
+        },
+        "fat_tony": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.5
+        },
+        "gary_chalmers": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 1.0
+        },
+        "gil": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 1.0
+        },
+        "groundskeeper_willie": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.75
+        },
+        "homer_simpson": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 0.75,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.5
+        },
+        "jimbo_jones": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 1.0
+        },
+        "kearney_zzyzwicz": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.75
+        },
+        "kent_brockman": {
+          "samples": 4,
+          "clean": 0.75,
+          "context": 0.75,
+          "impulse": 0.75,
+          "clipped": 0.75,
+          "distractor": 0.75,
+          "negative": 0.5
+        },
+        "krusty_the_clown": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 0.75,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.5
+        },
+        "lenny_leonard": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.5
+        },
+        "lionel_hutz": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.5
+        },
+        "lisa_simpson": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 1.0
+        },
+        "lunchlady_doris": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.75
+        },
+        "maggie_simpson": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 1.0
+        },
+        "marge_simpson": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.75
+        },
+        "martin_prince": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.25
+        },
+        "mayor_quimby": {
+          "samples": 4,
+          "clean": 0.75,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 1.0
+        },
+        "milhouse_van_houten": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 1.0
+        },
+        "miss_hoover": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 0.75,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.5
+        },
+        "moe_szyslak": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 0.75,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.75
+        },
+        "ned_flanders": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.25
+        },
+        "nelson_muntz": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 0.75,
+          "impulse": 0.75,
+          "clipped": 0.75,
+          "distractor": 0.75,
+          "negative": 0.5
+        },
+        "otto_mann": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 0.75,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.5
+        },
+        "patty_bouvier": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.75
+        },
+        "principal_skinner": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 0.75,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.75
+        },
+        "professor_john_frink": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.75
+        },
+        "rainier_wolfcastle": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.25
+        },
+        "ralph_wiggum": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 0.75,
+          "impulse": 0.75,
+          "clipped": 0.75,
+          "distractor": 0.75,
+          "negative": 0.25
+        },
+        "selma_bouvier": {
+          "samples": 4,
+          "clean": 0.75,
+          "context": 0.5,
+          "impulse": 0.5,
+          "clipped": 0.5,
+          "distractor": 0.5,
+          "negative": 0.0
+        },
+        "sideshow_bob": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.5
+        },
+        "sideshow_mel": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.25
+        },
+        "snake_jailbird": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 1.0
+        },
+        "timothy_lovejoy": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 0.5,
+          "clipped": 0.75,
+          "distractor": 1.0,
+          "negative": 0.75
+        },
+        "troy_mcclure": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 0.75,
+          "impulse": 0.75,
+          "clipped": 0.75,
+          "distractor": 0.75,
+          "negative": 0.25
+        },
+        "waylon_smithers": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.75
+        }
+      }
+    },
+    "selection": {
+      "eligible": true,
+      "score": 0.95345,
+      "clean_delta_pp": -0.5000000000000004,
+      "hard_delta_pp": 3.224999999999978,
+      "clear_collapse": false
+    },
+    "changed_vs_v8_by_condition": {
+      "clean": 3,
+      "context": 8,
+      "impulse": 9,
+      "clipped": 9,
+      "distractor": 7,
+      "negative": 39
+    },
+    "checkpoint_sha256": "4f7baae4cc14894bd1a53718804bab47267052d8a3ec48ea47fc6a9352d6a8c1"
+  },
+  {
+    "loss": 0.12999533047083875,
+    "images": 77547,
+    "optimizer_steps": 1212,
+    "augmentation_counts": {
+      "v8_recipe": 77547
+    },
+    "epoch": 2,
+    "lr": 2.375e-05,
+    "batch_size": 16,
+    "workers": 4,
+    "train_seconds": 426.6619364620419,
+    "epoch_seconds": 466.44491802703124,
+    "peak_vram_gib": 1.689453125,
+    "metrics": {
+      "accuracy": {
+        "clean": 1.0,
+        "context": 0.96,
+        "impulse": 0.945,
+        "clipped": 0.96,
+        "distractor": 0.96,
+        "negative": 0.57
+      },
+      "hard_accuracy": 0.93675,
+      "per_class": {
+        "abraham_grampa_simpson": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 0.75,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.25
+        },
+        "agnes_skinner": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.75
+        },
+        "apu_nahasapeemapetilon": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.5
+        },
+        "barney_gumble": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 0.75,
+          "impulse": 0.75,
+          "clipped": 0.75,
+          "distractor": 0.75,
+          "negative": 0.5
+        },
+        "bart_simpson": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 0.75,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.5
+        },
+        "brandine_spuckler": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.75
+        },
+        "carl_carlson": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.75
+        },
+        "charles_montgomery_burns": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.25
+        },
+        "chief_wiggum": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.5
+        },
+        "cletus_spuckler": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 1.0
+        },
+        "comic_book_guy": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 0.75,
+          "impulse": 0.75,
+          "clipped": 0.75,
+          "distractor": 0.75,
+          "negative": 1.0
+        },
+        "disco_stu": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.25
+        },
+        "dolph_starbeam": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.75
+        },
+        "duff_man": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 1.0
+        },
+        "edna_krabappel": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.75
+        },
+        "fat_tony": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.0
+        },
+        "gary_chalmers": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.25
+        },
+        "gil": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 1.0
+        },
+        "groundskeeper_willie": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 1.0
+        },
+        "homer_simpson": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 0.75,
+          "impulse": 0.75,
+          "clipped": 0.75,
+          "distractor": 0.75,
+          "negative": 0.75
+        },
+        "jimbo_jones": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.25
+        },
+        "kearney_zzyzwicz": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.5
+        },
+        "kent_brockman": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 0.75,
+          "impulse": 0.75,
+          "clipped": 0.75,
+          "distractor": 0.75,
+          "negative": 0.5
+        },
+        "krusty_the_clown": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.75
+        },
+        "lenny_leonard": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.25
+        },
+        "lionel_hutz": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.25
+        },
+        "lisa_simpson": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 1.0
+        },
+        "lunchlady_doris": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.25
+        },
+        "maggie_simpson": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 1.0
+        },
+        "marge_simpson": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.75
+        },
+        "martin_prince": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.25
+        },
+        "mayor_quimby": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 1.0
+        },
+        "milhouse_van_houten": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 1.0
+        },
+        "miss_hoover": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 0.75,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.5
+        },
+        "moe_szyslak": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 0.75,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.75
+        },
+        "ned_flanders": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.75
+        },
+        "nelson_muntz": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 0.75,
+          "impulse": 1.0,
+          "clipped": 0.75,
+          "distractor": 0.75,
+          "negative": 0.25
+        },
+        "otto_mann": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.5
+        },
+        "patty_bouvier": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.75
+        },
+        "principal_skinner": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.75
+        },
+        "professor_john_frink": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.75
+        },
+        "rainier_wolfcastle": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.75
+        },
+        "ralph_wiggum": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.25
+        },
+        "selma_bouvier": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.0
+        },
+        "sideshow_bob": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.25
+        },
+        "sideshow_mel": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.0
+        },
+        "snake_jailbird": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 1.0
+        },
+        "timothy_lovejoy": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 0.5,
+          "impulse": 0.5,
+          "clipped": 0.5,
+          "distractor": 0.5,
+          "negative": 0.25
+        },
+        "troy_mcclure": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 0.75,
+          "impulse": 0.75,
+          "clipped": 0.75,
+          "distractor": 0.75,
+          "negative": 0.0
+        },
+        "waylon_smithers": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.75
+        }
+      }
+    },
+    "selection": {
+      "eligible": true,
+      "score": 0.96205,
+      "clean_delta_pp": 1.5000000000000013,
+      "hard_delta_pp": 3.324999999999978,
+      "clear_collapse": false
+    },
+    "changed_vs_v8_by_condition": {
+      "clean": 3,
+      "context": 12,
+      "impulse": 16,
+      "clipped": 14,
+      "distractor": 12,
+      "negative": 60
+    },
+    "checkpoint_sha256": "08491066fba56ce8ee6494ec1268814cb708be623713b616a67925806afc6b24"
+  },
+  {
+    "loss": 0.09129389619477392,
+    "images": 77547,
+    "optimizer_steps": 1212,
+    "augmentation_counts": {
+      "v8_recipe": 77547
+    },
+    "epoch": 3,
+    "lr": 1.1250000000000002e-05,
+    "batch_size": 16,
+    "workers": 4,
+    "train_seconds": 432.1462150210282,
+    "epoch_seconds": 472.3742843680084,
+    "peak_vram_gib": 1.689453125,
+    "metrics": {
+      "accuracy": {
+        "clean": 1.0,
+        "context": 0.98,
+        "impulse": 0.955,
+        "clipped": 0.98,
+        "distractor": 0.98,
+        "negative": 0.7
+      },
+      "hard_accuracy": 0.95975,
+      "per_class": {
+        "abraham_grampa_simpson": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 0.75,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.5
+        },
+        "agnes_skinner": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 1.0
+        },
+        "apu_nahasapeemapetilon": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.75
+        },
+        "barney_gumble": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.75
+        },
+        "bart_simpson": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 0.75,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.5
+        },
+        "brandine_spuckler": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 1.0
+        },
+        "carl_carlson": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 1.0
+        },
+        "charles_montgomery_burns": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.25
+        },
+        "chief_wiggum": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.5
+        },
+        "cletus_spuckler": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 1.0
+        },
+        "comic_book_guy": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 0.75,
+          "impulse": 0.75,
+          "clipped": 0.75,
+          "distractor": 0.75,
+          "negative": 1.0
+        },
+        "disco_stu": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.25
+        },
+        "dolph_starbeam": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.75
+        },
+        "duff_man": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 1.0
+        },
+        "edna_krabappel": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.75
+        },
+        "fat_tony": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.5
+        },
+        "gary_chalmers": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.75
+        },
+        "gil": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 1.0
+        },
+        "groundskeeper_willie": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.75
+        },
+        "homer_simpson": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 0.75,
+          "impulse": 0.75,
+          "clipped": 0.75,
+          "distractor": 0.75,
+          "negative": 1.0
+        },
+        "jimbo_jones": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.75
+        },
+        "kearney_zzyzwicz": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.5
+        },
+        "kent_brockman": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 0.75,
+          "impulse": 0.75,
+          "clipped": 0.75,
+          "distractor": 0.75,
+          "negative": 0.5
+        },
+        "krusty_the_clown": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.75
+        },
+        "lenny_leonard": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.5
+        },
+        "lionel_hutz": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.5
+        },
+        "lisa_simpson": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 1.0
+        },
+        "lunchlady_doris": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.75
+        },
+        "maggie_simpson": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 1.0
+        },
+        "marge_simpson": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.75
+        },
+        "martin_prince": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.5
+        },
+        "mayor_quimby": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 1.0
+        },
+        "milhouse_van_houten": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 1.0
+        },
+        "miss_hoover": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.5
+        },
+        "moe_szyslak": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 0.75,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.75
+        },
+        "ned_flanders": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.75
+        },
+        "nelson_muntz": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 0.75,
+          "impulse": 0.75,
+          "clipped": 0.75,
+          "distractor": 0.75,
+          "negative": 0.75
+        },
+        "otto_mann": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.5
+        },
+        "patty_bouvier": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 1.0
+        },
+        "principal_skinner": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.75
+        },
+        "professor_john_frink": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.75
+        },
+        "rainier_wolfcastle": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.75
+        },
+        "ralph_wiggum": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.25
+        },
+        "selma_bouvier": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.25
+        },
+        "sideshow_bob": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.75
+        },
+        "sideshow_mel": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.0
+        },
+        "snake_jailbird": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 1.0
+        },
+        "timothy_lovejoy": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 0.5,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.5
+        },
+        "troy_mcclure": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.5
+        },
+        "waylon_smithers": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.75
+        }
+      }
+    },
+    "selection": {
+      "eligible": true,
+      "score": 0.97585,
+      "clean_delta_pp": 1.5000000000000013,
+      "hard_delta_pp": 5.6249999999999805,
+      "clear_collapse": false
+    },
+    "changed_vs_v8_by_condition": {
+      "clean": 3,
+      "context": 11,
+      "impulse": 16,
+      "clipped": 14,
+      "distractor": 9,
+      "negative": 61
+    },
+    "checkpoint_sha256": "8d010dee1919abbe2e3c0bc130f0f8be6dc0a70473ac3b86fc50a4a4e8fda43f"
+  },
+  {
+    "loss": 0.07777481675124952,
+    "images": 77547,
+    "optimizer_steps": 1212,
+    "augmentation_counts": {
+      "v8_recipe": 77547
+    },
+    "epoch": 4,
+    "lr": 5e-06,
+    "batch_size": 16,
+    "workers": 4,
+    "train_seconds": 425.27242671500426,
+    "epoch_seconds": 465.46304371301085,
+    "peak_vram_gib": 1.689453125,
+    "metrics": {
+      "accuracy": {
+        "clean": 1.0,
+        "context": 0.985,
+        "impulse": 0.965,
+        "clipped": 0.985,
+        "distractor": 0.98,
+        "negative": 0.6
+      },
+      "hard_accuracy": 0.9597499999999999,
+      "per_class": {
+        "abraham_grampa_simpson": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 0.75,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.5
+        },
+        "agnes_skinner": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.75
+        },
+        "apu_nahasapeemapetilon": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.5
+        },
+        "barney_gumble": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.75
+        },
+        "bart_simpson": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 0.75,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.5
+        },
+        "brandine_spuckler": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 1.0
+        },
+        "carl_carlson": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 1.0
+        },
+        "charles_montgomery_burns": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.25
+        },
+        "chief_wiggum": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.5
+        },
+        "cletus_spuckler": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 1.0
+        },
+        "comic_book_guy": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 0.75,
+          "impulse": 0.75,
+          "clipped": 0.75,
+          "distractor": 0.75,
+          "negative": 1.0
+        },
+        "disco_stu": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.25
+        },
+        "dolph_starbeam": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.5
+        },
+        "duff_man": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 1.0
+        },
+        "edna_krabappel": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.75
+        },
+        "fat_tony": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.0
+        },
+        "gary_chalmers": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.5
+        },
+        "gil": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 1.0
+        },
+        "groundskeeper_willie": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.75
+        },
+        "homer_simpson": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 0.75,
+          "clipped": 0.75,
+          "distractor": 0.75,
+          "negative": 1.0
+        },
+        "jimbo_jones": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.25
+        },
+        "kearney_zzyzwicz": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.5
+        },
+        "kent_brockman": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 0.75,
+          "impulse": 0.75,
+          "clipped": 0.75,
+          "distractor": 0.75,
+          "negative": 0.5
+        },
+        "krusty_the_clown": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.75
+        },
+        "lenny_leonard": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.25
+        },
+        "lionel_hutz": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.25
+        },
+        "lisa_simpson": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 1.0
+        },
+        "lunchlady_doris": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.25
+        },
+        "maggie_simpson": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 1.0
+        },
+        "marge_simpson": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.75
+        },
+        "martin_prince": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.25
+        },
+        "mayor_quimby": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 1.0
+        },
+        "milhouse_van_houten": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 1.0
+        },
+        "miss_hoover": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.5
+        },
+        "moe_szyslak": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 0.75,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.75
+        },
+        "ned_flanders": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.75
+        },
+        "nelson_muntz": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 0.75,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 0.75,
+          "negative": 0.25
+        },
+        "otto_mann": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.5
+        },
+        "patty_bouvier": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.75
+        },
+        "principal_skinner": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.75
+        },
+        "professor_john_frink": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.75
+        },
+        "rainier_wolfcastle": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.5
+        },
+        "ralph_wiggum": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.25
+        },
+        "selma_bouvier": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.25
+        },
+        "sideshow_bob": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.5
+        },
+        "sideshow_mel": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.0
+        },
+        "snake_jailbird": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 1.0
+        },
+        "timothy_lovejoy": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 0.75,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.25
+        },
+        "troy_mcclure": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.25
+        },
+        "waylon_smithers": {
+          "samples": 4,
+          "clean": 1.0,
+          "context": 1.0,
+          "impulse": 1.0,
+          "clipped": 1.0,
+          "distractor": 1.0,
+          "negative": 0.75
+        }
+      }
+    },
+    "selection": {
+      "eligible": true,
+      "score": 0.9758499999999999,
+      "clean_delta_pp": 1.5000000000000013,
+      "hard_delta_pp": 5.624999999999969,
+      "clear_collapse": false
+    },
+    "changed_vs_v8_by_condition": {
+      "clean": 3,
+      "context": 11,
+      "impulse": 17,
+      "clipped": 14,
+      "distractor": 10,
+      "negative": 62
+    },
+    "checkpoint_sha256": "1692a757e098b179ec53e2b2e72011a6532f35a965ae6f716fd82b8142ddf95c"
+  }
+]

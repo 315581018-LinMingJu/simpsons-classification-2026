@@ -1,0 +1,255 @@
+{
+  "batch_size": 16,
+  "comparison_table_sha256": "cb09a0520bc04eded26d9256f4f43d2fe54cb568b0d71f8b4bdf1948e764f1c5",
+  "comparisons": {
+    "black_rim": {
+      "accuracy_effect": {
+        "ci95_pp": [
+          0.0,
+          0.0
+        ],
+        "pp": 0.0
+      },
+      "decision": "stop_no_clear_effect",
+      "flip_rate": {
+        "ci95_pp": [
+          0.0,
+          1.5
+        ],
+        "pp": 0.5
+      },
+      "images": 200,
+      "losses": 0,
+      "mcnemar_holm_p": 1.0,
+      "mcnemar_p": 1.0,
+      "reference": "neutral",
+      "reference_accuracy_pct": 98.0,
+      "treatment": "black_rim",
+      "treatment_accuracy_pct": 98.0,
+      "wins": 0
+    },
+    "brightness": {
+      "accuracy_effect": {
+        "ci95_pp": [
+          0.0,
+          1.5
+        ],
+        "pp": 0.5
+      },
+      "decision": "stop_no_clear_effect",
+      "flip_rate": {
+        "ci95_pp": [
+          0.0,
+          1.5
+        ],
+        "pp": 0.5
+      },
+      "images": 200,
+      "losses": 0,
+      "mcnemar_holm_p": 1.0,
+      "mcnemar_p": 1.0,
+      "reference": "neutral",
+      "reference_accuracy_pct": 98.0,
+      "treatment": "bright_background",
+      "treatment_accuracy_pct": 98.5,
+      "wins": 1
+    },
+    "content_retention": {
+      "accuracy_effect": {
+        "ci95_pp": [
+          0.0,
+          0.0
+        ],
+        "pp": 0.0
+      },
+      "decision": "stop_no_clear_effect",
+      "flip_rate": {
+        "ci95_pp": [
+          0.0,
+          0.0
+        ],
+        "pp": 0.0
+      },
+      "images": 200,
+      "losses": 0,
+      "mcnemar_holm_p": 1.0,
+      "mcnemar_p": 1.0,
+      "reference": "offcenter",
+      "reference_accuracy_pct": 97.5,
+      "treatment": "retained",
+      "treatment_accuracy_pct": 97.5,
+      "wins": 0
+    },
+    "outer_detail": {
+      "accuracy_effect": {
+        "ci95_pp": [
+          -2.0,
+          1.0
+        ],
+        "pp": -0.5
+      },
+      "decision": "stop_no_clear_effect",
+      "flip_rate": {
+        "ci95_pp": [
+          0.5,
+          4.0
+        ],
+        "pp": 2.0
+      },
+      "images": 200,
+      "losses": 2,
+      "mcnemar_holm_p": 1.0,
+      "mcnemar_p": 1.0,
+      "reference": "neutral",
+      "reference_accuracy_pct": 98.0,
+      "treatment": "outer_detail",
+      "treatment_accuracy_pct": 97.5,
+      "wins": 1
+    },
+    "retention_vs_count_control": {
+      "accuracy_effect": {
+        "ci95_pp": [
+          0.0,
+          0.0
+        ],
+        "pp": 0.0
+      },
+      "decision": "stop_no_clear_effect",
+      "flip_rate": {
+        "ci95_pp": [
+          0.0,
+          0.0
+        ],
+        "pp": 0.0
+      },
+      "images": 200,
+      "losses": 0,
+      "mcnemar_holm_p": 1.0,
+      "mcnemar_p": 1.0,
+      "reference": "matched_count",
+      "reference_accuracy_pct": 97.5,
+      "treatment": "retained",
+      "treatment_accuracy_pct": 97.5,
+      "wins": 0
+    }
+  },
+  "cost_by_arm": {
+    "black_rim": {
+      "image_forwards": 2000,
+      "inference_seconds": 1.1133275468600914,
+      "wall_seconds": 1.833395037916489,
+      "warmup_image_forwards": 1
+    },
+    "bright_background": {
+      "image_forwards": 2000,
+      "inference_seconds": 1.051608053036034,
+      "wall_seconds": 1.9653912889771163,
+      "warmup_image_forwards": 1
+    },
+    "neutral": {
+      "image_forwards": 2000,
+      "inference_seconds": 1.0595875402214006,
+      "wall_seconds": 2.4161491009872407,
+      "warmup_image_forwards": 1
+    },
+    "offcenter": {
+      "image_forwards": 2000,
+      "inference_seconds": 1.0666340799070895,
+      "wall_seconds": 1.9199515068903565,
+      "warmup_image_forwards": 1
+    },
+    "outer_detail": {
+      "image_forwards": 2000,
+      "inference_seconds": 1.0160795148694888,
+      "wall_seconds": 2.005211706040427,
+      "warmup_image_forwards": 1
+    }
+  },
+  "environment": {
+    "bf16": true,
+    "built_cuda": "13.0",
+    "capability": [
+      12,
+      0
+    ],
+    "convnext_base": true,
+    "cuda_available": true,
+    "cudnn": 92400,
+    "devices_visible": 1,
+    "gpu": "NVIDIA GeForce RTX 5090",
+    "numpy": "2.2.6",
+    "pillow": "12.3.0",
+    "python": "3.10.12 (main, Aug 31 2026, 10:18:17) [GCC 11.4.0]",
+    "torch": "2.14.1+cu130",
+    "torchvision": "0.29.1+cu130",
+    "total_gib": 31.3564453125
+  },
+  "geometry": {
+    "cue_proxy_images": 200,
+    "images_with_pruned_views": 200,
+    "mean_cue_proxy_retained_selected_pct": 99.80101520275093,
+    "mean_cue_proxy_retained_v8_pct": 87.88781995093743,
+    "mean_patch_gain_pp": 15.859665430345782,
+    "mean_patch_gain_vs_matched_pp": 12.723623010334897,
+    "mean_patch_retained_matched_count_pct": 86.75851680071635,
+    "mean_patch_retained_selected_pct": 99.48213981105128,
+    "mean_patch_retained_v8_pct": 83.62247438070547,
+    "mean_selected_views": 3.0
+  },
+  "identity": {
+    "benchmark_sha256": "3002b4e88a89a17741268708a7c5b53cd77575249a286c264adeb0426e4561cb",
+    "checkpoint_sha256": "7d0791e88c5eca731b8d3ff82aaec907eb481619791edb6842859a209a89cb25",
+    "code_sha256": {
+      "classification_v11.py": "94eb6e0a35b7ce3dfdb7a050ae3cbec6f5ce2edcf9f03260f08c5a23db55591a",
+      "classification_v2.py": "e9210083b6174f22d549b3b594649ab413e4d72e75d74c922fd0a62e16a455ce",
+      "v11/data.py": "69e7754d43045969ac8fe4f145c313c27c1d9b05b1565805891618a61180ca3a",
+      "v11/decision.py": "0f74dbb2e2aa9ac2b1fde8303438c2dcfddecf73ec039c9f00b046ef816891ad",
+      "v11/retrieval.py": "bf03069fd310e1812812e38e2e0c88ea0d6368d280853c8e69124d8af2f232a2",
+      "v3/inference.py": "7f97a434105974b8dbc26c55fea244becf0ce9dc62a4f9017cd304689e6cbadb",
+      "v3/storage.py": "0d7a6ab08cf6e3fda804ab77208aa1dd6a80522420afc4e3a121da96e2511cb0",
+      "v4/analysis.py": "c3821b71b0abcfa4cda1a3a3b63ee279084bace77931e9210ae8fd0d73b01235",
+      "v4/geometry.py": "86ed9a15a978976d0213792203a03f04a1421f7ce1b229e636940b873078377f",
+      "v5/background.py": "7e4a26cb6fe4e84b31e340d4f017e86ec2b8b5e9c6ccaaefe43ae8e07b969bf5",
+      "v5/challenge.py": "bb3b67db9721c9d5bf985e9e22a596b08e7b5da1586103cd7b2998c85aa6f97c",
+      "v7/impulse.py": "17a6f6cad7ec664e82b5f4b34e87e3dab7951d7816061c618960f387d17d85f5",
+      "v8/data.py": "1e5e160ddcb7aef30ba9630f3ab1bad99edd045d4594a5f5471a30c6f5c57b14",
+      "v8/experiment.py": "c1fa74c0027109585925df71731d8f2835322a6ec9e16b3bed55c1025cab96bf",
+      "v8/models.py": "5287c2c9f84e935347582484c84aa9e0809acd0749026981c482c54641d19cd3"
+    },
+    "manifest_sha256": {
+      "train": "cdb02262f7a830212543a47bbb5dcc1905a28f2fc08d7ad3425317371438b238",
+      "validation": "97585973f3f091bec120d2ac12b906b4e0161fc01f8f75fa915ea722e9534550"
+    },
+    "new_code_sha256": {
+      "classification_v12.py": "e87947623abb191fd0da9fec2036cbcb21c851b08b689c7631b3e675b8e89dc3",
+      "compare_v8_factors.py": "80fcc4660734e9bcf7ba81e514539d5c423f58c9b6c424a30c933a97463f03ae",
+      "v12/model.py": "0309e1e9e57b129f2694143c26a9d3dce31833d329319161034c17e5a08557d1",
+      "v8_controlled/conditions.py": "0c1b6c5f3b7294997178c8af98eb69027996e85902b7fee375eca5b54a5a6f69",
+      "v8_controlled/report.py": "ab454f1f76187eaf928947baf39700d4381bcccea17da1bf12fde31fc4bb85be"
+    },
+    "numpy": "2.2.6",
+    "pillow": "12.3.0",
+    "protocol": "v8_factors_validation_v1",
+    "screen_sample_signature": "e05c0f3b140fa064340db4e4cb485a54be2b64bf760ad6b0b5a2d3c916bff9f9",
+    "v8_eval_batch_size": 16,
+    "v8_image_signature": "3f061ce21a3576dd23e6b942ac606bcfd472dca16c765cd688bdfaf4ffbc8831",
+    "v8_settings_sha256": "96ac58cecc86d81354b99d4bd3a74b63b9432607b2cec280184d72cc89d06b4e",
+    "v8_submission_sha256": "bb3b02ddbf6a2c9b87b011f1d9fe0101c7eaa1756f2437e7d981689c8c35a9a8",
+    "validation_seed": 2026
+  },
+  "marginal_image_forwards_vs_reference": {
+    "black_rim": 2000,
+    "brightness": 2000,
+    "content_retention": 0,
+    "outer_detail": 2000,
+    "retention_vs_count_control": 0
+  },
+  "peak_reserved_gib": 0.43359375,
+  "predictions_sha256": "a761b001f925b93fbd1201f5f39d8a30d7226aa269b2d1af132d346567cf7c7e",
+  "prepare_sha256": "f7e45ed7aa07132df9e899d66ff493b937ed5f4dfc7e1cf30adbb324a03df14a",
+  "render_seconds": 33.4455229958985,
+  "scope": "labeled_v8_screen_only",
+  "total_image_forwards": 10000,
+  "total_wall_seconds": 45.87025192391593,
+  "workers": 4
+}

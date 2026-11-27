@@ -1,0 +1,32 @@
+{
+  "arm": "a",
+  "batch_size": 16,
+  "changed_pct": 15.299786859419887,
+  "changed_vs_v8": 1651,
+  "checkpoint_sha256": "8d010dee1919abbe2e3c0bc130f0f8be6dc0a70473ac3b86fc50a4a4e8fda43f",
+  "denoise": true,
+  "epoch": 3,
+  "images": 10791,
+  "method": "multiscale",
+  "seconds": 256.83617253403645,
+  "submission": "runs/v14_continuation/a/candidate_epoch_03/submission.csv",
+  "submission_sha256": "160d2c2ebc6018f7efffa6964101cda7e380af1d96e66bf42e62e288d0d214a4",
+  "test_provenance": {
+    "benchmark_sha256": "3002b4e88a89a17741268708a7c5b53cd77575249a286c264adeb0426e4561cb",
+    "checkpoint_sha256": "7d0791e88c5eca731b8d3ff82aaec907eb481619791edb6842859a209a89cb25",
+    "protocol": "v9_convnext_tta_v1",
+    "seed": 2026,
+    "source_origin": {
+      "kind": "imagenet1k",
+      "sha256": "983f1562536e84ff750a1576fb08e54de751dbf2e17c0d8a4a13704341fdcd3d",
+      "url": "https://download.pytorch.org/models/convnext_tiny-983f1562.pth",
+      "weight": "ConvNeXt_Tiny_Weights.IMAGENET1K_V1"
+    },
+    "split_sha256": "d6b86a9b8cd01f8a1a631902bcb1e2b9c394c345cc80443ac940d53982ca5054",
+    "submission_sha256": "bb3b02ddbf6a2c9b87b011f1d9fe0101c7eaa1756f2437e7d981689c8c35a9a8",
+    "template_sha256": "04bf783c94ff8b4a4e706cde7f9ceeeb32c29a9319d7325a16a345a8f1ff2423",
+    "test_image_signature": "4a6dc52943ec2f13cc3a52b210c30e0e8fd8f13c5d5fb67a4d49c689d09137b5",
+    "v8_settings_sha256": "96ac58cecc86d81354b99d4bd3a74b63b9432607b2cec280184d72cc89d06b4e",
+    "validation_manifest_sha256": "97585973f3f091bec120d2ac12b906b4e0161fc01f8f75fa915ea722e9534550"
+  }
+}

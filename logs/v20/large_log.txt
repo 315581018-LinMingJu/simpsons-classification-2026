@@ -1,0 +1,234 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/usr1/Aa315581018/simpsons-classification-2026/runs/v20/code-b539d567/classification_v20.py:488: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:820.)
+  loss_sum += float(loss) * len(y)
+V20 train epoch 1/10 [####################] 77,547/77,547 100.00% elapsed 189s ETA 0s
+V20 val clean e1 [####################] 19,382/19,382 100.00% elapsed 32s ETA 0s
+V20 val testlike e1 [####################] 19,382/19,382 100.00% elapsed 31s ETA 0s
+{
+  "epoch": 1,
+  "train_loss": 1.851082977074812,
+  "val_clean": 0.9901970900835827,
+  "val_testlike": 0.9499535651635538,
+  "train_seconds": 189.57292825402692,
+  "epoch_seconds": 253.7297711840365,
+  "lr_end": 9.991124204955496e-05,
+  "peak_vram_gib": 17.16796875,
+  "best_val_testlike": 0.9499535651635538
+}
+V20 train epoch 2/10 [####################] 77,547/77,547 100.00% elapsed 175s ETA 0s
+V20 val clean e2 [####################] 19,382/19,382 100.00% elapsed 29s ETA 0s
+V20 val testlike e2 [####################] 19,382/19,382 100.00% elapsed 30s ETA 0s
+{
+  "epoch": 2,
+  "train_loss": 0.8612386213366046,
+  "val_clean": 0.9959756475079972,
+  "val_testlike": 0.9742544629037251,
+  "train_seconds": 175.4512031240156,
+  "epoch_seconds": 235.53142872697208,
+  "lr_end": 9.604797284745439e-05,
+  "peak_vram_gib": 17.16796875,
+  "best_val_testlike": 0.9742544629037251
+}
+V20 train epoch 3/10 [####################] 77,547/77,547 100.00% elapsed 177s ETA 0s
+V20 val clean e3 [####################] 19,382/19,382 100.00% elapsed 29s ETA 0s
+V20 val testlike e3 [####################] 19,382/19,382 100.00% elapsed 30s ETA 0s
+{
+  "epoch": 3,
+  "train_loss": 0.802257048555971,
+  "val_clean": 0.9976782581776906,
+  "val_testlike": 0.9786915694974719,
+  "train_seconds": 176.83880301204044,
+  "epoch_seconds": 235.98264658800326,
+  "lr_end": 8.689639174618401e-05,
+  "peak_vram_gib": 17.16796875,
+  "best_val_testlike": 0.9786915694974719
+}
+V20 train epoch 4/10 [####################] 77,547/77,547 100.00% elapsed 175s ETA 0s
+V20 val clean e4 [####################] 19,382/19,382 100.00% elapsed 28s ETA 0s
+V20 val testlike e4 [####################] 19,382/19,382 100.00% elapsed 31s ETA 0s
+{
+  "epoch": 4,
+  "train_loss": 0.776776448735564,
+  "val_clean": 0.9982973893303064,
+  "val_testlike": 0.9827159219894748,
+  "train_seconds": 174.8029030059697,
+  "epoch_seconds": 233.62178898393176,
+  "lr_end": 7.351903593913662e-05,
+  "peak_vram_gib": 17.16796875,
+  "best_val_testlike": 0.9827159219894748
+}
+V20 train epoch 5/10 [####################] 77,547/77,547 100.00% elapsed 176s ETA 0s
+V20 val clean e5 [####################] 19,382/19,382 100.00% elapsed 28s ETA 0s
+V20 val testlike e5 [####################] 19,382/19,382 100.00% elapsed 30s ETA 0s
+{
+  "epoch": 5,
+  "train_loss": 0.7600470265555151,
+  "val_clean": 0.9989165204829223,
+  "val_testlike": 0.985553606438964,
+  "train_seconds": 176.19996836793143,
+  "epoch_seconds": 234.28700995491818,
+  "lr_end": 5.74690728994458e-05,
+  "peak_vram_gib": 17.16796875,
+  "best_val_testlike": 0.985553606438964
+}
+V20 train epoch 6/10 [####################] 77,547/77,547 100.00% elapsed 175s ETA 0s
+V20 val clean e6 [####################] 19,382/19,382 100.00% elapsed 28s ETA 0s
+V20 val testlike e6 [####################] 19,382/19,382 100.00% elapsed 30s ETA 0s
+{
+  "epoch": 6,
+  "train_loss": 0.7500832603460665,
+  "val_clean": 0.9989165204829223,
+  "val_testlike": 0.9882365081002993,
+  "train_seconds": 175.5309418470133,
+  "epoch_seconds": 234.73055408603977,
+  "lr_end": 4.060997108065383e-05,
+  "peak_vram_gib": 17.16796875,
+  "best_val_testlike": 0.9882365081002993
+}
+V20 train epoch 7/10 [####################] 77,547/77,547 100.00% elapsed 175s ETA 0s
+V20 val clean e7 [####################] 19,382/19,382 100.00% elapsed 27s ETA 0s
+V20 val testlike e7 [####################] 19,382/19,382 100.00% elapsed 30s ETA 0s
+{
+  "epoch": 7,
+  "train_loss": 0.742933219537739,
+  "val_clean": 0.9992260860592302,
+  "val_testlike": 0.9906614384480446,
+  "train_seconds": 175.20039184694178,
+  "epoch_seconds": 232.69518813991453,
+  "lr_end": 2.4899143363817535e-05,
+  "peak_vram_gib": 17.16796875,
+  "best_val_testlike": 0.9906614384480446
+}
+V20 train epoch 8/10 [####################] 77,547/77,547 100.00% elapsed 176s ETA 0s
+V20 val clean e8 [####################] 19,382/19,382 100.00% elapsed 28s ETA 0s
+V20 val testlike e8 [####################] 19,382/19,382 100.00% elapsed 30s ETA 0s
+{
+  "epoch": 8,
+  "train_loss": 0.7343627714323091,
+  "val_clean": 0.9994324631101021,
+  "val_testlike": 0.9916933237024043,
+  "train_seconds": 175.8300496430602,
+  "epoch_seconds": 234.44338155607693,
+  "lr_end": 1.2160683160053342e-05,
+  "peak_vram_gib": 17.16796875,
+  "best_val_testlike": 0.9916933237024043
+}
+V20 train epoch 9/10 [####################] 77,547/77,547 100.00% elapsed 181s ETA 0s
+V20 val clean e9 [####################] 19,382/19,382 100.00% elapsed 28s ETA 0s
+V20 val testlike e9 [####################] 19,382/19,382 100.00% elapsed 30s ETA 0s
+{
+  "epoch": 9,
+  "train_loss": 0.7318155302805189,
+  "val_clean": 0.9994324631101021,
+  "val_testlike": 0.9920028892787122,
+  "train_seconds": 181.659618561971,
+  "epoch_seconds": 239.63033752399497,
+  "lr_end": 3.873579466265272e-06,
+  "peak_vram_gib": 17.16796875,
+  "best_val_testlike": 0.9920028892787122
+}
+V20 train epoch 10/10 [####################] 77,547/77,547 100.00% elapsed 196s ETA 0s
+V20 val clean e10 [####################] 19,382/19,382 100.00% elapsed 28s ETA 0s
+V20 val testlike e10 [####################] 19,382/19,382 100.00% elapsed 30s ETA 0s
+{
+  "epoch": 10,
+  "train_loss": 0.7298318191355693,
+  "val_clean": 0.9993808688473842,
+  "val_testlike": 0.9921060778041482,
+  "train_seconds": 195.9966706240084,
+  "epoch_seconds": 254.11691724695265,
+  "lr_end": 1.0000000000000002e-06,
+  "peak_vram_gib": 17.16796875,
+  "best_val_testlike": 0.9921060778041482
+}
+{
+  "decision": "train_complete",
+  "best_val_testlike": 0.9921060778041482,
+  "epochs": [
+    {
+      "epoch": 1,
+      "train_loss": 1.851082977074812,
+      "val_clean": 0.9901970900835827,
+      "val_testlike": 0.9499535651635538
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.8612386213366046,
+      "val_clean": 0.9959756475079972,
+      "val_testlike": 0.9742544629037251
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.802257048555971,
+      "val_clean": 0.9976782581776906,
+      "val_testlike": 0.9786915694974719
+    },
+    {
+      "epoch": 4,
+      "train_loss": 0.776776448735564,
+      "val_clean": 0.9982973893303064,
+      "val_testlike": 0.9827159219894748
+    },
+    {
+      "epoch": 5,
+      "train_loss": 0.7600470265555151,
+      "val_clean": 0.9989165204829223,
+      "val_testlike": 0.985553606438964
+    },
+    {
+      "epoch": 6,
+      "train_loss": 0.7500832603460665,
+      "val_clean": 0.9989165204829223,
+      "val_testlike": 0.9882365081002993
+    },
+    {
+      "epoch": 7,
+      "train_loss": 0.742933219537739,
+      "val_clean": 0.9992260860592302,
+      "val_testlike": 0.9906614384480446
+    },
+    {
+      "epoch": 8,
+      "train_loss": 0.7343627714323091,
+      "val_clean": 0.9994324631101021,
+      "val_testlike": 0.9916933237024043
+    },
+    {
+      "epoch": 9,
+      "train_loss": 0.7318155302805189,
+      "val_clean": 0.9994324631101021,
+      "val_testlike": 0.9920028892787122
+    },
+    {
+      "epoch": 10,
+      "train_loss": 0.7298318191355693,
+      "val_clean": 0.9993808688473842,
+      "val_testlike": 0.9921060778041482
+    }
+  ]
+}
+V20 test [####################] 10,791/10,791 100.00% elapsed 22s ETA 0s
+{
+  "submission": "runs/v20/large/candidate_epoch_10/submission_v20.csv",
+  "submission_sha256": "75f2b4b8fce0d0fe85ede1d1acafc05ea8bee6856dc29bf149d8e5fbd76c9851",
+  "images": 10791,
+  "epoch": 10,
+  "checkpoint": "best.pt",
+  "val_clean": 0.9993808688473842,
+  "val_testlike": 0.9921060778041482,
+  "mean_confidence": 0.9218446612358093,
+  "predicted_class_min": 205,
+  "predicted_class_max": 235,
+  "changed_vs_v16": 1893,
+  "changed_vs_v18": 1484
+}
+val clean [####################] 19,382/19,382 100.00% elapsed 34s ETA 0s
+val testlike [####################] 19,382/19,382 100.00% elapsed 30s ETA 0s
+{
+  "run": "runs/v20/large",
+  "epoch": 10,
+  "val_clean": 0.9993808688473842,
+  "val_testlike": 0.9920028892787122
+}
+EXIT=0

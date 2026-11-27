@@ -1,0 +1,9 @@
+{
+  "completed_epochs": 10,
+  "best_epoch": 10,
+  "best_val_accuracy": 0.9941182540501496,
+  "epoch_seconds_total": 857.2082274159184,
+  "training_wall_seconds": 858.1995024620555,
+  "v1_best_val_accuracy": 0.9946857909400475,
+  "accuracy_delta_percentage_points": -0.05675368898978572
+}

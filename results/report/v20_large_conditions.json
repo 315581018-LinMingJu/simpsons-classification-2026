@@ -1,0 +1,103 @@
+{
+  "name": "v20_large",
+  "kind": "v20",
+  "checkpoint": "runs/v20/large/best.pt",
+  "epoch": 10,
+  "model": "convnext_large.fb_in22k_ft_in1k",
+  "size": 224,
+  "p_testify": 0.85,
+  "val_images": 19382,
+  "backgrounds": 5640,
+  "accuracy": {
+    "clean": 0.9993292745846661,
+    "distort": 0.9933959343720978,
+    "composite": 0.9991744917965122,
+    "full": 0.9910741925497885
+  },
+  "full_worst_classes": [
+    [
+      "charles_montgomery_burns",
+      0.9801
+    ],
+    [
+      "principal_skinner",
+      0.9801
+    ],
+    [
+      "ned_flanders",
+      0.9803
+    ],
+    [
+      "homer_simpson",
+      0.9806
+    ],
+    [
+      "waylon_smithers",
+      0.9821
+    ],
+    [
+      "comic_book_guy",
+      0.9826
+    ],
+    [
+      "marge_simpson",
+      0.9827
+    ],
+    [
+      "lisa_simpson",
+      0.9828
+    ]
+  ],
+  "full_top_confusions": [
+    [
+      "lisa_simpson",
+      "maggie_simpson",
+      4
+    ],
+    [
+      "maggie_simpson",
+      "lisa_simpson",
+      3
+    ],
+    [
+      "fat_tony",
+      "moe_szyslak",
+      3
+    ],
+    [
+      "patty_bouvier",
+      "selma_bouvier",
+      3
+    ],
+    [
+      "bart_simpson",
+      "marge_simpson",
+      2
+    ],
+    [
+      "principal_skinner",
+      "charles_montgomery_burns",
+      2
+    ],
+    [
+      "comic_book_guy",
+      "lisa_simpson",
+      2
+    ],
+    [
+      "selma_bouvier",
+      "patty_bouvier",
+      2
+    ],
+    [
+      "ned_flanders",
+      "edna_krabappel",
+      2
+    ],
+    [
+      "abraham_grampa_simpson",
+      "homer_simpson",
+      2
+    ]
+  ]
+}

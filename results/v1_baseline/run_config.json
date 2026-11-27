@@ -1,0 +1,11 @@
+{
+  "seed": 2026,
+  "epochs": 10,
+  "batch_size": 64,
+  "optimizer": "AdamW",
+  "lr": 0.0001,
+  "weight_decay": 0.0001,
+  "architecture": "resnet18",
+  "train_transform": "RandomResizedCrop224+RandomHorizontalFlip",
+  "eval_transform": "Resize256+CenterCrop224"
+}

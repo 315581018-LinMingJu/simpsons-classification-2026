@@ -1,0 +1,18 @@
+{
+  "command": "train",
+  "device": "cuda",
+  "batch_size": 32,
+  "workers": 16,
+  "threads": 4,
+  "seed": 2026,
+  "train_dir": "data/extracted/train",
+  "output": "runs/report/baseline_resnet18",
+  "epochs": 10,
+  "patience": 3,
+  "lr": 0.0001,
+  "val_fraction": 0.2,
+  "image_size": 224,
+  "scratch": false,
+  "max_per_class": 0,
+  "max_batches": 0
+}

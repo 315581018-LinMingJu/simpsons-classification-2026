@@ -1,0 +1,639 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/usr1/Aa315581018/simpsons-classification-2026/runs/report/code-8a108e7910e75534f61c0c9171622d9fa9812615/final/classification_v20.py:488: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:820.)
+  loss_sum += float(loss) * len(y)
+V20 train epoch 1/10 [####################] 77,547/77,547 100.00% elapsed 174s ETA 0s
+V20 val clean e1 [####################] 19,382/19,382 100.00% elapsed 30s ETA 0s
+V20 val testlike e1 [####################] 19,382/19,382 100.00% elapsed 19s ETA 0s
+{
+  "epoch": 1,
+  "train_loss": 1.5413945201989836,
+  "val_clean": 0.9946341966773294,
+  "val_testlike": 0.7240738829842122,
+  "train_seconds": 174.36400786298327,
+  "epoch_seconds": 223.87798980495427,
+  "lr_end": 9.991124204955496e-05,
+  "peak_vram_gib": 10.701171875,
+  "best_val_testlike": 0.7240738829842122
+}
+V20 train epoch 2/10 [####################] 77,547/77,547 100.00% elapsed 157s ETA 0s
+V20 val clean e2 [####################] 19,382/19,382 100.00% elapsed 17s ETA 0s
+V20 val testlike e2 [####################] 19,382/19,382 100.00% elapsed 20s ETA 0s
+{
+  "epoch": 2,
+  "train_loss": 0.7244621864960472,
+  "val_clean": 0.9970075327623569,
+  "val_testlike": 0.742699411825405,
+  "train_seconds": 157.34446998604108,
+  "epoch_seconds": 195.26789353310596,
+  "lr_end": 9.604797284745439e-05,
+  "peak_vram_gib": 10.701171875,
+  "best_val_testlike": 0.742699411825405
+}
+V20 train epoch 3/10 [####################] 77,547/77,547 100.00% elapsed 152s ETA 0s
+V20 val clean e3 [####################] 19,382/19,382 100.00% elapsed 18s ETA 0s
+V20 val testlike e3 [####################] 19,382/19,382 100.00% elapsed 20s ETA 0s
+{
+  "epoch": 3,
+  "train_loss": 0.7103050954660376,
+  "val_clean": 0.9984521721184604,
+  "val_testlike": 0.7671034980910123,
+  "train_seconds": 152.37447982397862,
+  "epoch_seconds": 190.68494536797516,
+  "lr_end": 8.689639174618401e-05,
+  "peak_vram_gib": 10.701171875,
+  "best_val_testlike": 0.7671034980910123
+}
+V20 train epoch 4/10 [####################] 77,547/77,547 100.00% elapsed 151s ETA 0s
+V20 val clean e4 [####################] 19,382/19,382 100.00% elapsed 17s ETA 0s
+V20 val testlike e4 [####################] 19,382/19,382 100.00% elapsed 20s ETA 0s
+{
+  "epoch": 4,
+  "train_loss": 0.7073330138855436,
+  "val_clean": 0.9977298524404086,
+  "val_testlike": 0.7671550923537303,
+  "train_seconds": 150.98962215601932,
+  "epoch_seconds": 188.63212642096914,
+  "lr_end": 7.351903593913662e-05,
+  "peak_vram_gib": 10.701171875,
+  "best_val_testlike": 0.7671550923537303
+}
+V20 train epoch 5/10 [####################] 77,547/77,547 100.00% elapsed 171s ETA 0s
+V20 val clean e5 [####################] 19,382/19,382 100.00% elapsed 17s ETA 0s
+V20 val testlike e5 [####################] 19,382/19,382 100.00% elapsed 20s ETA 0s
+{
+  "epoch": 5,
+  "train_loss": 0.7059865176223445,
+  "val_clean": 0.9981942008048705,
+  "val_testlike": 0.7671550923537303,
+  "train_seconds": 171.5850922750542,
+  "epoch_seconds": 208.72875556501094,
+  "lr_end": 5.74690728994458e-05,
+  "peak_vram_gib": 10.701171875,
+  "best_val_testlike": 0.7671550923537303
+}
+V20 train epoch 6/10 [####################] 77,547/77,547 100.00% elapsed 151s ETA 0s
+V20 val clean e6 [####################] 19,382/19,382 100.00% elapsed 17s ETA 0s
+V20 val testlike e6 [####################] 19,382/19,382 100.00% elapsed 19s ETA 0s
+{
+  "epoch": 6,
+  "train_loss": 0.7048906193953448,
+  "val_clean": 0.9981426065421525,
+  "val_testlike": 0.7689092972861418,
+  "train_seconds": 150.99890875502024,
+  "epoch_seconds": 187.4488912310917,
+  "lr_end": 4.060997108065383e-05,
+  "peak_vram_gib": 10.701171875,
+  "best_val_testlike": 0.7689092972861418
+}
+V20 train epoch 7/10 [####################] 77,547/77,547 100.00% elapsed 151s ETA 0s
+V20 val clean e7 [####################] 19,382/19,382 100.00% elapsed 16s ETA 0s
+V20 val testlike e7 [####################] 19,382/19,382 100.00% elapsed 19s ETA 0s
+{
+  "epoch": 7,
+  "train_loss": 0.7034040820549872,
+  "val_clean": 0.9988133319574863,
+  "val_testlike": 0.7795377154060469,
+  "train_seconds": 151.15118639694992,
+  "epoch_seconds": 186.72528002492618,
+  "lr_end": 2.4899143363817535e-05,
+  "peak_vram_gib": 10.701171875,
+  "best_val_testlike": 0.7795377154060469
+}
+V20 train epoch 8/10 [####################] 77,547/77,547 100.00% elapsed 153s ETA 0s
+V20 val clean e8 [####################] 19,382/19,382 100.00% elapsed 16s ETA 0s
+V20 val testlike e8 [####################] 19,382/19,382 100.00% elapsed 19s ETA 0s
+{
+  "epoch": 8,
+  "train_loss": 0.7030969902350181,
+  "val_clean": 0.9988133319574863,
+  "val_testlike": 0.7876380146527706,
+  "train_seconds": 153.06736725301016,
+  "epoch_seconds": 189.04718828899786,
+  "lr_end": 1.2160683160053342e-05,
+  "peak_vram_gib": 10.701171875,
+  "best_val_testlike": 0.7876380146527706
+}
+V20 train epoch 9/10 [####################] 77,547/77,547 100.00% elapsed 151s ETA 0s
+V20 val clean e9 [####################] 19,382/19,382 100.00% elapsed 17s ETA 0s
+V20 val testlike e9 [####################] 19,382/19,382 100.00% elapsed 19s ETA 0s
+{
+  "epoch": 9,
+  "train_loss": 0.7029436796329831,
+  "val_clean": 0.9988133319574863,
+  "val_testlike": 0.7901661335259519,
+  "train_seconds": 151.46563871391118,
+  "epoch_seconds": 187.41445013997145,
+  "lr_end": 3.873579466265272e-06,
+  "peak_vram_gib": 10.701171875,
+  "best_val_testlike": 0.7901661335259519
+}
+V20 train epoch 10/10 [####################] 77,547/77,547 100.00% elapsed 151s ETA 0s
+V20 val clean e10 [####################] 19,382/19,382 100.00% elapsed 17s ETA 0s
+V20 val testlike e10 [####################] 19,382/19,382 100.00% elapsed 19s ETA 0s
+{
+  "epoch": 10,
+  "train_loss": 0.7028538068984143,
+  "val_clean": 0.9988649262202043,
+  "val_testlike": 0.789804973686926,
+  "train_seconds": 151.55389916501008,
+  "epoch_seconds": 187.7250136010116,
+  "lr_end": 1.0000000000000002e-06,
+  "peak_vram_gib": 10.701171875,
+  "best_val_testlike": 0.7901661335259519
+}
+{
+  "decision": "train_complete",
+  "best_val_testlike": 0.7901661335259519,
+  "epochs": [
+    {
+      "epoch": 1,
+      "train_loss": 1.5413945201989836,
+      "val_clean": 0.9946341966773294,
+      "val_testlike": 0.7240738829842122
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.7244621864960472,
+      "val_clean": 0.9970075327623569,
+      "val_testlike": 0.742699411825405
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.7103050954660376,
+      "val_clean": 0.9984521721184604,
+      "val_testlike": 0.7671034980910123
+    },
+    {
+      "epoch": 4,
+      "train_loss": 0.7073330138855436,
+      "val_clean": 0.9977298524404086,
+      "val_testlike": 0.7671550923537303
+    },
+    {
+      "epoch": 5,
+      "train_loss": 0.7059865176223445,
+      "val_clean": 0.9981942008048705,
+      "val_testlike": 0.7671550923537303
+    },
+    {
+      "epoch": 6,
+      "train_loss": 0.7048906193953448,
+      "val_clean": 0.9981426065421525,
+      "val_testlike": 0.7689092972861418
+    },
+    {
+      "epoch": 7,
+      "train_loss": 0.7034040820549872,
+      "val_clean": 0.9988133319574863,
+      "val_testlike": 0.7795377154060469
+    },
+    {
+      "epoch": 8,
+      "train_loss": 0.7030969902350181,
+      "val_clean": 0.9988133319574863,
+      "val_testlike": 0.7876380146527706
+    },
+    {
+      "epoch": 9,
+      "train_loss": 0.7029436796329831,
+      "val_clean": 0.9988133319574863,
+      "val_testlike": 0.7901661335259519
+    },
+    {
+      "epoch": 10,
+      "train_loss": 0.7028538068984143,
+      "val_clean": 0.9988649262202043,
+      "val_testlike": 0.789804973686926
+    }
+  ]
+}
+ablation_no_testify clean [####################] 19,382/19,382 100.00% elapsed 15s ETA 0s
+ablation_no_testify distort [####################] 19,382/19,382 100.00% elapsed 15s ETA 0s
+ablation_no_testify composite [####################] 19,382/19,382 100.00% elapsed 11s ETA 0s
+ablation_no_testify full [####################] 19,382/19,382 100.00% elapsed 17s ETA 0s
+{
+  "name": "ablation_no_testify",
+  "kind": "v20",
+  "checkpoint": "runs/v20/ablation_no_testify/best.pt",
+  "epoch": 9,
+  "model": "convnext_base.fb_in22k_ft_in1k",
+  "size": 224,
+  "p_testify": 0.0,
+  "val_images": 19382,
+  "backgrounds": 5640,
+  "accuracy": {
+    "clean": 0.9986585491693324,
+    "distort": 0.8782375399855537,
+    "composite": 0.9863275203797338,
+    "full": 0.7846971416778454
+  },
+  "full_worst_classes": [
+    [
+      "otto_mann",
+      0.4501
+    ],
+    [
+      "timothy_lovejoy",
+      0.5121
+    ],
+    [
+      "sideshow_mel",
+      0.6507
+    ],
+    [
+      "gary_chalmers",
+      0.6939
+    ],
+    [
+      "snake_jailbird",
+      0.6952
+    ],
+    [
+      "carl_carlson",
+      0.723
+    ],
+    [
+      "professor_john_frink",
+      0.7246
+    ],
+    [
+      "patty_bouvier",
+      0.7287
+    ]
+  ],
+  "full_top_confusions": [
+    [
+      "maggie_simpson",
+      "lisa_simpson",
+      36
+    ],
+    [
+      "otto_mann",
+      "moe_szyslak",
+      23
+    ],
+    [
+      "sideshow_mel",
+      "krusty_the_clown",
+      22
+    ],
+    [
+      "otto_mann",
+      "krusty_the_clown",
+      20
+    ],
+    [
+      "ralph_wiggum",
+      "charles_montgomery_burns",
+      20
+    ],
+    [
+      "lionel_hutz",
+      "waylon_smithers",
+      19
+    ],
+    [
+      "carl_carlson",
+      "apu_nahasapeemapetilon",
+      19
+    ],
+    [
+      "cletus_spuckler",
+      "brandine_spuckler",
+      18
+    ],
+    [
+      "selma_bouvier",
+      "patty_bouvier",
+      18
+    ],
+    [
+      "otto_mann",
+      "brandine_spuckler",
+      17
+    ]
+  ]
+}
+v20_main clean [####################] 19,382/19,382 100.00% elapsed 14s ETA 0s
+v20_main distort [####################] 19,382/19,382 100.00% elapsed 13s ETA 0s
+v20_main composite [####################] 19,382/19,382 100.00% elapsed 12s ETA 0s
+v20_main full [####################] 19,382/19,382 100.00% elapsed 17s ETA 0s
+{
+  "name": "v20_main",
+  "kind": "v20",
+  "checkpoint": "runs/v20/main/best.pt",
+  "epoch": 9,
+  "model": "convnext_base.fb_in22k_ft_in1k",
+  "size": 224,
+  "p_testify": 0.85,
+  "val_images": 19382,
+  "backgrounds": 5640,
+  "accuracy": {
+    "clean": 0.9992260860592302,
+    "distort": 0.9893199876173769,
+    "composite": 0.9989165204829223,
+    "full": 0.9873078113713755
+  },
+  "full_worst_classes": [
+    [
+      "charles_montgomery_burns",
+      0.9701
+    ],
+    [
+      "moe_szyslak",
+      0.9705
+    ],
+    [
+      "ned_flanders",
+      0.973
+    ],
+    [
+      "principal_skinner",
+      0.9752
+    ],
+    [
+      "homer_simpson",
+      0.9782
+    ],
+    [
+      "mayor_quimby",
+      0.9792
+    ],
+    [
+      "comic_book_guy",
+      0.9801
+    ],
+    [
+      "fat_tony",
+      0.9811
+    ]
+  ],
+  "full_top_confusions": [
+    [
+      "fat_tony",
+      "moe_szyslak",
+      4
+    ],
+    [
+      "barney_gumble",
+      "mayor_quimby",
+      3
+    ],
+    [
+      "bart_simpson",
+      "marge_simpson",
+      3
+    ],
+    [
+      "patty_bouvier",
+      "selma_bouvier",
+      3
+    ],
+    [
+      "fat_tony",
+      "agnes_skinner",
+      2
+    ],
+    [
+      "comic_book_guy",
+      "lisa_simpson",
+      2
+    ],
+    [
+      "principal_skinner",
+      "apu_nahasapeemapetilon",
+      2
+    ],
+    [
+      "lenny_leonard",
+      "snake_jailbird",
+      2
+    ],
+    [
+      "cletus_spuckler",
+      "moe_szyslak",
+      2
+    ],
+    [
+      "milhouse_van_houten",
+      "krusty_the_clown",
+      2
+    ]
+  ]
+}
+v20_b288 clean [####################] 19,382/19,382 100.00% elapsed 21s ETA 0s
+v20_b288 distort [####################] 19,382/19,382 100.00% elapsed 19s ETA 0s
+v20_b288 composite [####################] 19,382/19,382 100.00% elapsed 16s ETA 0s
+v20_b288 full [####################] 19,382/19,382 100.00% elapsed 20s ETA 0s
+{
+  "name": "v20_b288",
+  "kind": "v20",
+  "checkpoint": "runs/v20/b288/best.pt",
+  "epoch": 11,
+  "model": "convnext_base.fb_in22k_ft_in1k",
+  "size": 288,
+  "p_testify": 0.85,
+  "val_images": 19382,
+  "backgrounds": 5640,
+  "accuracy": {
+    "clean": 0.9993292745846661,
+    "distort": 0.9938086884738417,
+    "composite": 0.9991228975337942,
+    "full": 0.9915901351769684
+  },
+  "full_worst_classes": [
+    [
+      "principal_skinner",
+      0.9801
+    ],
+    [
+      "marge_simpson",
+      0.9802
+    ],
+    [
+      "fat_tony",
+      0.9811
+    ],
+    [
+      "homer_simpson",
+      0.9831
+    ],
+    [
+      "martin_prince",
+      0.9841
+    ],
+    [
+      "lenny_leonard",
+      0.9847
+    ],
+    [
+      "charles_montgomery_burns",
+      0.9851
+    ],
+    [
+      "milhouse_van_houten",
+      0.9855
+    ]
+  ],
+  "full_top_confusions": [
+    [
+      "nelson_muntz",
+      "moe_szyslak",
+      3
+    ],
+    [
+      "fat_tony",
+      "moe_szyslak",
+      3
+    ],
+    [
+      "patty_bouvier",
+      "selma_bouvier",
+      2
+    ],
+    [
+      "homer_simpson",
+      "comic_book_guy",
+      2
+    ],
+    [
+      "marge_simpson",
+      "homer_simpson",
+      2
+    ],
+    [
+      "mayor_quimby",
+      "lenny_leonard",
+      2
+    ],
+    [
+      "chief_wiggum",
+      "moe_szyslak",
+      2
+    ],
+    [
+      "charles_montgomery_burns",
+      "sideshow_bob",
+      2
+    ],
+    [
+      "abraham_grampa_simpson",
+      "homer_simpson",
+      2
+    ],
+    [
+      "bart_simpson",
+      "marge_simpson",
+      2
+    ]
+  ]
+}
+v20_large clean [####################] 19,382/19,382 100.00% elapsed 23s ETA 0s
+v20_large distort [####################] 19,382/19,382 100.00% elapsed 19s ETA 0s
+v20_large composite [####################] 19,382/19,382 100.00% elapsed 16s ETA 0s
+v20_large full [####################] 19,382/19,382 100.00% elapsed 18s ETA 0s
+{
+  "name": "v20_large",
+  "kind": "v20",
+  "checkpoint": "runs/v20/large/best.pt",
+  "epoch": 10,
+  "model": "convnext_large.fb_in22k_ft_in1k",
+  "size": 224,
+  "p_testify": 0.85,
+  "val_images": 19382,
+  "backgrounds": 5640,
+  "accuracy": {
+    "clean": 0.9993292745846661,
+    "distort": 0.9933959343720978,
+    "composite": 0.9991744917965122,
+    "full": 0.9910741925497885
+  },
+  "full_worst_classes": [
+    [
+      "charles_montgomery_burns",
+      0.9801
+    ],
+    [
+      "principal_skinner",
+      0.9801
+    ],
+    [
+      "ned_flanders",
+      0.9803
+    ],
+    [
+      "homer_simpson",
+      0.9806
+    ],
+    [
+      "waylon_smithers",
+      0.9821
+    ],
+    [
+      "comic_book_guy",
+      0.9826
+    ],
+    [
+      "marge_simpson",
+      0.9827
+    ],
+    [
+      "lisa_simpson",
+      0.9828
+    ]
+  ],
+  "full_top_confusions": [
+    [
+      "lisa_simpson",
+      "maggie_simpson",
+      4
+    ],
+    [
+      "maggie_simpson",
+      "lisa_simpson",
+      3
+    ],
+    [
+      "fat_tony",
+      "moe_szyslak",
+      3
+    ],
+    [
+      "patty_bouvier",
+      "selma_bouvier",
+      3
+    ],
+    [
+      "bart_simpson",
+      "marge_simpson",
+      2
+    ],
+    [
+      "principal_skinner",
+      "charles_montgomery_burns",
+      2
+    ],
+    [
+      "comic_book_guy",
+      "lisa_simpson",
+      2
+    ],
+    [
+      "selma_bouvier",
+      "patty_bouvier",
+      2
+    ],
+    [
+      "ned_flanders",
+      "edna_krabappel",
+      2
+    ],
+    [
+      "abraham_grampa_simpson",
+      "homer_simpson",
+      2
+    ]
+  ]
+}
+EXIT=0

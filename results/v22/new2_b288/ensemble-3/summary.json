@@ -1,0 +1,31 @@
+{
+  "members": [
+    "large288:convnext_large.fb_in22k_ft_in1k@288",
+    "base384:convnext_base.fb_in22k_ft_in1k@384",
+    "b288:convnext_base.fb_in22k_ft_in1k@288"
+  ],
+  "per_run": {
+    "large288:convnext_large.fb_in22k_ft_in1k@288": {
+      "clean": 0.9992776803219482,
+      "testlike": 0.9948405737282014
+    },
+    "base384:convnext_base.fb_in22k_ft_in1k@384": {
+      "clean": 0.9994840573728201,
+      "testlike": 0.9945310081518935
+    },
+    "b288:convnext_base.fb_in22k_ft_in1k@288": {
+      "clean": 0.9993808688473842,
+      "testlike": 0.992776803219482
+    }
+  },
+  "ensemble_val": {
+    "clean": 0.9994324631101021,
+    "testlike": 0.9955112991435352
+  },
+  "submission": "runs/v22/new2_b288/ensemble-3/submission_v21.csv",
+  "submission_sha256": "fda35c7542fcdc430c7f6a61ccdc45017c0e54dd306531c46b8210fcaf9e2db6",
+  "images": 10791,
+  "predicted_class_min": 206,
+  "predicted_class_max": 232,
+  "changed_vs_v20": 151
+}

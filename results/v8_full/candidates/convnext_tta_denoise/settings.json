@@ -1,0 +1,30 @@
+{
+  "architecture": "convnext_tiny",
+  "batch_size": 16,
+  "checkpoint_sha256": "7d0791e88c5eca731b8d3ff82aaec907eb481619791edb6842859a209a89cb25",
+  "denoise": true,
+  "environment": {
+    "commit": "",
+    "cuda": "13.0",
+    "cudnn": 92400,
+    "gpu": "NVIDIA GeForce RTX 5090",
+    "gpu_total_gib": 31.3564453125,
+    "numpy": "2.2.6",
+    "pillow": "12.3.0",
+    "python": "3.10.12 (main, Aug 31 2026, 10:18:17) [GCC 11.4.0]",
+    "torch": "2.14.1+cu130",
+    "torchvision": "0.29.1+cu130"
+  },
+  "images": 10791,
+  "method": "multiscale",
+  "origin": {
+    "kind": "imagenet1k",
+    "sha256": "983f1562536e84ff750a1576fb08e54de751dbf2e17c0d8a4a13704341fdcd3d",
+    "url": "https://download.pytorch.org/models/convnext_tiny-983f1562.pth",
+    "weight": "ConvNeXt_Tiny_Weights.IMAGENET1K_V1"
+  },
+  "submission_sha256": "bb3b02ddbf6a2c9b87b011f1d9fe0101c7eaa1756f2437e7d981689c8c35a9a8",
+  "template_sha256": "04bf783c94ff8b4a4e706cde7f9ceeeb32c29a9319d7325a16a345a8f1ff2423",
+  "test_image_signature": "4a6dc52943ec2f13cc3a52b210c30e0e8fd8f13c5d5fb67a4d49c689d09137b5",
+  "workers": 4
+}
